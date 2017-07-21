@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CITRUS管理后台</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel='icon' href='images/favicon.png' type='image/png'/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/um/themes/default/css/umeditor.min.css">
+    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">-->
+    <link rel="stylesheet" href="bower_components/ui-select/dist/select.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-colorpicker-master/css/colorpicker.css">
+    <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body ng-controller="appCtrl">
+<div class="alert-wrap " ng-if="vm.alerts.length" ng-class="{' show':vm.alerts.length}" style="display: none;">
+    <alert ng-repeat="alert in vm.alerts" type="{{alert.type}}" close="alert.close()"><span
+            class="glyphicon glyphicon-info-sign"> </span> {{alert.msg}}
+    </alert>
+</div>
+<div class="wrap">
+    <ng-include src="'views/com/nav.html'"></ng-include>
+    <div class="main">
+        <ng-include src="'views/com/top-bar.html'"></ng-include>
+        <search-more on-submit="vm.onSearchMoreSubmit()" is-show="vm.searchMoreShow"></search-more>
+        <!--ui-view-->
+        <div class="view {{page}} clearfix" ui-view></div>
+        <ng-include src="'views/com/footer.html'"></ng-include>
+    </div>
+</div>
+
+<script src="bower_components/requirejs/require.js" data-main="scripts/main"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div class="padding">
+    <table class="table ">
+        <tr>
+            <td>名称</td>
+            <td>
+                <input ng-model="vm.item.name">
+            </td>
+        </tr>
+        <tr>
+            <td>类型</td>
+            <td>
+                <select ng-model="vm.item.type">
+                    <option value="qy_agent">企业号</option>
+                    <option value="mp_agent">服务号</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>AppID</td>
+            <td>
+                <input ng-model="vm.item.app_id">
+            </td>
+        </tr>
+        <tr>
+            <td>LOGO</td>
+            <td>
+                <input ng-model="vm.item.option.logo">
+            </td>
+        </tr>
+        <tr>
+            <td>规则</td>
+            <td>
+                <textarea rows="6" cols="50" ng-model="vm.item.option.rule"></textarea>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.create()">保存</a>
+        <a class="btn btn-default" ng-click="vm.close()">关闭</a>
+    </div>
+</div>

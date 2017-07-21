@@ -1,0 +1,51 @@
+<ion-view class="goal-setting" hide-tabs="true" hide-nav-bar="true" cache-view="false">
+    <ion-header-bar class="bar-positive bg-positive">
+        <div class="buttons">
+            <a class="button bg-positive" ui-sref="^.overview"> <i
+                    class="icon ion-android-close"></i></a>
+        </div>
+        <h4 class="title">汇总</h4>
+        <div class="buttons">
+        </div>
+    </ion-header-bar>
+    <nav-perf data="vm.detail" scroll-to-value="1000"></nav-perf>
+    <ion-content style="top: 88px;">
+        <ng-include data-src="'views/app/perf/user-perf.html'"></ng-include>
+        <ion-list class="list-goal list list-sm sm-bd">
+            <div class="item item-divider-ios item-divider m-bd-bottom sm-bd-top">总结</div>
+            <ion-item class="item item-text-wrap">
+                <span class="gray">自我评估</span> {{vm.detail.summary.self.info}} <span class="label">{{vm.detail.summary.self.rate}} %</span>
+            </ion-item>
+            <ion-item class="item item-text-wrap">
+                <span class="gray">上级评估</span> {{vm.detail.summary.supervisor.info}} <span class="label">{{vm.detail.summary.supervisor.rate}} %</span>
+            </ion-item>
+            <ion-item class="item item-text-wrap"
+                      ng-class="{'item-icon-right':vm.permission&&vm.detail.opts.hr==1}">
+                <span class="gray">H R 评估</span> {{vm.detail.summary.hr.info}}
+                <i ng-if="vm.permission&&vm.detail.opts.hr==1" ng-click="vm.review(vm.detail.summary.hr,'hr')"
+                   class="icon   color-calm ion-ios-more-outline"></i>
+            </ion-item>
+            <ion-item class="item item-text-wrap"
+                      ng-class="{'item-icon-right':vm.permission&&vm.detail.opts.hr==1}">
+                <span class="gray">导师评估</span> {{vm.detail.summary.mentor.info}}
+                <i ng-if="vm.permission&&vm.detail.opts.mentor==1" ng-click="vm.review(vm.detail.summary.mentor,'mentor')"
+                   class="icon   color-calm ion-ios-more-outline"></i>
+            </ion-item>
+
+        </ion-list>
+
+
+    </ion-content>
+</ion-view>
+
+<script type="text/ng-template" id="modal-summary.tpl">
+    <div class="list list-sm sm-bd">
+        <label class="item item-input item-textarea" ng-class="{'error':form.$submitted&&form.info.$invalid}">
+            <textarea rows="3" required ng-model="vm.data.info" name="info" placeholder="请输入评价"></textarea>
+        </label>
+    </div>
+
+</script>
+
+
+

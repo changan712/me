@@ -1,0 +1,38 @@
+<ion-modal-view cache-view="false" hide-tabs>
+    <ion-header-bar class="bar-dark">
+        <h4 class="title">请选择</h4>
+        <div class="buttons">
+            <button class="button" ng-click="vm.cancel()">取消</button>
+            <button class="button" ng-click="vm.ok()">确定</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="padding gray"><i class="icon ion-ios-information-outline"></i> 最多选择{{vm.maxLength}}项</div>
+        <ion-list class="item-text-wrap">
+          <div  ng-repeat="item in vm.views" class="relative item-checkbox-wrap" ng-class="{'has-right-icon':item.des}">  <ion-checkbox class="checkbox-assertive checkbox-theme " ng-change="vm.change(item)"
+                          ng-disabled="!item.checked&&vm.itemSelectedLength>=vm.maxLength&&vm.maxLength>1"
+                          ng-model="item.checked"
+            >{{item[vm.labelName]}}
+            </ion-checkbox><a class="button button-light button-right-icon" ng-click="vm.openPopover($event,item.des)" ng-if="item.des" > <i
+                               class="ion-ios-information-outline positive icon  "></i></a></div>
+        </ion-list>
+        <div class="list list-sm mt10" ng-if="vm.data[0].completion_rate>-1">
+            <div class="item item-divider item-divider-ios">该目标已完成 {{vm.data[0].completion_rate}}%</div>
+            <div class="item range range-positive range-sm">
+                <input type="range" name="volume" min="0" max="100" ng-model="vm.data[0].completion_rate" ng-value="">
+
+            </div>
+
+        </div>
+
+        <!-- <input type="radio" ng-repeat="item in vm.views" ng-value="item.id" ng-model="vm.modelRadio">
+
+         <ion-list class="item-text-wrap"  >
+             <ion-radio
+                     ng-repeat="item in vm.views" ng-value="item.id" ng-model="vm.modelRadio"
+             >{{item[vm.labelName]}}
+             </ion-radio>
+
+         </ion-list>-->
+    </ion-content>
+</ion-modal-view>

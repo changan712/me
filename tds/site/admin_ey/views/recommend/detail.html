@@ -1,0 +1,48 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <span>员工姓名：{{vm.refer.name}}</span>
+        <span class="ml30">微信昵称：{{vm.refer.weixin_nickname||"暂无"}}</span>
+        <span class="ml30">联系方式：{{vm.refer.mobile}}</span>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">推荐历史</div>
+    <div class="panel-body">
+        <table class="table stable-border table-striped " ng-if="vm.historyList.length">
+
+            <tr>
+                <th>被推荐人</th>
+                <th>招聘岗位</th>
+                <th>推荐时间</th>
+                <th>状态</th>
+                <th>推荐结果</th>
+            </tr>
+            <tr ng-repeat="item in vm.historyList">
+                <td> <a ng-href="#/resume/{{item.id}}">{{item.name}}</a></td>
+                <td> <a ng-href="#/position/{{item.position_id}}">{{item.position_name}}</a><span ng-if="item.position_status=='CLOSED'" class="red">（已关闭）</span></td>
+                <td> {{item.created_at|date:yyyy-MM-dd}}</td>
+                <td><span ng-if="item.ref_status=='NEW'" class="glyphicon glyphicon-question-sign big" style="color: #ffc000"></span>
+                    <span ng-if="item.ref_status=='ACCEPT'" class="glyphicon glyphicon-ok-sign big green"></span>
+                    <span ng-if="item.ref_status=='NOACCEPT'" class="glyphicon glyphicon-remove-sign big brick-red"></span>
+                </td>
+                <td>
+                    <a ng-if="item.ref_status != 'ACCEPT'" class="btn btn-sm btn-default" ng-click="vm.opRef(item.id, 'ACCEPT')">成功</a>
+                    <a ng-if="item.ref_status != 'NOACCEPT'" class="btn btn-sm btn-default" ng-click="vm.opRef(item.id, 'NOACCEPT')">未成功</a>
+                </td>
+            </tr>
+        </table>
+        <div class="padding text-center gray" ng-if="!vm.historyList.length">暂无历史</div>
+        <div class="ft">
+            <div class="pull-right">
+                <pagination ng-if="vm.totalItems>20" items-per-page="20" max-size="5" boundary-links="true"
+                            total-items="vm.totalItems"
+                            ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                            last-text="&raquo;"></pagination>
+            </div>
+
+
+        </div>
+    </div>
+</div>

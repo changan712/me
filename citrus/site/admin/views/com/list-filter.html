@@ -1,0 +1,23 @@
+
+
+<ul class="resume-filter form-inline">
+
+    <li ng-repeat="p in pData">
+        <dl>
+            <dt ng-click="toggle(p)">
+                <span class=" blue  pull-right mt5  glyphicon"
+                      ng-class="{false:' glyphicon-triangle-bottom',true:'glyphicon-triangle-top'}[!!p.showChild]"></span>{{p.label}}
+            </dt>
+            <dd ng-if="p.showChild "> <!---->
+
+                <div class="item"><label><span class="checkbox"><input
+                        type="checkbox" ng-disabled="p.active" ng-change="changeAll(p)" ng-model="p.active"/></span> 所有</label></div>
+                <div class="item" ng-repeat="i in p.buckets" >
+                    <span class="num pull-right gray">({{i.doc_count}})</span><label><span class="checkbox"><input
+                        type="checkbox" ng-change="changeItem(i)" ng-model="i.active"/></span> {{i.key}}</label>
+                </div>
+                <div><input type="text" placeholder="新增" ng-model="p.added" ng-keydown="add($event,p)" class="form-control"/></div>
+            </dd>
+        </dl>
+    </li>
+</ul>

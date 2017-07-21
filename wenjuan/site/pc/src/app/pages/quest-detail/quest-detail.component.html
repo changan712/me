@@ -1,0 +1,48 @@
+<div class="p">
+
+    <div class="a-c p " appVHost>
+        <app-countdown [serverTime]="serverTime" [endTime]="endTime" (warning)="onCountdownWarning($event)"
+                       [warningTime]="warningTime"
+                       (complete)="onCountdownComplete($event)" completedText="测评已超时"></app-countdown>
+
+    </div>
+
+    <form [formGroup]="formModel" novalidate *ngIf="formModel">
+        <md-tab-group formGroupName="items" [(selectedIndex)]="selectedIndex">
+            <md-tab [label]="getTabLabel(list[i].name,i)"
+                    *ngFor="let item of formModel.controls.items.controls;let i = index">
+                <h2>{{list[i].name}}
+
+                    <span class="f14" *ngIf="list[i].type=='text'">（请输入 {{item.type_option?.length?.min||70}} - {{item.type_option?.length?.max||350}} 字）</span>
+
+                </h2>
+                <div [formGroupName]="i">
+                    <div *ngIf="list[i].type=='text'">
+                        <md-input-container class="">
+                            <textarea mdInput formControlName="info" rows="10" placeholder="请输入"></textarea>
+
+                        </md-input-container>
+                        <div class="p a-r">
+
+                    <span class="f14 gray"
+                          *ngIf=" list[i]?.type_option?.length?.max||350 -item.get('info').value?.length>=0">还可以输入{{ formModel?.type_option?.length?.max||350 -item.get('info').value?.length}} 字</span>
+                            <span class="f14 warn"
+                                  *ngIf=" formModel?.type_option?.length?.max||350 -item.get('info').value?.length<0">已超出 {{ formModel?.type_option?.length?.max||350- item.get('info').value?.length|abs}} 字</span>
+
+                        </div>
+                    </div>
+                    <div class="p-l" *ngIf="list[i].type=='select'">
+                        <app-control-array formControlName="info" [view]="list[i].type_option"></app-control-array>
+                    </div>
+                </div>
+
+            </md-tab>
+
+        </md-tab-group>
+        <div>
+            <button md-button md-raised-button color="accent" (click)="submit()">提交</button>
+        </div>
+
+    </form>
+
+</div>

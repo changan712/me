@@ -1,0 +1,71 @@
+<div class="padding">
+    <table class="table table-bordered">
+        <tr>
+            <td>用户名：<input ng-model="vm.query.search"></td>
+        </tr>
+        <tr>
+            <td><button ng-click="vm.doQuery()">查询</button></td>
+        </tr>
+    </table>
+    <!--<div>{{root.user.corp.name}}</div>-->
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>用户</th>
+            <th>企业号姓名</th>
+            <th>性别</th>
+            <th ng-show="'mobile' | checkListFilter:root.admin_conf.user_list.show">手机</th>
+            <th ng-show="'email' | checkListFilter:root.admin_conf.user_list.show">Email</th>
+            <th ng-show="'tk_type' | checkListFilter:root.admin_conf.user_list.show">类型</th>
+            <th>角色</th>
+            <th>feed数</th>
+            <th>点赞数</th>
+            <th ng-show="'tk_opt' | checkListFilter:root.admin_conf.user_list.show">操作</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td>
+                <span class="avatar avatar-sm mr5"><img ng-if="item.avatar" ng-src="{{item.avatar}}" alt=""></span>{{item.name}}
+                <span class="red" ng-if="item.status=='disable'">[disable]</span>
+            </td>
+            <td><a ng-href="#/app/user/info/{{item.id}}">{{item.qy_name}}</a></td>
+            <td>{{item.gender|gender}}</td>
+            <td ng-show="'mobile' | checkListFilter:root.admin_conf.user_list.show">{{item.mobile}}</td>
+            <td ng-show="'tk_type' | checkListFilter:root.admin_conf.user_list.show">
+                <span ng-if="item.emplyment_type==1 && item.id!=2">学员</span>
+                <span ng-if="item.emplyment_type==2 || item.id==2" style="color: pink">主管</span>
+            </td>
+            <td width="120">
+                <span class="btn-group btn-group-sm">
+                    <a class="btn btn-default" ng-if="item.is_admin">admin</a>
+                    <a class="btn btn-default" ng-if="item.is_hr">HR</a>
+                </span>
+            </td>
+            <td>{{item.feed_count}}</td>
+            <td>{{item.like_count}}</td>
+            <td ng-show="'tk_opt' | checkListFilter:root.admin_conf.user_list.show">
+                <a ng-if="item.emplyment_type == 1" ng-href="#/app/data/case2/{{item.id}}">雷达图</a>
+                <span ng-if="item.emplyment_type == 1"> | </span>
+                <a ng-if="item.emplyment_type == 1" ng-href="#/app/data/case6/{{item.id}}">折线图</a>
+                <span ng-if="item.emplyment_type == 1"> | </span>
+                <a ng-if="item.emplyment_type == 1" ng-href="#/app/data/case3/{{item.id}}">高频词</a>
+            </td>
+        </tr>
+    </table>
+
+    <div class="text-right mt10">
+        <uib-pagination
+                items-per-page="vm._meta.perPage"
+                boundary-links="true"
+                max-size="5"
+                ng-change="vm.pageChanged()"
+                total-items="vm._meta.totalCount"
+                ng-model="vm._meta.currentPage"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></uib-pagination>
+
+    </div>
+</div>
+

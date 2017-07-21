@@ -1,0 +1,64 @@
+<div class="redpack-detail ng-scope">
+    <div class="row">
+        <div class="col-xs-6 col-md-3"><label>客户名称：{{vm.company_name}}</label></div>
+        <div class="col-xs-6 col-md-2">联系人：{{vm.username}}</div>
+        <div class="col-xs-6 col-md-6">联系方式：{{vm.contact}}</div>
+        <!--<div class="col-xs-6 col-md-2"></div>-->
+    </div>
+    <div class="panel mt10 panel-default">
+        <form name="form" ng-submit="vm.filterSbm()">
+            <div class="panel-body form-inline ">
+                红包类型：
+                <ui-select ng-model="vm.filter.type" style="width: 180px" theme="select2" required search-enabled="true">
+                    <ui-select-match>{{$select.selected.label}}</ui-select-match>
+                    <ui-select-choices repeat="item.code as item in vm.view.type | filter: $select.search ">
+                        <div ng-bind-html="item.label|highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                发放时间:
+                <ui-select ng-model="vm.filter.date" theme="select2"
+                           style="width: 80px;"
+                           class="mr10"
+                           search-enabled="false">
+                    <ui-select-match allow-clear="true" placeholder="--不限时间--">{{$select.selected
+                        |positionReleaseTime}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in vm.view.date | filter: $select.search ">
+                        <div ng-bind-html="item| positionReleaseTime |highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                <button class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                <a class="btn btn-default pull-right" ng-href="{{vm.exportRedpack()}}">导出当前流水</a>
+            </div>
+        </form>
+
+    </div>
+    <table class="table table-hover table-striped ">
+        <tr>
+            <th>流水序号</th>
+            <th>领取者</th>
+            <th>红包类型</th>
+            <th>红包数量</th>
+            <th>红包金额</th>
+            <th>发放时间</th>
+        </tr>
+        <tr ng-repeat="item in vm.list track by $index">
+            <td>{{vm._meta.perPage*(vm._meta.currentPage-1)+$index+1}}</td>
+            <td>{{item.nickname}}</td>
+            <td>{{item.reward_type}}</td>
+            <td>{{item.redpack_count}}</td>
+            <td>{{item.money}}</td>
+            <td>{{item.created_at}}</td>
+        </tr>
+    </table>
+    <div class="pull-right">
+        <pagination ng-if="vm._meta.totalCount>1" items-per-page="vm._meta.perPage" boundary-links="true"
+                    total-items="vm._meta.totalCount"
+                    ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                    last-text="&raquo;"></pagination>
+    </div>
+</div>
+

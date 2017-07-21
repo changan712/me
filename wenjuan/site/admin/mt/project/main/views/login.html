@@ -1,0 +1,51 @@
+<div class="alert-wrap " ng-if="vm.alerts.length" ng-class="{' show':vm.alerts.length}" style="display: none;">
+    <uib-alert ng-repeat="alert in vm.alerts" type="{{alert.type}}" close="alert.close()"><span
+            class="glyphicon glyphicon-info-sign"> </span> {{alert.msg}}
+    </uib-alert>
+</div>
+<style>
+    .form-signin {
+        max-width: 500px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+<div class="container">
+
+    <form class="form-signin">
+        <h2 class="form-signin-heading">面试系统-管理后台</h2>
+        <a ng-href="{{vm.url}}">
+            <img src="https://res.wx.qq.com/mmocbiz/zh_CN/tmt/home/dist/img/logo_blue_b_c97f8734.png" alt="企业号登录"/>
+        </a>
+    </form>
+
+</div> <!-- /container -->

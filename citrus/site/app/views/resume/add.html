@@ -1,0 +1,66 @@
+<ion-view view-title="新增简历">
+    <ion-content delegate-handle="posContent" class="resume-index">
+        <div class="gray  padding">
+            <i class="icon ion-information-circled "></i> 为保证成功导入简历，请先核对并更新您在相应网站的简历
+        </div>
+
+        <div class="list import list-group">
+
+            <a class="item list-item " ng-repeat="label in corp.imports" on-tap="vm.modalImport(label)">
+                <img ng-src="{{label|source:true}}" alt=""/>导入{{label|source}}简历
+                <i class="icon gray pull-right ion-chevron-right"></i></a>
+        </div>
+
+       <!-- <div class="gray  padding-left padding-right">
+            <i class="icon ion-information-circled "></i> 为保证成功导入简历，先请核对并更新您在相应网站的简历
+        </div>-->
+
+        <div class="padding">
+            <a ng-href="#/resume/new" class="button button-block button-theme">
+                创建新简历
+            </a>
+            <!--linkedin logout-->
+            <!--  <a  ng-click="vm.logout()" class="button button-block button-theme">
+                  logout
+              </a>-->
+
+        </div>
+
+    </ion-content>
+</ion-view>
+
+<script id="import.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-theme ">
+            <h1 class="title">导入{{vm.siteName}}简历</h1>
+            <button class="button small my-close button-clear " ng-click="vm.hideImPortModal()"><i
+                    class="icon black small ion-android-close bar-import"></i></button>
+        </ion-header-bar>
+        <ion-content>
+            <form name="resumeAdd.form" novalidate ng-submit="vm.importSubmit()">
+                <div class="list list-inset">
+                    <div class="item item-input"
+                         ng-class="{'error':vm.addSubmited&&resumeAdd.form.userName.$error.required}">
+                        <input type="text"
+                               name="userName"
+                               required
+                               ng-model="vm.importData.userName"
+                               placeholder="用户名"/>
+                    </div>
+                    <div class="item  item-input"
+                         ng-class="{'error':vm.addSubmited&&resumeAdd.form.password.$error.required}"><input
+                            type="password" required name="password" ng-model="vm.importData.password"
+                            placeholder="密码"/></div>
+
+                </div>
+                <div class="padding">
+                    <button class="button button-block button-theme">确认授权</button>
+                </div>
+
+                <div class="card padding gray">
+                    {{corp.name}}将获得完整个人资料：包括但不仅限于工作经历，教育背景，电子邮箱，电话和通讯地址等
+                </div>
+            </form>
+        </ion-content>
+    </ion-modal-view>
+</script>

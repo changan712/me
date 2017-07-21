@@ -1,0 +1,106 @@
+<ion-view class="view-rank">
+
+    <ion-nav-title><h4>排行榜</h4></ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a class="button icon ion-android-arrow-back" ui-sref="app.index"></a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button button-dark button-text button-clear" ui-sref="^.rule">规则</a>
+    </ion-nav-buttons>
+    <!--  <div class="top-bg"><img src="images/rank-bg.jpg" class="rank-img" ng-style="{'transform': 'scale('+vm.bgScale+')'}"
+                               alt=""></div>-->
+
+    <!--<ion-header-bar class="bar bar-subheader ">
+        <span class="buttons ml5">
+            <a class="button button-dark button-text button-clear" on-tap="vm.selectMonth()">{{vm.monthItemActive.label}}
+                <i
+                        class="ion-ios-arrow-down"></i></a></span>
+        <h2 class="title"></h2>
+        <span class="buttons mr5">
+            <a class="button button-dark button-text button-clear" ui-sref="^.rule">规则</a>
+        </span>
+
+    </ion-header-bar>-->
+    <ion-content> <!--on-scroll="vm.onContentScroll()"-->
+        <ion-refresher
+                class="refresh-rank"
+                pulling-text="<span class='small gray'>向下滑动刷新</span>"
+                spinner="spiral"
+                on-refresh=" vm.pageList.refresh({month:vm.monthSelected})">
+        </ion-refresher>
+
+
+        <div class="list list-sm sm-bd list-rank list-self" ng-if="vm.detail.self">
+
+            <div class="item  item-self">
+ <span class="avatar-wrap">
+    <img src="images/crown.png" class="crown" alt="" ng-if="vm.detail.self.user.metal_crown">
+                <img ng-src="{{vm.detail.self.user.avatar}}" ui-sref="app.feed.home({id:vm.detail.self.user.id})"
+                     class="avatar-img" alt="">
+     </span>
+
+                <div class="self-text">
+                    <div><a ui-sref="app.feed.home({id:vm.detail.self.user.id})" class="color-text">{{vm.detail.self.user.name}}</a>
+                    </div>
+                    <div class="user-metal">
+                        <img ng-src="{{metalId|aiaMetal}}" ng-repeat="metalId in ::vm.detail.self.user.metal_ids"
+                             alt="">
+                    </div>
+                </div>
+                <span class="place">{{$index+1}}</span>
+                    <span class="right mr5">
+                        <span class="point">{{vm.detail.self.point}}</span>
+                        <!-- <span class="like" on-tap="vm.like(vm.detail.self)"><span
+                                 class="num">{{vm.detail.self.like_count}}</span><br>
+                              <i class="ion-ios-heart" ng-class="{'0':'gray','1':'brick-red'}[vm.detail.self.liked]"></i>
+                        </span>-->
+                    </span>
+            </div>
+        </div>
+        <div class="list list-sm sm-bd list-rank">
+            <div class="item " ng-repeat="item in vm.pageList.list">
+                 <span class="avatar-wrap">
+    <img src="images/crown.png" class="crown" alt="" ng-if="item.user.metal_crown">
+                <img ng-src="{{item.user.avatar}}" ui-sref="app.feed.home({id:item.user.id})" class="avatar-img"
+                     alt="">
+                     </span>
+                <!-- <a class="color-text" ui-sref="app.feed.home({id:item.user.id})">{{item.user.name}}</a>-->
+
+                <div class="self-text">
+                    <div><a ui-sref="app.feed.home({id:item.user.id})" class="color-text">{{item.user.name}}</a>
+                    </div>
+                    <div class="user-metal">
+                        <img ng-src="{{metalId|aiaMetal}}" ng-repeat="metalId in ::item.user.metal_ids" alt="">
+                    </div>
+                </div>
+                <span class="place">{{$index+1}}</span>
+                    <span class="right mr5">
+                        <span class="point">{{item.point}}</span>
+                        <!--  <span class="like" on-tap="vm.like(item)"><span class="num">{{item.like_count}}</span><br>
+                               <i class="ion-ios-heart" ng-class="{'0':'gray','1':'brick-red'}[item.liked]"></i>
+                         </span>-->
+                    </span>
+            </div>
+        </div>
+        <ion-infinite-scroll
+                ng-if=" vm.pageList.hasMore"
+                immediate-check="false"
+                spinner="dots"
+                on-infinite=" vm.pageList.loadMore()"
+                distance="10%">
+        </ion-infinite-scroll>
+        <div class="small padding text-center gray" ng-if="!vm.pageList.hasMore&&!vm.pageList.loading">暂无更多</div>
+    </ion-content>
+
+</ion-view>
+<script type="text/ng-template" id="month-modal.tpl">
+
+    <ion-list class="list-sm sm-bd">
+        <ion-radio ng-model="vm.data" ng-value="item.month" ng-click="vm.ok(form)" ng-repeat="item in  vm.view">
+            {{item.label}}
+        </ion-radio>
+
+    </ion-list>
+
+</script>
+

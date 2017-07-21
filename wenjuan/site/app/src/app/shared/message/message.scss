@@ -1,0 +1,32 @@
+message{
+  position:absolute;
+  z-index:9999;
+  left:0;
+  top:0;
+  right:0;
+  .con{
+    padding:5px 10px;
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    .btn-close{
+     flex:0 0  30px;
+
+    }
+
+    .content{
+      word-break:break-all;
+      flex:1 1;
+    }
+    @each $color-name, $color-base, $color-contrast in get-colors($colors) {
+
+      &[mode=#{$color-name}] {
+        background: darken( rgba($color-base,.9),25%);
+        color:$color-contrast;
+      }
+
+    }
+  }
+}
+
+

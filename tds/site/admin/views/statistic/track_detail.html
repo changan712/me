@@ -1,0 +1,23 @@
+
+<div class="pos-new container">
+    <h2 class="page-tit"> {{sub_title}} </h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>第二层转发</th>
+                <th>第三层转发</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 12px">
+        <tr ng-repeat="item in vm.track_data['level1'] track by $index">
+            <td class="col-sm-2" style="border-right: solid;border-right-width: thin;border-right-color: #ddd">{{item.to_nickname}}</td>
+            <td class="col-sm-10">
+                <span ng-repeat="item2 in vm.track_data['level2'][item.to_open_id]" style="margin: 0 10px 10px 0; width:23%;color: #555" class="col-sm-3">
+                    {{item2.to_nickname}}
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

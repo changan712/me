@@ -1,0 +1,59 @@
+@mixin typography($theme) {
+
+  $primary:map-get($theme, primary);
+  $accent:map-get($theme, accent);
+  $warn:map-get($theme, warn);
+  $background:map-get($theme, background);
+  $foreground:map-get($theme, foreground);
+
+  body{
+    background-color:mat-color($background,background);
+    color:mat-color($foreground,base);
+  }
+
+  h1{
+    color:mat-color($primary, 800);
+    background:rgba(mat-color($foreground, secondary-text), .03);
+  }
+
+  hr{
+    border-color:mat-color($foreground,divider);
+  }
+
+  h3, h2, h4, h5, p, ol, li{
+    color:mat-color($foreground, secondary-text);
+  }
+
+  a{
+    color:mat-color($primary);
+  }
+
+  table.table{
+
+    border-collapse:collapse;
+    width:100%;
+  /*  box-shadow:0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+    background:rgba(mat-color($foreground, secondary-text), .03);
+    .no-shadow{
+      box-shadow:none;
+    }*/
+
+  /*  tr:nth-child(2n){
+      background:rgba(mat-color($foreground, secondary-text), .02);
+    }*/
+    td{
+      color:mat-color($foreground, secondary-text);
+      border-bottom:1px solid rgba(mat-color($foreground, secondary-text), .02);
+      border-top:1px solid rgba(mat-color($foreground, secondary-text), .02);
+      padding:5px;
+    }
+
+    th{
+      color:mat-color($foreground, secondary-text);
+      background:rgba(mat-color($foreground, secondary-text), .03);
+      padding:5px;
+      font-weight:normal;
+    }
+  }
+
+}

@@ -1,0 +1,22 @@
+{
+  "name": "tds-app",
+  "description": "",
+  "dependencies": {
+    "angular-resource": "*",
+    "textAngular": "*",
+    "bootstrap": "*",
+    "underscore": "*",
+    "font-awesome": "*",
+    "angular-ui-select": "*",
+    "angular-ui-router":"*",
+    "angular-bootstrap-lightbox": "*",
+    "ng-sortable": "*",
+    "jquery": "*",
+    "requirejs": "*",
+    "ngSticky":"*",
+    "angular-i18n":"*",
+    "angular-checklist-model":"*",
+    "angular-file-upload":"*",
+    "require-css":"*"
+  }
+}

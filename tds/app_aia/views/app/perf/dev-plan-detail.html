@@ -1,0 +1,71 @@
+<ion-view class="dev-plan-detail" hide-tabs="true" hide-nav-bar="true" cache-view="false">
+    <form name="form" novalidate ng-submit="vm.submit(form)">
+        <ion-header-bar class="bar-positive bg-balanced">
+            <div class="buttons">
+                <a class="button bg-balanced" ui-sref="^.devPlan({id:vm.perfId})">
+                    <i class="icon ion-android-close"></i></a>
+            </div>
+            <h4 class="title">详情</h4>
+            <div class="buttons">
+                <button class="button bg-balanced" ng-click="vm.createComment()">评论</button>
+            </div>
+
+        </ion-header-bar>
+        <ion-content>
+            <div class="topic padding">
+                <span class="avatar pull-left"> <img ng-src="{{vm.detail.user.avatar}}"/> </span>
+                <div class="plan">
+                    <div><strong>{{vm.detail.user.name}}</strong> <span class="gray small pull-right">{{vm.detail.created_at|myDate}}</span>
+                    </div>
+                    <ul class=" ">
+                        <li class="mt5">重点发展区域：<span class="gray">{{vm.detail.development}}</span></li>
+                        <li class="mt5">行动计划：<span class="gray">{{vm.detail.plan}}</span></li>
+                        <li class="">回顾：<span class="gray">{{vm.detail.review}}</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="padding text-center small gray" ng-if="!vm.comments.length">暂无评论</div>
+            <div class="comment-con" ng-if="vm.comments.length">
+                <ul class="comment">
+                    <li ng-repeat="item in vm.comments">
+                        <span class="avatar avatar-sm pull-left"> <img ng-src="{{item.user.avatar}}"/> </span>
+                        <div class="con">
+                            <div><span class="btn btn-xs  pointer pull-right small gray mt-2"
+                                       ng-click="vm.createComment(item.id,item.user_id)">
+                                <i class="icon ion-reply"></i>
+                            </span><strong> {{item.user.name}}</strong> <span
+                                    class="gray small">{{item.created_at|myDate}}</span>
+                            </div>
+                            <div class="mt5"><span ng-if="item.reply_user">回复 {{item.reply_user.name}}： </span>
+                                {{item.info}}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </ion-content>
+    </form>
+</ion-view>
+
+
+<script type="text/ng-template" id="modal-dev-plan-comment.html">
+    <div class="list list-sm sm-bd">
+        <div class="item item-textarea" ng-class="{'has-error':form.$submitted&&form.info.$invalid}">
+        <textarea name="info" rows="4" placeholder="请输入评论内容" ng-model="vm.data.info" required
+                  class="form-control"></textarea>
+        </div>
+     <!--   <div class="padding">
+        <span class="button button-small bg-balanced btn-upload"><i class="ion-paperclip"></i>
+            附件<input type="file"
+                     current-file="vm.data.currentFile"
+                     file-reader
+                     read-error="vm.scopeData.readError(msg)"
+                     ng-model="vm.data.attachment">
+        </span>
+            {{vm.data.currentFile.name}}
+        </div>-->
+
+
+    </div>
+
+</script>

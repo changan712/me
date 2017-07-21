@@ -1,0 +1,36 @@
+df-control{
+  .item-divider{
+    font-size:18px;
+    padding:5px 20px;
+    border-bottom:0.55px solid #ddd;
+  }
+
+  .item-textarea{
+    background:#fcfcfc !important;
+  }
+  &.ng-invalid.ng-dirty{
+    .item-divider{
+      // background:rgba(map_get($colors, danger), .1);
+      *{
+        color:darken(map_get($colors, danger), 20%);
+      }
+
+    }
+  }
+  .ins{
+    color:map_get($colors, primary);
+    font-size:12px;
+  }
+
+  .icon-requied{
+    vertical-align:super;
+    font-size:10px;
+    color:map_get($colors, danger);
+  }
+
+  .bt{
+    padding:15px 20px;
+    text-align:left;
+  }
+
+}

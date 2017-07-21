@@ -1,0 +1,35 @@
+<div class="padding">
+    <table class="table ">
+        <tr>
+            <td>问卷名</td>
+            <td>
+                <input ng-model="vm.item.name">
+            </td>
+        </tr>
+        <tr>
+            <td>问卷描述</td>
+            <td><textarea ng-model="vm.item.info" rows="10" cols="60"></textarea></td>
+        </tr>
+        <tr>
+            <td>开始时间</td>
+            <td>
+                {{vm.item.option.time_start}} <a ng-click="vm.chooseTime(1)" class="btn-sm btn-info">选择时间</a>
+            </td>
+        </tr>
+        <tr>
+            <td>截止时间</td>
+            <td>
+                {{vm.item.option.time_end}} <a ng-click="vm.chooseTime(2)" class="btn-sm btn-info">选择时间</a>
+            </td>
+        </tr>
+        <tr>
+            <td>答题限时</td>
+            <td><input ng-model="vm.item.option.time_limit">分钟</td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.create()">保存</a>
+        <a class="btn btn-default" ng-click="vm.close()">关闭</a>
+    </div>
+</div>

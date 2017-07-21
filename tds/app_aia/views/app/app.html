@@ -1,0 +1,23 @@
+<ion-nav-bar class="bar-light sm-bd-bottom"></ion-nav-bar>
+<span class="tab-publish-bg" ng-if="!hideTabs"></span>
+<span class="tab-publish-bg-shadow" ng-if="!hideTabs"></span>
+<a ng-click="vm.beforePublish()" class="tab-publish" ng-if="!hideTabs"> <i class="icon ion-plus"></i> <span
+        class="text">发布</span> </a>
+<ion-tabs class=" tabs-tds tabs-icon-top " ng-class="{'tabs-item-hide': hideTabs}">
+    <ion-tab title="首页" href="#/app/index" icon-on="ion-ios-home"
+             icon-off="ion-ios-home-outline">
+        <ion-nav-view name="index"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="分享" on-deselect="vm.onTabDeSelect()" href="#/app/feed/list" icon-on="ion-ios-person"
+             icon-off="ion-ios-person-outline">
+        <ion-nav-view name="feed"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="热点"  href="#/app/notice/list" badge="noticeUnreadCount" badge-style="badge-assertive" icon-on="ion-ios-paper"
+             icon-off="ion-ios-paper-outline">
+        <ion-nav-view name="notice"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="指南"  href="#/app/others" icon-on="ion-ios-stopwatch"
+             icon-off="ion-ios-stopwatch-outline">
+        <ion-nav-view name="others"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

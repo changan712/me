@@ -1,0 +1,9 @@
+<!-- Generated template for the MessageComponent component -->
+<div class="con" *ngIf="isShow" [attr.mode]="mode">
+
+    <div class="content"> {{content}}</div>
+    <a ion-button class="btn-close" *ngIf="showBtnClose" (click)="hide()" clear small>
+       X
+    </a>
+
+</div>

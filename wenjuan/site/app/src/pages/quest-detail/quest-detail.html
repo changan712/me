@@ -1,0 +1,83 @@
+<!--
+  Generated template for the QuestDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar hideBackButton="true" color="white">
+
+        <countdown [serverTime]="serverTime" (warning)="onCountdownWarning($event)"
+                   [warningTime]="warningTime"
+                   (complete)="onCountdownComplete($event)" completedText="测评已超时" [endTime]="endTime"></countdown>
+
+        <ion-title>
+
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button button-default color="primary" (tap)="toSubmit()" [disabled]="timeout">{{'PAGES.QUEST_DETAIL.BTN_SUBMIT'|translate}}</button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+    <form novalidate [formGroup]="formModel" (ngSubmit)="toSubmit()" *ngIf="formModel">
+
+        <!--   <input type="text"  [formControlName]="'p_1'">-->
+        <!--  <div *ngFor="let item of list"> <input type="text" ></div>-->
+
+        <ion-slides [initialSlide]="activeIndex" formArrayName="items" (ionSlideDidChange)="onSlideDidChange($event)">
+            <ion-slide *ngFor="let item of  formModel.controls.items.controls;let i = index;" [formGroupName]="i">
+                <quest-wrap [model]="list[i]" [group]="item"></quest-wrap>
+
+            </ion-slide>
+
+        </ion-slides>
+
+        <!--
+                {{formModel.valid}}
+                <br>
+                <code> {{formModel.getRawValue()|json}}</code>-->
+
+    </form>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="white">
+        <div class="foot-con">
+
+            <button [disabled]="activeIndex==0" ion-button="" (tap)="prev()" clear icon-left="">
+                <ion-icon name="arrow-back"></ion-icon>
+                {{'PAGES.QUEST_DETAIL.BTN_PREV'|translate}}
+            </button>
+            <div class="selector-btn-wrap">
+                <button ion-button icon-right clear class="selector-btn">
+                    {{activeIndex+1}}/{{list?.length}}
+                    <ion-icon name="arrow-down"></ion-icon>
+
+                    <ion-select okText="{{'UA.BTN_CONFIRM_OK'|translate}}" interface="modal"
+                                (ionChange)="onSelectChange($event)"
+                                [(ngModel)]="activeIndex"
+                                [selectOptions]="{title: translate.get('PAGES.QUEST_DETAIL.UA.TITLE_CONFIRM_CHOICE')|async}"
+                                cancelText="{{'UA.BTN_CONFIRM_CANCEL'|translate}}">
+                        <ion-option [value]="index" *ngFor="let item of list; let index= index">{{index+1}}.
+                            {{lang=='zh'?item.name:item.en_name}}
+                        </ion-option>
+
+                    </ion-select>
+
+                </button>
+            </div>
+            <button [disabled]="activeIndex==list?.length-1" (tap)="next()" ion-button="" icon-right="" clear>
+                {{'PAGES.QUEST_DETAIL.BTN_NEXT'|translate}}
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+
+        </div>
+    </ion-toolbar>
+</ion-footer>
+
+<!--  -->

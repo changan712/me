@@ -1,0 +1,93 @@
+.feedback {
+  width: 800px;
+  margin: 0 auto;
+  background: #fff;
+}
+.feedback .iv-interviewer {
+  height: 100%;
+}
+.feedback .iv-interviewer .content {
+  background: #f5f5f5;
+  margin-top: -10px;
+}
+.feedback .iv-interviewer .content .heading {
+  font-size: 14px;
+}
+.feedback .iv-interviewer .left {
+  width: 247px;
+  background: #f5f5f5;
+  float: left;
+}
+.feedback .iv-interviewer .left .left-head {
+  padding: 20px 0 20px 23px;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 20px 0;
+}
+.feedback .iv-interviewer .left dl {
+  padding: 0 0 0 34px;
+}
+.feedback .iv-interviewer .left dd {
+  padding: 0 0 10px 0;
+}
+.feedback .iv-interviewer .right {
+  min-height: 500px;
+  margin-left: 247px;
+  background: #fff;
+}
+.feedback .iv-interviewer .right .right-head {
+  padding: 20px 0 10px 0;
+}
+.feedback .iv-interviewer .padding-left {
+  height: 100%;
+  width: 247px;
+  background: #f5f5f5;
+}
+.feedback .datepicker {
+  padding: 0 150px 0 140px;
+}
+.feedback .datepicker table {
+  border: 1px solid #ddd;
+}
+.feedback .datepicker .day-selected {
+  background: #4a90e2;
+}
+.feedback .datepicker .day-selected .btn {
+  color: #fff;
+}
+.feedback .datepicker .day-selected .btn.active {
+  background: #6fd3e3;
+}
+.interviewer {
+  height: 100%;
+  width: 1200px;
+  margin: 0 auto;
+}
+.interviewer .content {
+  height: 100%;
+  padding: 10px 10px 10px 10px;
+}
+.interviewer .content .resume-preview {
+  width: 768px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px 10px;
+}
+.interviewer .content .right {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+.interviewer .content .right .information {
+  border-bottom: 1px solid #ddd;
+  padding: 24px 0 0 16px;
+}
+.interviewer .content .right .information .text-left {
+  text-align: left;
+}
+.interviewer .content .right .date-pick {
+  padding: 5px 85px;
+}
+.interviewer .content .right .result .result-form {
+  padding: 10px 80px 10px 16px;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZlZWRiYWNrLmxlc3MiLCI8aW5wdXQgY3NzIDE+Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0UsYUFBQTtFQUNBLGVBQUE7RUFHQSxpQkFBQTtDQ0hEO0FERkQ7RUFRSSxhQUFBO0NDSEg7QURMRDtFQWVNLG9CQUFBO0VBQ0Esa0JBQUE7Q0NQTDtBRFREO0VBa0JRLGdCQUFBO0NDTlA7QURaRDtFQXNCTSxhQUFBO0VBQ0Esb0JBQUE7RUFDQSxZQUFBO0NDUEw7QURqQkQ7RUEwQlEsMEJBQUE7RUFDQSw4QkFBQTtFQUNBLG1CQUFBO0NDTlA7QUR0QkQ7RUErQlEsb0JBQUE7Q0NOUDtBRHpCRDtFQWtDUSxvQkFBQTtDQ05QO0FENUJEO0VBc0NNLGtCQUFBO0VBQ0EsbUJBQUE7RUFFQSxpQkFBQTtDQ1JMO0FEakNEO0VBMkNVLHVCQUFBO0NDUFQ7QURwQ0Q7RUErQ00sYUFBQTtFQUNBLGFBQUE7RUFDQSxvQkFBQTtDQ1JMO0FEekNEO0VBcURJLHlCQUFBO0NDVEg7QUQ1Q0Q7RUF1RE0sdUJBQUE7Q0NSTDtBRC9DRDtFQTBETSxvQkFBQTtDQ1JMO0FEbEREO0VBNERRLFlBQUE7Q0NQUDtBRFFPO0VBQ0Usb0JBQUE7Q0NOVDtBRGdCRDtFQUNFLGFBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtDQ2REO0FEV0Q7RUFLSSxhQUFBO0VBQ0EsNkJBQUE7Q0NiSDtBRE9EO0VBUU0sYUFBQTtFQUNBLGlCQUFBO0VBQ0EsdUJBQUE7RUFDQSxtQkFBQTtDQ1pMO0FEQ0Q7RUFjTSxpQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZ0JBQUE7Q0NaTDtBREpEO0VBa0JRLDhCQUFBO0VBQ0EsdUJBQUE7Q0NYUDtBRFJEO0VBcUJVLGlCQUFBO0NDVlQ7QURYRDtFQXlCUyxrQkFBQTtDQ1hSO0FEZEQ7RUE2QlUsNkJBQUE7Q0NaVCIsImZpbGUiOiJ0by5jc3MifQ== */

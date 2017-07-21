@@ -1,0 +1,6 @@
+<span>
+    <span class="btn btn-upload btn-success btn-sm" ng-class="className">{{label}}<input ng-if="enable"  type="file" nv-file-select uploader="$parent.uploader"/></span>
+    <span ng-if="fileNameShow">
+        <span ng-repeat="item in $parent.uploader.queue">{{ item.file.name }}</span>
+    </span>
+</span>

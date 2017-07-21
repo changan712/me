@@ -1,0 +1,33 @@
+<div class="padding">
+    <h2>
+        {{vm.quest.name}} 状态：{{vm.quest.type}}
+    </h2>
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+<!--            <th>ID</th>
+            <th>类型</th>-->
+            <th>问题</th>
+            <th>分值</th>
+            <th>参考</th>
+            <th style="max-width: 90px">操作</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <!--<td width="30">{{item.id}}</td>
+            <td>{{item.type}}</td>-->
+            <td>{{item.name}}</td>
+            <td>{{item.type_option.score}}</td>
+            <td>{{item.type_option.score_ref | limitTo:8}}<span ng-if="item.type_option.score_ref.length>8">...</td>
+            <td style="max-width: 200px">
+                <a class="btn btn-sm btn-info" ng-click="vm.editQuestItem(item)">编辑</a>
+                <a class="btn btn-sm btn-danger" ng-click="vm.deleteQuestItem(item)">删除</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.newQuestOption()">新问题</a>
+    </div>
+
+</div>

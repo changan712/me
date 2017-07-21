@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://a.wenjuand.hrtps.com",
+    "changeOrigin": true,
+    "secure": false,
+    "logLevel": "debug"
+  }
+
+}

@@ -1,0 +1,63 @@
+<!-- Generated template for the DfControlComponent component -->
+
+<div>
+
+    <div [ngSwitch]="model.type">
+
+        <div *ngSwitchCase="'text'">
+
+            <ion-list no-margin="">
+                <ion-item-divider text-wrap text-left>
+                    <ion-icon *ngIf="model.type_option?.length?.min" class="icon-requied" name="ios-medical"
+                              style="font-size:10px;" color="danger"></ion-icon>
+                    <span>
+                        {{lang=='zh'?model.name:model.en_name}}
+
+                    </span> <span class="f14"
+                                  [innerHTML]="'COMPONENT.DF_CONTROL.INS_LENGTH'|translate:{min:model.type_option?.length?.min||70,max:model.type_option?.length?.max||350}"></span>
+                    <!--（请输入 {{model.type_option?.length?.min||70}} - {{model.type_option?.length?.max||350}}字）-->
+
+                </ion-item-divider>
+                <ion-item class="item-textarea">
+                    <ion-textarea rows="7" [placeholder]="'COMPONENT.DF_CONTROL.PLACEHOLDER'|translate"
+                                  [(ngModel)]="value"></ion-textarea>
+                </ion-item>
+
+            </ion-list>
+
+            <div class="bt">
+                <span class="f14 gray m-r" *ngIf="value.length"
+                      [innerHTML]="'COMPONENT.DF_CONTROL.INS_BT'|translate:{length:value.length}"> </span>
+                <!--已输入{{value.length}}字-->
+                <span class="f14 gray" *ngIf=" model.type_option?.length?.max||350 -value.length>=0"
+                      [innerHTML]="'COMPONENT.DF_CONTROL.INS_BT1'|translate:{remain: model.type_option?.length?.max||350 -value.length}"></span>
+                <!--还可以输入{{ model.type_option?.length?.max||350 -value.length}}字-->
+                <span class="f14" ion-text color="danger" *ngIf=" model.type_option?.length?.max||350 -value.length<0"
+                      [innerHTML]="'COMPONENT.DF_CONTROL.INS_BT2'|translate:{exceed: model.type_option?.length?.max||350- value.length|abs}"></span>
+                <!--已超出{{ model.type_option?.length?.max||200- value.length|abs}}字-->
+
+            </div>
+
+        </div>
+
+        <div *ngSwitchCase="'select'">
+
+            <ion-list no-margin>
+                <ion-item-divider text-wrap text-left>{{this.lang=='zh'?model.name:model.en_name}}
+                    <span *ngIf="model.type_option?.length?.min">  <span class="ins"
+                                                                         *ngIf="model.type_option?.length?.min != model.type_option?.length?.max&&model.type_option?.length?.max"> (<span  [innerHTML]="'COMPONENT.DF_CONTROL.INS_SELECT'|translate:{min:model.type_option?.length?.min,max:model.type_option?.length?.max}"></span>)</span> <!--请选择 <span>{{model.type_option?.length?.min}} - {{model.type_option?.length?.max}}</span> 项-->
+                    <span class="ins"
+                          *ngIf="model.type_option?.length?.min == model.type_option?.length?.max"> (<span [innerHTML]="'COMPONENT.DF_CONTROL.INS_SELECT1'|translate:{min:model.type_option?.length?.min}"></span>)</span> <!--请选择 <span>{{model.type_option?.length?.min}} </span> 项-->
+                    <span class="ins" *ngIf="model.type_option?.length?.min && !model.type_option?.length?.max"> (<span [innerHTML]="'COMPONENT.DF_CONTROL.INS_SELECT2'|translate:{min:model.type_option?.length?.min}"></span>}} </span> </span>
+                </ion-item-divider>
+                <ion-item text-wrap *ngFor="let item of model.type_option?.options">
+                    <ion-label>{{this.lang=='zh'?item.label:item.en_label}}</ion-label>
+                    <ion-checkbox [(ngModel)]="checkboxModel[item.key]"
+                                  (ionChange)="onCheckboxClick(item)"></ion-checkbox>
+                </ion-item>
+
+            </ion-list>
+
+        </div>
+    </div>
+</div>

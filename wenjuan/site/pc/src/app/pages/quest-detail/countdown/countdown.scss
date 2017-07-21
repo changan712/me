@@ -1,0 +1,18 @@
+:host{
+  margin-left:5px;
+  $warningColor: #c00;
+  font-weight:bold;
+  font-size:16px;
+  .warningColor{
+    color:$warningColor;
+    .fa{
+      color:$warningColor;
+
+    }
+  }
+  .fa{
+    font-weight:bold;
+
+    margin-right:3px;
+  }
+}

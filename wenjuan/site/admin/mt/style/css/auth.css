@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    vertical-align: top;
+}
+
+ul, li {
+    list-style: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+body {
+    font: 22px/1.9 'microsoft yahei', arial;
+
+    color: #6e6d6d;
+    height: 100%;
+    box-sizing: content-box;
+    background: #45cef0;
+}
+
+a {
+
+    text-decoration: none;
+}
+
+.header {
+    height: 122px;
+    background: #fff;
+}
+
+.header .logo {
+    margin: 25px 0 0 25px;
+}
+
+.main {
+    position: absolute;
+    right: 0;
+    top: 122px;
+    bottom: 0;
+    left: 0;
+    background: #45cef0 url("../../images/bg.jpg") no-repeat left center;
+    background-size: auto 100%;
+}
+
+.panel {
+    height: 688px;
+    width: 620px;
+    max-height: 80%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, .2);
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    position: absolute;
+    z-index: 2;
+    margin: 0 0 0 150px;
+
+}
+
+.panel .con {
+    padding: 120px 70px 0;
+}
+
+.panel .con ul {
+    margin: 40px 0;
+}
+
+.btn-wx {
+    display: block;
+    background: #3cb034;
+    padding: 15px 0;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+
+}

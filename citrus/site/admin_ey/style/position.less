@@ -1,0 +1,170 @@
+@import "variable.less";
+@import "common.less";
+
+/*职位首页*/
+.position-list {
+  position: relative;
+
+  min-height: 940px;
+
+  .pos-process {
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    left: 0;
+    z-index: 100;
+    margin: 5px 0 0;
+    padding-top: 20px;
+  }
+  table {
+    td {
+      padding: 12px 8px;
+      &.expended {
+        padding-bottom: 108px;
+      }
+    }
+
+  }
+  .psp-toggle {
+    font-size: 10px !important;
+    .cursor-default;
+  }
+
+  .set-status {
+    .glyphicon {
+      .cursor-default;
+    }
+    /*color: lighten(@black, 50%);*/
+  }
+
+}
+
+/* 发布职位 编辑*/
+.pos-new, .pos-edit {
+
+  form {
+    .error:not(.error-inline) {
+      border: 1px dotted #c6abab;
+      background: #fff6f6;
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 2px;
+    }
+  }
+
+  .form-control-input {
+    display: inline;
+    width: 80%;
+  }
+
+  h2 {
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    padding: 10px 0;
+    margin: 0 0 20px 0;
+  }
+
+  .pos-num-r {
+    margin-left: 50px;
+  }
+
+  .select-searcher {
+    margin: 10px 0;
+  }
+
+  .cat-select {
+    border: 1px dotted #ccc;
+
+    padding: 8px;
+    background: #fcfcfc;
+    margin: 10px 0;
+    height: 40px;
+    line-height: 22px;
+
+    .lable-selcected {
+      border: 1px solid #ccc;
+      background: #f0f0f0;
+      display: inline-block;
+      font-size: 12px;
+      padding: 0 5px;
+      margin-right: 10px;
+
+    }
+  }
+
+  .hl-label {
+    .item {
+      border: 1px solid #ccc;
+      background: #f0f0f0;
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 10px;
+      margin: 0 10px 5px 0;
+      .cursor-default;
+      &.active {
+        background: #fdf0d8;
+        border: 1px solid #dac29b;
+        color: #927d62;
+
+      }
+    }
+  }
+
+}
+
+.pos-detail {
+
+  min-height: 940px;
+  .hd-setting {
+    margin-top: -4px;
+  }
+
+  .pos-info {
+    table {
+      margin: 0;
+      th {
+        text-align: right;
+        background: #f9f9f9;
+      }
+    }
+    position: relative;
+    margin-bottom: 10px;
+
+    .hd {
+      .position-tit {
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+
+    .group2 {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+    }
+
+    .mn {
+      .con {
+        padding: 10px 30px;
+        line-height: 1.6;
+        .hd {
+          color: @gray;
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+
+.pos-resume-list {
+  .tp {
+    margin: 0 0 10px;
+  }
+}
+
+tr.pos-closed {
+  background: #eee6f0 !important;
+  * {
+    color: #999 !important;
+  }
+}

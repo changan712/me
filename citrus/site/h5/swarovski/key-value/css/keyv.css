@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: url("../images/keybg.jpg")  no-repeat left bottom;
+
+}
+
+.con {
+    position: relative;
+}
+
+.canvas-wrap {
+    position: relative;
+    top: 50%;
+    margin-top: -225px;
+
+}
+
+.btn {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.btn1 {
+    top: 110px;
+    left: 56px;
+}
+
+.btn2 {
+    top: 158px;
+    left: 183px;
+}
+
+.btn3 {
+    top: 158px;
+    left: 327px;
+}
+
+.btn4 {
+    top: 208px;
+    left: 459px;
+}
+
+.pp-con {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 2;
+    background: rgba(0,0,0,.5);
+}
+
+.pp-con img{
+    display: none;
+}
+
+
+.pp-alert{
+    width: 485px;
+    height:734px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin:-367px 0 0 -243px ;
+}
+
+.pp-alert .closer{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+
+    right: 0;
+    top:0;
+}

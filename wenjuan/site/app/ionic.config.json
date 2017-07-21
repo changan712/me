@@ -1,0 +1,15 @@
+{
+  "name": "app",
+  "app_id": "171a1172",
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://a.wenjuand.hrtps.com/api"
+    },
+    {
+      "path":"/site",
+      "proxyUrl": "https://a.wenjuand.hrtps.com/site"
+    }
+  ]
+}

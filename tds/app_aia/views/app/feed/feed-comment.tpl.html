@@ -1,0 +1,19 @@
+<div class="feed-comment">
+    <div class="comments">
+        <div class="comment-item  black " ng-repeat="comment in view"
+             active-class
+             on-hold="vm.deleteComment(comment)"
+             on-tap="vm.createComment($event,comment)">
+            <a class="link nowrap" ui-sref="^.home({id:comment.user.id})">{{::comment.user.name}}</a><span
+                ng-if="comment.reply_user"> 回复
+                    <a class="link"
+                       ui-sref="^.home({id:comment.reply_user.id})">{{::comment.reply_user.name}}</a></span>:{{::comment.info}}
+            <a ui-sref="^.home({id:atUser.id})" ng-class="{'ml2':$index>0}"
+               ng-repeat="atUser in comment.at_user_list"><span
+                    class="link nowrap">@{{::atUser.name}}</span></a>
+            <span class="label label-new" ng-if="$index==0">new</span>
+
+        </div>
+    </div>
+
+</div>

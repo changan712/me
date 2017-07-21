@@ -1,0 +1,85 @@
+<div class="feed-schema">
+    <a ng-if="type!='home'" class="avatar" ui-sref="^.home({id:view.user.id})"> <img ng-src="{{::view.user.avatar}}"
+                                                                                     alt=""></a>
+    <div class="schedule " ng-if="type=='home'">
+        <div ng-if="!view.timeMTh3Day" class="l3d"><span
+                class="tp">{{::view.created_at|myDate:vm.dateStrategy(view)}}</span>
+        </div>
+        <div ng-if="view.timeMTh3Day" class="m3d">
+            <div class="tp">{{::view.created_at|myDate:vm.dateStrategy(view)|date:'MM-dd'}}</div>
+            <div class="bt">{{::view.created_at|myDate:vm.dateStrategy(view)|date:'yyyy'}}</div>
+        </div>
+    </div>
+    <div class="main " ng-if="view">
+        <div class="top">
+            <span class="gray   date pull-right" ng-if="type!='home'">{{::view.created_at|myDate}}</span>
+            <a class="user-name" ui-sref="^.home({id:view.user.id})">{{::view.user.name}}</a>
+            <i class="icon icon-gender {{::view.user.gender|sex:'icon'}}"
+            ></i>
+        </div>
+
+        <div class="content">
+            <a ui-sref="^.detail({id:view.id})" class="block"> {{::view.result}} <i
+                    class="ion-ios-arrow-right gray"></i>
+
+                <span ng-if="view.user.id == vm.currentUser.id"
+                      ng-click="$event.stopPropagation()"
+                      ui-sref="^.edit({id:view.id})"
+                      class=" gray link ion-android-create">
+                </span>
+
+            </a>
+            <images-view data='view.images' class="mt10"></images-view>
+        </div>
+        <div class="sub clearfix ">
+            <span class="pull-right">
+               <span ng-if="view.score_switch" class="mr10">
+                   <span ng-if="!view.score" ng-click="vm.feedUpdate.score(view)"> <i class="ion-ios-star-outline "></i> 评分</span>
+                   <a ng-if="view.score" ui-sref="^.scoreDetail({id:view.id})"> <i class="ion-ios-star orange "></i>
+                       {{::view.score.score}}</a>
+               </span>
+               <span ng-click="vm.feedUpdate.toggleLike(view)">
+                    <i class="ion-ios-heart brick-red" ng-if="view.liked"></i>
+                    <i ng-if="!view.liked" class="ion-ios-heart-outline"></i>
+                    {{view.likes.length}}
+                </span>
+                <span class=" ml10" ng-click="vm.feedUpdate.createComment($event,view)">
+                    <i class="ion-chatbox-working icon"></i>
+                    {{view.comments.length}}
+                </span>
+
+            </span>
+
+            <div class="location" wx-map="{latitude:view.latitude,longitude:view.longitude,name:view.address}"
+                 ng-if="view.address">
+                <i class="ion-ios-location"></i>
+                {{view.address}}
+            </div>
+
+        </div>
+        <div class="others" ng-if="view.comments.length || view.likes.length">
+            <div class="likes" ng-if="view.likes.length" ng-class="{'has-comments':view.comments.length}">
+                <i class="ion-ios-heart-outline bold"></i> <span ng-repeat="like in view.likes"><a
+                    ui-sref="^.home({id:like.user.id})">{{::like.user.name}}</a><span
+                    ng-if="!$last">,</span></span>
+
+            </div>
+            <div class="comments" ng-if="view.comments.length">
+                <a class="block black" ng-repeat="comment in view.comments"
+
+                   on-hold="vm.feedUpdate.deleteComment(view,comment)"
+                   on-tap="vm.feedUpdate.createComment($event,view,comment)">
+
+                    <span class="link" ui-sref="^.home({id:comment.user.id})">{{::comment.user.name}}</span><span
+                        ng-if="comment.reply_user"> 回复
+                    <span class="link" ui-sref="^.home({id:comment.reply_user.id})">{{::comment.reply_user.name}}</span></span>:{{::comment.info}}
+                    <span ui-sref="^.home({id:atUser.id})" ng-class="{'ml2':$index>0}"
+                          ng-repeat="atUser in comment.at_user_list"><span
+                            class="link">@{{::atUser.name}}</span></span>
+
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div>
+    <div>{{data.mu_list}}</div>
+    <ui-select multiple ng-model="data.mu_list" theme="bootstrap" close-on-select="false" title="Choose a person">
+        <ui-select-match class="ui-select-match">{{$item.name}} &lt;{{$item.mail}}&gt;</ui-select-match>
+        <ui-select-choices repeat="item.id as item in vm.items | mailUserFilter: $select.search" class="ui-select-choices">
+            <div ng-bind-html="item.name | highlight: $select.search"></div>
+            <i class="glyphicon glyphicon-remove small gray pull-right"
+                  ng-click="vm.remove($event, item, $select)"></i>
+            <small>
+                email: {{item.mail}}
+            </small>
+        </ui-select-choices>
+    </ui-select>
+    <a ng-click="vm.addModal()">添加</a>
+</div>

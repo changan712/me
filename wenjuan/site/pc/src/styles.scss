@@ -1,0 +1,132 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/theming';
+@import "./app-theme";
+@import "./style/com";
+@import "./style/typography";
+@import "./style/pagination";
+
+$fa-font-path:"~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+
+// Include material core styles.
+@include mat-core();
+
+// Define the light theme.
+$primary:mat-palette($mat-blue,800,500,700);
+$accent:mat-palette($mat-amber, A200, A100, A400);
+$warn:mat-palette($mat-red, 800, 500, 900);
+
+$theme:mat-light-theme($primary, $accent,$warn);
+
+@include angular-material-theme($theme);
+@include app-theme($theme);
+
+//common styled
+@include fontSize();
+@include mp();
+@include color($theme);
+@include colorBg($theme);
+@include typography($theme)
+@include align();
+@include pagination($theme);
+
+html, body{
+  height:100%;
+  padding:0;
+  margin:0;
+
+}
+
+body{
+  font:14px/1.5 tahoma;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+li, ul, dl, dd, dt{
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+
+p{
+  padding:0;
+  margin:0;
+}
+
+.mat-button .mat-button-wrapper .fa{
+  vertical-align:baseline;
+}
+
+.block{
+  display:block !important;
+}
+
+.inline{
+  display:inline !important;
+}
+
+.inline-block{
+  display:inline-block !important;
+}
+
+.flex{
+  display:flex !important;
+}
+
+.clear-fix{
+  &:after{
+    content:' ';
+    display:block;
+    clear:both;
+    overflow:hidden;
+  }
+}
+
+
+
+.pull-right{
+  float:right!important;
+}
+
+.avatar{
+  height:50px;
+  width:50px;
+  overflow:hidden;
+
+  display:inline-block;
+  vertical-align:middle;
+  position:relative;
+  /*  background:url(../../images/avatar0.jpg);*/
+  background-size:cover;
+  img{
+    height:100%;
+    min-width:100%;
+    position:relative;
+    vertical-align:top;
+    left:50%;
+    transform:translateX(-50%);
+  }
+  &.avatar-sm{
+    height:30px;
+    width:30px;
+  }
+
+  &.avatar-big{
+    height:70px;
+    width:70px;
+  }
+
+  &.avatar-xs{
+    height:20px;
+    width:20px;
+  }
+  &.round{
+    border-radius:50%;
+  }
+
+}

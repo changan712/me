@@ -1,0 +1,9 @@
+<span ng-if="enable">
+    <span class="btn btn-upload btn-primary btn-sm " ng-class="className">
+        <span>上传</span>
+        <input type="file" nv-file-select uploader="$parent.uploader"/>
+    </span>
+    <span>
+        <span ng-repeat="item in $parent.uploader.queue">{{ item.file.name }}</span>
+    </span>
+</span>

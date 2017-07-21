@@ -1,0 +1,34 @@
+<div class="padding">
+    <table class="table ">
+        <tr>
+            <td>用户名</td>
+            <td>
+                <input ng-model="vm.item.name">
+            </td>
+        </tr>
+        <tr>
+            <td>超级管理员</td>
+            <td>
+                <select ng-model="vm.item.super"  ng-options="c.value as c.name for c in vm.super_options">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td>
+                <input type="password" ng-model="vm.item.password">
+            </td>
+        </tr>
+        <tr>
+            <td>再输入一次</td>
+            <td>
+                <input type="password" ng-model="vm.item.password2">
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.edit()">保存</a>
+        <a class="btn btn-default" ng-click="vm.close()">关闭</a>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="pos-process">
+    <div class="text">
+        <span class="item1" ng-class="step >=1?'blue3':''">简历筛选</span>
+        <span class="item2" ng-class="step >=2?'blue3':''">面试</span>
+        <span class="item3" ng-class="step >=3?'blue3':''">Offer</span>
+        <span class="item4" ng-class="step >=4?'blue3':''">上岗</span>
+    </div>
+    <div class="con">
+        <a class="item1" ng-if="step >=1">{{data.JLSX}}</a>
+        <a class="item2" ng-if="step >=2">{{data.MS}}</a>
+        <a class="item3" ng-if="step >=3">{{data.OFFER}}</a>
+        <a class="item4" ng-if="step >=4">{{data.RZ}}</a>
+        <div class="process-bg">
+        </div>
+        <div class="process " ng-class="'step'+step">
+        </div>
+    </div>
+</div>

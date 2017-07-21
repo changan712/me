@@ -1,0 +1,166 @@
+<form name="form" novalidate>
+    <ion-view class="view-feed-new">
+        <ion-nav-buttons side="left">
+            <button class="button" back back-default-state="^.list"><i class="icon ion-android-arrow-back"></i></button>
+        </ion-nav-buttons>
+        <ion-nav-title >
+            <h4 ng-if="!vm.isEdit && vm.type!=1">创建新个人分享</h4>
+            <h4 ng-if="!vm.isEdit && vm.type==1">为他人创建新分享</h4>
+            <h4  ng-if="vm.isEdit && vm.type!=1">编辑个人分享</h4>
+            <h4  ng-if="vm.isEdit && vm.type==1">编辑为他人创建的分享</h4>
+        </ion-nav-title>
+
+        <ion-content class="has-footer">
+            <div class="padding gray text-center "><i class="ion-ios-information-outline big"></i> 记得每周更新哦~</div>
+
+            <div class="list sm-bd list-sm" ng-if="vm.type==1">
+                <div class="" >
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.related_user_ids.$invalid}"
+                       ng-click="vm.addFor(vm.data.related_user_ids)">
+                        <i class="icon ion-ios-at-outline color-theme"></i> 谁
+                        <i class="ion-ios-medical  icon-required"></i>
+                        <i class="icon ion-ios-arrow-right "></i>
+                    </a>
+                    <div class="item-data item  item-icon-left  sm-bd-bottom-clear item-text-wrap "
+                         ng-if="vm.data.related_user_ids.length&&vm.allUsers.length">
+
+                        <span class="label mr5 mb5"  ng-click="vm.removeFor(item)" ng-repeat="item in vm.data.related_user_ids">{{item|findWhere:vm.allUsers:'id':'name'}}</span>
+                    </div>
+                    <input type="hidden" name="related_user_ids" required minlength="1" ng-model="vm.data.related_user_ids">
+                </div>
+            </div>
+
+            <!--starr-->
+            <div class="list   sm-bd sm-bd-ml list-sm">
+                <div class="">
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.task.$error.required}"
+                       ng-click="vm.showModalStarr('task',{title:'情景 / 任务',required:true},vm.data.task)">
+                        <i class="icon ion-ios-analytics-outline color-theme"></i> 情景 / 任务
+                        <i class="ion-ios-medical  icon-required"></i>
+                        <i class="icon ion-ios-arrow-right "></i>
+                    </a>
+                    <div class="item-data item  item-icon-left  sm-bd-bottom-clear item-text-wrap "
+                         ng-if="vm.data.task">
+                        {{vm.data.task}}
+                    </div>
+                    <input type="hidden" name="task" required ng-model="vm.data.task">
+
+                </div>
+
+                <div class="">
+                    <input type="hidden" name="action" required ng-model="vm.data.action">
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.action.$error.required}"
+                       ng-click="vm.showModalStarr('action',{title:'行动 / 行为',required:true},vm.data.action)">
+                        <i class="icon ion-ios-flame-outline color-theme"></i> 行动 / 行为<i
+                            class="ion-ios-medical  icon-required"></i>
+                        <i class="icon ion-ios-arrow-right "></i>
+                    </a>
+                    <div class=" item-data item item-text-wrap item-icon-left  sm-bd-bottom-clear "
+                         ng-if="vm.data.action">
+                        {{vm.data.action}}
+                    </div>
+                </div>
+                <div class="">
+                    <input type="hidden" name="result" required ng-model="vm.data.result">
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.result.$invalid}"
+                       ng-click="vm.showModalStarr('result',{title:'结果 / 影响',required:true},vm.data.result)">
+                        <i class="icon ion-ios-rose-outline color-theme"></i> 结果 / 影响<i
+                            class="ion-ios-medical  icon-required"></i>
+                        <i class="icon ion-ios-arrow-right "></i>
+
+                    </a>
+                    <div class="item-data item item-text-wrap item-icon-left  sm-bd-bottom-clear "
+                         ng-if="vm.data.result">
+                        {{vm.data.result}}
+
+                    </div>
+
+                </div>
+                <div class="">
+                    <input type="hidden" name="reflection" ng-model="vm.data.reflection">
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.reflection.$error.required}"
+                       ng-click="vm.showModalStarr('reflection',{title:'自我反思',required:false},vm.data.reflection)">
+                        <i class="icon ion-ios-lightbulb-outline color-theme"></i> 自我反思
+                        <i class="icon ion-ios-arrow-right "></i>
+                    </a>
+                    <div class=" item-data item item-text-wrap item-icon-left  sm-bd-bottom-clear  "
+                         ng-if="vm.data.reflection">
+                        {{vm.data.reflection}}
+                    </div>
+                </div>
+            </div>
+            <div class="list   sm-bd sm-bd-ml list-sm">
+
+                <feed-selector ng-repeat="item in vm.corpValues"
+                               ng-class="{'error':form.$submitted&&form[item.id].$invalid}"
+                               ng-model="vm.data.value_ids[item.id]"
+                               views="item.values"
+                               name="{{item.id}}"
+                               ng-required="{{item.min_length}}"
+                               ng-minlength="{{item.min_length}}"
+                               ng-maxlength="{{item.max_length}}"
+                               ng-if="item.values.length"
+                               modal-name="modal{{item.id}}">
+                    <i class="icon ion-ios-checkmark-outline color-theme"></i> {{item.name}}<i ng-if="item.min_length"
+                                                                                               class="ion-ios-medical  icon-required"></i>
+                </feed-selector>
+            </div>
+
+            <div class="img-collection" ng-if="!vm.isEdit">
+                <ul class="  clearfix" wx-preview-img ng-class="{'no-img':!vm.imgChosenAll.length}">
+                    <li ng-repeat="item in vm.imgChosenAll">
+                        <button class="button button-clear button-small" ng-click="vm.deleteChosenImg($event,item)"><i
+                                class=" icon ion-ios-close"></i></button>
+                        <img ng-src="{{item}}" alt=""></li>
+                    <li ng-if="vm.imgChosenAll.length<9" class="btn-add" wx-choose-img
+                        wx-choose-img-max-length="{{9-vm.imgChosenAll.length}}"
+                        ng-model="vm.imgChosen"><i class="icon ion-camera"></i></li>
+                </ul>
+            </div>
+
+        </ion-content>
+        <ion-footer-bar>
+            <div class="row ">
+
+                <div class="col"><a class="button button-block button-outline button-assertive" on-tap="vm.clearData()" ui-sref="^.list"
+                >取消</a></div>
+                <div class="col">
+                    <button class="button button-block button-assertive bg-theme" style="font-size: 14px;"
+                            ng-click="vm.submit(form)"><span
+                            ng-if="!vm.isEdit">发布</span><span ng-if="vm.isEdit">更新</span></button>
+                </div>
+            </div>
+        </ion-footer-bar>
+    </ion-view>
+</form>
+<script type="text/ng-template" id="modal-starr.tpl">
+    <ion-list class="list-sm sm-bd">
+        <div class="item item-textarea" ng-class="{'error':form.$submitted&&form.content.$invalid}">
+            <textarea rows="3" name="content" ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }"
+                      placeholder="请输入" ng-required="vm.required" maxlength="{{vm.maxLength}}"
+                      ng-model="vm.data.content"></textarea>
+        </div>
+        <div class="padding text-right small" ng-if="!isAndroid">还可以输入{{vm.maxLength-vm.data.content.length}} 字</div>
+    </ion-list>
+</script>
+
+<script type="text/ng-template" id="modal-for.tpl">
+
+    <ion-list class="list-sm sm-bd checkbox-icon-right">
+        <ion-checkbox class="item checkbox-assertive " ng-if="!item.disabled" ng-model="item.active" ng-repeat="item in vm.view|filter:vm.filter">
+            <span class="avatar avatar-sm ">  <img ng-src="{{::item.avatar}}" alt=""></span> {{::item.name}}
+        </ion-checkbox>
+
+    </ion-list>
+
+</script>
+
+
+
+
+

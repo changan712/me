@@ -1,0 +1,89 @@
+<ion-view class="view-feed-detail" hide-tabs="true" cache-view="false">
+    <ion-nav-buttons side="left">
+        <a class="button " back back-default-state="^.list"> <i class="icon ion-android-arrow-back"></i></a>
+    </ion-nav-buttons>
+    <ion-nav-title><h4>详情</h4></ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a class="button " ui-sref="app.feed.edit({id:vm.detail.id})" ng-if="vm.detail.user.id == vm.currentUser.id">
+            <i class="ion-edit"></i>
+        </a>
+    </ion-nav-buttons>
+
+    <!-- <ion-nav-buttons side="right">
+         <a class="button button-small  button-clear mr5" ng-click="vm.feedUpdate.toggleLike(vm.detail)">
+
+
+             <i class="icon ion-ios-heart brick-red" ng-if="vm.detail.liked"></i> <i
+                 ng-if="!vm.detail.liked"
+                 class="icon ion-ios-heart-outline"></i>
+         </a>
+         <button class="button button-small button-clear" ng-click="vm.feedUpdate.createComment($event,vm.detail)"><i
+                 class="icon ion-ios-compose-outline"></i></button>
+     </ion-nav-buttons>-->
+
+
+    <ion-content>
+        <images-view class="detail-images-view" no-wrap="true" data='vm.detail.images'
+                     ng-if="vm.detail.images.length"></images-view>
+
+        <div class="list list-sm starr">
+            <div class="item item-text-wrap">
+                <label>情景/任务</label> <div class="text">{{vm.detail.task}}</div>
+            </div>
+
+            <div class="item item-text-wrap">
+                <label>行动/行为</label> <div class="text">{{vm.detail.action}}</div>
+            </div>
+            <div class="item item-text-wrap">
+                <label>结果/影响</label> <div class="text">{{vm.detail.result}}</div>
+            </div>
+            <div class="item item-text-wrap" ng-if="vm.detail.reflection">
+                <label>自我反思</label> <div class="text">{{vm.detail.reflection}}
+
+                <!--<span ng-if="vm.detail.result.milestone"
+                      ng-click="vm.feedUpdate.scoreMilestone(vm.detail)"
+                      class="label link label-milestone"><i class="ion-navigate icon"></i> milestone</span>-->
+            </div>
+            </div>
+            <div class="item item-text-wrap" ng-if="vm.detail.related_user_list.length" >
+                <span class="color-theme pull-left">@</span>
+               <div class="ml20"> <a ui-sref="^.home({id:item.id})" class="label label-theme2 black mr5" ng-repeat="item in vm.detail.related_user_list">
+                     {{item.name}}
+                </a></div>
+
+            </div>
+
+        </div>
+
+        <div class="list list-sm" ng-repeat="value in vm.detail.values">
+            <div class="item item-divider ">
+                <i class="icon  " ng-class="value.icon||'ion-ios-checkmark-outline'"></i> {{value.name}}
+            </div>
+            <div class="item" ng-repeat="v in value.values">{{v.name}}</div>
+        </div>
+        <div class="list list-sm" ng-if="vm.detail.likes.length">
+            <div class="item-divider item">喜欢的小伙伴 ({{vm.detail.likes.length}})</div>
+            <div class="item ">
+                <ion-scroll direction="x" scrollbar-x="false">
+                    <a ui-sref="^.home({id:like.user.id})"  class="mr5 "
+                       ng-repeat="like in vm.detail.likes"><span class="avatar  avatar-xs mr5" ><img
+                            ng-src="{{::like.user.avatar}}" alt=""></span>{{like.user.name}}
+                    </a>
+                </ion-scroll>
+            </div>
+        </div>
+        <div class="list comment list-sm" ng-if="vm.detail.comments.data.length">
+            <div class="item item-divider"><a class="more pull-right gray" ng-if="vm.detail.comments.has_more"
+                                              ui-sref="^.comments({feedId:vm.detail.id})">更多
+                <i class="ion ion-ios-more"></i></a>评论
+            </div>
+            <feed-comment class="mt-1 relative feed-comment-common" view="vm.detail.comments.data"
+                          feed="vm.detail"></feed-comment>
+        </div>
+
+
+    </ion-content>
+</ion-view>
+
+
+

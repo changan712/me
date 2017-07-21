@@ -1,0 +1,80 @@
+<ion-view view-title="上传简历">
+    <ion-content delegate-handle="posContent">
+        <form class="form" novalidate name="upload.form" ng-submit="vm.submit()">
+            <div class="list ">
+                <label class="item item-input" ng-class="{error:vm.submited&&upload.form.cv_name.$error.required}">
+                    <span class="input-label">简历名称：</span>
+                    <input type="text" required name="cv_name" placeholder="请输入简历名称" ng-model="vm.mod.cv_name">
+                </label>
+            </div>
+            <div class="list ">
+
+                <label class="item item-input" ng-class="{error:vm.submited&&upload.form.name.$error.required}">
+                    <span class="input-label">姓名：</span>
+                    <input type="text" required name="name" ng-model="vm.mod.name">
+                </label>
+                <label class="item item-input" ng-class="{error:vm.submited&&upload.form.mobile.$error.required}">
+                    <span class="input-label">手机：</span>
+                    <input type="text" required name="mobile" ng-model="vm.mod.mobile">
+                </label>
+                <label class="item item-input"
+                       ng-class="{error:upload.form.email.$error.email||(vm.submited&&upload.form.email.$error.required)}">
+                    <span class="input-label">邮箱：</span>
+                    <input type="email" required name="email" ng-model="vm.mod.email">
+                </label>
+
+                <div class="item">
+                    <label class="mr10 "><input type="radio" ng-value="1" ng-model="vm.mod.gender" checked
+                                                name="gender"> 男</label>
+                    <label><input ng-model="vm.mod.gender" ng-value="0" type="radio"
+                                  name="gender">
+                        女</label>
+                </div>
+                <label class="item item-input item-select">
+                    <span class="input-label">
+                        学历：
+                    </span>
+                    <select ng-model="vm.mod.degree" ng-options="item for item in vm.view.edu" required
+                            class="col col-75">
+
+                    </select>
+                </label>
+                <label class="item item-input" ng-class="{error:vm.submited&&upload.form.school.$error.required}">
+                    <span class="input-label">毕业院校：</span>
+                    <input type="text" required name="school" ng-model="vm.mod.school">
+                </label>
+                <label class="item item-input" ng-class="{error:vm.submited&&upload.form.work_exp.$error.required}">
+                    <span class="input-label">工作经验：</span>
+                    <input type="number" required name="work_exp" ng-model="vm.mod.work_exp">
+                </label>
+
+
+                <label class="item item-input" ng-class="{error:vm.submited&&upload.form.company.$error.required}">
+                    <span class="input-label">当前公司：</span>
+                    <input type="text" required name="company" ng-model="vm.mod.company">
+                </label>
+                <label class="item item-input" ng-class="{error:vm.submited&&upload.form.position.$error.required}">
+                    <span class="input-label">当前职位：</span>
+                    <input type="text" required name="position" ng-model="vm.mod.position">
+                </label>
+                <label class="item  " ng-class="{error:vm.submited&&vm.fileEmpty}">
+                    <span class="btn btn-upload mr5">上传简历<input type="file" file-info="vm.fileInfo"
+                                                                reader-error="vm.readerError(msg)"
+                                                                fileread="vm.mod.file.data" filetype="vm.mod.file.type"
+                                                                class="file"/></span>{{vm.fileInfo.name}}
+
+
+                </label>
+                <div class="item-text-wrap gray item " ng-if="isIOS">
+                    ios系统需将简历截图，然后由相册上传
+                </div>
+                <div class="item" ng-class="{error:vm.submited&&!vm.agree}">
+                    <label class="word-no-warp"><input type="checkbox" ng-model="vm.agree"/> 本人承诺所有提供的个人资料真实有效，并同意以上个人资料将会用于{{corp.full_name}}人才吸引和招聘用途。</label>
+                </div>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-assertive ">提交</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

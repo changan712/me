@@ -1,0 +1,69 @@
+<div class="padding">
+    <table class="table ">
+        <tr>
+            <td>ID</td>
+            <td>
+                {{vm.id}}
+            </td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td>
+                <input ng-model="vm.item.name" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>类型</td>
+            <td>
+                <select ng-model="vm.item.type" class="form-control">
+                    <option value="qy_agent">企业号</option>
+                    <option value="mp_agent">服务号</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>AppID</td>
+            <td>
+                <input ng-model="vm.item.app_id" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>Secret</td>
+            <td>
+                <input ng-model="vm.item.secret" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>公司名</td>
+            <td>
+                <input ng-model="vm.item.info.company_name" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td>LOGO</td>
+            <td>
+                <!--<input ng-model="vm.item.info.logo">-->
+                <div ng-if="vm.item.info.logo">
+                    <img ng-src="{{vm.item.info.logo}}" style="max-width: 400px">
+                </div>
+                <label class="btn btn-default">
+                    选择文件 <input type="file" style="display: none;" nv-file-select uploader="vm.uploader">
+                </label>
+                {{vm.uploader.queue[0].file.name}}
+                <a class="btn btn-info" ng-click="vm.clearUpload()" ng-if="vm.uploader.queue.length">清除</a>
+                <a class="btn btn-success" ng-click="vm.uploadLogo()" ng-if="vm.uploader.queue.length">确认</a>
+            </td>
+        </tr>
+        <tr>
+            <td>规则</td>
+            <td>
+                <textarea rows="6" cols="50" ng-model="vm.item.info.rule" class="form-control"></textarea>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.edit()">保存</a>
+        <a class="btn btn-default" ng-click="vm.close()">关闭</a>
+    </div>
+</div>

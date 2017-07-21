@@ -1,0 +1,61 @@
+page-quest-detail{
+
+
+  [button-default]{
+    background:map_get($colors,primary)!important;
+    color:#fff!important;
+
+    padding:0 10px;
+  }
+  .content{
+    background:$content-dark-bg;
+    .item{
+      background:none;
+    }
+  }
+  .record-list{
+
+    text-align:left;
+  }
+  .voice-list{
+
+    ion-item{
+      padding-left:8px;
+      ion-label{
+        margin:0;
+      }
+    }
+
+  }
+
+  .foot-con{
+    display:flex;
+    & > a{
+      flex:1;
+
+    }
+    .selector-btn-wrap{
+      flex:1 1 100%;
+    }
+    .selector-btn{
+      margin-left:0!important;
+      margin-right:3px!important;
+      box-sizing:border-box;
+      border:0.55px solid #ddd;
+      width:100%;
+      position:relative;
+      z-index:99;
+      ion-select{
+        position:absolute;
+        top:0;
+        opacity:0;
+        left:0;
+        right:0;
+        max-width:100%;
+        & > *{
+          opacity:0;
+        }
+      }
+    }
+  }
+}

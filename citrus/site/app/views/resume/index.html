@@ -1,0 +1,78 @@
+<ion-view view-title="简历列表">
+    <ion-content delegate-handle="posContent" class="resume-index">
+        <div class="list   " ng-if=" vm.pos.position_name">
+            <div class="item item-divider resume-pos-tit">职位：<a
+                    ng-href="#/position/{{vm.pos.position_id}}">{{vm.pos.position_name}}</a></div>
+        </div>
+        <div class="list mt10 padding gray text-center" ng-if="!vm.resumeList.length">
+            暂无简历，简单几步添加新简历来投递职位吧 <i class="ion-ios-lightbulb-outline big "></i>
+        </div>
+        <ion-list class="list resume-list" can-swipe="!vm.showOptions" show-item-options
+                  show-item-options-value="vm.showOptions"
+                  ng-if="vm.resumeList.length">
+            <div class="item item-divider">
+
+                <div class="pull-right">
+                    <i class="ion-ios-compose gray-reset bigger" ng-if="!vm.showOptions"
+                       ng-click="vm.editAll(true)"></i>
+
+                    <i class="ion-ios-checkmark-outline bigger" ng-if="vm.showOptions"
+                       ng-click="vm.editAll(false)"></i></div>
+
+                <strong>简历列表</strong>
+                <span class="small gray-reset" ng-if="vm.pos.position_id">(请选择需要投递的简历)</span>
+            </div>
+            <ion-item  ng-click="vm.resumeListSelected(item.id)" class="item-icon-right"
+                       ng-repeat="item in vm.resumeList">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{item.info.cv_name}} <span class="gray small ml5">来源:{{item.cv_source|source}}</span>
+                <ion-option-button class="button-assertive"
+                                   ng-click="vm.deleteResume(item.id)">
+                    删除
+                </ion-option-button>
+                <ion-option-button href="#" class="button-calm theme"
+                                   ng-click="vm.editResume(item.id)">
+                    编辑
+                </ion-option-button>
+                <i class="icon ion-android-done green" ng-if="vm.pos.position_id&&item.active&&!vm.showOptions"></i>
+            </ion-item>
+        </ion-list>
+        <form novalidate name="resumeIndex.refForm" ng-if="vm.pos.position_name&&vm.resumeList.length">
+            <div class="list mt10">
+                <div class="item item-toggle ">
+                    是否有内部推荐人？
+                    <label class="toggle toggle-banance">
+                        <input type="checkbox" name="hasRef" ng-model="vm.hasRef">
+
+                        <div class="track ">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+                <div ng-if="vm.hasRef">
+                    <div class="item item-input"
+                         ng-class="{'error':resumeIndex.refForm.ref_name.$error.required&&vm.applied}">
+                        <sup class="red">*</sup>
+                        <input type="text" ng-model="vm.ref.ref_name" name="ref_name" ng-required="vm.hasRef" placeholder="推荐人姓名"/>
+                    </div>
+
+                    <div class="item item-input">
+                        <input type="text" name="ref_mobile" ng-model="vm.ref.ref_mobile" placeholder="推荐人电话"/>
+                    </div>
+
+                    <div class="item item-input" ng-class="{'error':resumeIndex.refForm.ref_email.$error.email}">
+                        <input type="email" name="ref_email" ng-model="vm.ref.ref_email" placeholder="推荐人邮箱"/>
+                    </div>
+                    <div class="item item-input">
+                        <input type="text" name="ref_empno" ng-model="vm.ref.ref_empno" placeholder="推荐人工号"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="padding">
+            <a class="button button-block button-theme but-center" ng-if="vm.pos.position_id&&vm.resumeList.length"
+               ng-click="vm.apply()">申请职位</a>
+            <a class="button button-block button-theme but-center" ng-href="#/resume/add"> <i
+                    class="ion-plus-round"></i> 添加新简历</a>
+        </div>
+
+    </ion-content>
+</ion-view>

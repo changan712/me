@@ -1,0 +1,110 @@
+<ion-view class="view-feed-detail view-feed-project-detail" hide-tabs="true" cache-view="false">
+
+    <ion-nav-title><h4>详情</h4></ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a class="button " ui-sref="app.feedProject.edit({id:vm.detail.id})"
+           ng-if="vm.detail.user.id == vm.currentUser.id">
+            <i class="ion-edit"></i>
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+        <a class="button " back back-default-state="^.list"> <i class="icon ion-android-arrow-back"></i></a>
+    </ion-nav-buttons>
+
+
+    <ion-content>
+        <images-view class="detail-images-view" no-wrap="true" data='vm.detail.images'
+                     ng-if="vm.detail.images.length"></images-view>
+
+        <div class="list list-sm starr sm-bd">
+            <div class="item item-text-wrap">
+                <label>项目</label>
+                <div class="text"> {{vm.detail.aia_project.project.name}}
+                </div>
+            </div>
+
+            <div class="sm-bd-ml">
+                <div class="item item-text-wrap ">
+                    <div class="text"><span class="label label-dark label-round">关键客户</span>
+                        {{vm.detail.aia_project.project.extra.key_user}}
+                    </div>
+                </div>
+                <div class="item item-text-wrap">
+                    <div class="text project-goal"><span class="label label-dark label-round">目标</span>
+                        <div class="r">
+                            <div ng-repeat="goal in vm.detail.aia_project.project.extra.goal|splitByN">{{goal}}</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="item item-text-wrap">
+                    <div class="text"><span class="label label-theme"
+                                            ng-click="vm.modalProjectUser.show(vm.detail.aia_project.project.id)">查看项目成员 <i
+                            class="ion-ios-arrow-forward"></i></span></div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap">
+                <label>进度</label>
+                <div class="text"><span class="label">{{vm.detail.aia_project.percent}}% | {{vm.detail.aia_project.percent|aiaPercent}}</span>
+                </div>
+
+            </div>
+            <div class="sm-bd-ml" ng-if="vm.detail.aia_project.has_milestone">
+                <div class="item item-text-wrap ">
+                    <div class="text"><span class="label label-dark label-round">里程碑</span>
+                        {{vm.detail.aia_project.milestone.others}}
+                    </div>
+                </div>
+            </div>
+            <div class="item item-text-wrap">
+                <label>行动</label>
+                <div class="text">{{vm.detail.action}}</div>
+            </div>
+            <div class="item item-text-wrap">
+                <label>影响</label>
+                <div class="text">{{vm.detail.result}}</div>
+            </div>
+            <div class="item item-text-wrap">
+                <label>用时</label>
+                <div class="text"><span
+                        class="label">{{vm.detail.duration}} {{vm.detail.duration_type|durationType}}</span></div>
+            </div>
+            <div class="item item-text-wrap">
+                <label>反思</label>
+                <div class="text">{{vm.detail.reflection}}
+                </div>
+            </div>
+        </div>
+
+        <div class="list list-sm" ng-repeat="value in vm.detail.values">
+            <div class="item item-divider ">
+                <i class="icon  " ng-class="value.icon||'ion-ios-checkmark-outline'"></i> {{value.name}}
+            </div>
+            <div class="item" ng-repeat="v in value.values">{{v.name}}</div>
+        </div>
+        <div class="list list-sm" ng-if="vm.detail.likes.length">
+            <div class="item-divider item">喜欢的小伙伴</div>
+            <div class="item ">
+                <ion-scroll direction="x" scrollbar-x="false">
+                    <a class="avatar avatar-sm mr5" ui-sref="^.home({id:like.user.id})"
+                       ng-repeat="like in vm.detail.likes"><img
+                            ng-src="{{::like.user.avatar}}" alt=""></a>
+                </ion-scroll>
+            </div>
+        </div>
+        <div class="list comment list-sm" ng-if="vm.detail.comments.data.length">
+            <div class="item item-divider"><a class="more pull-right gray" ng-if="vm.detail.comments.has_more"
+                                              ui-sref="^.comments({feedId:vm.detail.id})">更多
+                <i class="ion ion-ios-more"></i></a>评论
+            </div>
+            <feed-comment class="mt-1 relative feed-comment-common" view="vm.detail.comments.data"
+                          feed="vm.detail"></feed-comment>
+        </div>
+
+
+    </ion-content>
+</ion-view>
+
+
+

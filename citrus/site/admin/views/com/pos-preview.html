@@ -1,0 +1,45 @@
+<div class="preview-modal">
+<div class="pos-preview"  >
+    <div class="phone" click-stop-prop>
+        <div class="con">
+            <div class="preview-wrap">
+                <h2>{{vm.pos.name}}<span class="pos-tags"><span ng-repeat="tag in vm.pos.tag" class=" pos-label"
+                                                                ng-class="{'hot':'label-danger','urgent':'label-warning'}[tag]">{{tag|posTag}}</span></span>
+                </h2>
+                <div class="info padding">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col"><img src="images/pvc1.png">
+                                工作地区：<span ng-repeat="item in vm.pos.city_list">{{item.label}} </span>
+                            </div>
+                            <div class="col" ng-if="!vm.corp.custom.app_position_detail.hide_count"><img src="images/pvc2.png">
+                                招聘人数：{{vm.pos.hiring_count}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div ng-if="vm.pos.deadline" class="col w100pct"><img src="images/pvc3.png">
+                                截止日期：{{vm.pos.deadline|date:"yyyy-MM-dd"}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col reward w100pct">
+                                <div ng-if="vm.pos.interviewed_reward "><img src="images/pvc4.png">进入面试红包：<strong>{{vm.pos.interviewed_reward}}</strong> 元
+                                </div>
+                                <div ng-if="vm.pos.onboarding_reward" class="ml15"><i class="icon ion-trophy w100pct"></i>
+                                    成功入职红包：<strong>{{vm.pos.onboarding_reward}}</strong> 元
+                                </div>
+                                <div ng-if="vm.pos.pass_probation_reward" class="ml15"><i class="icon ion-trophy w100pct"></i>
+                                    通过试用期红包：<strong>{{vm.pos.pass_probation_reward}}</strong> 元
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="jd" ng-bind-html="vm.pos.jd"></div>
+            </div>
+        </div>
+        <div class="text-center mt20"><a class="btn btn-primary btn-sm" ng-click="close()">退出预览</a></div>
+    </div>
+    <div class="bg"></div>
+</div>
+</div>

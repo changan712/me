@@ -1,0 +1,56 @@
+<div class="alert-wrap " ng-if="vm.alerts.length" ng-class="{' show':vm.alerts.length}" style="display: none;">
+    <uib-alert ng-repeat="alert in vm.alerts" type="{{alert.type}}" close="alert.close()"><span
+            class="glyphicon glyphicon-info-sign"> </span> {{alert.msg}}
+    </uib-alert>
+</div>
+<div class="sidebar">
+    <div class="logo-con">
+        <img src="images/logo.png" alt="">
+    </div>
+    <ul class="side-nav ng-isolate-scope">
+        <!-- ngRepeat: item in vm.list -->
+        <li class="ng-scope" ng-class="{active:menu_active=='agent'}">
+            <a href="#/app/agent/list" class="ng-binding" ng-click="menu_active='agent'">
+                <i class="icon-nav">
+                    <img src="images/ic-nav1.png" alt="">
+                    <img src="images/ic-nav1-active.png" alt="">
+
+                </i>
+
+                <span class="nav-label">客户</span>
+            </a>
+        </li>
+        <li class="ng-scope" ng-class="{active:menu_active=='quest'}">
+
+            <a href="#/app/quest/list" class="ng-binding" ng-click="menu_active='quest'">
+
+                <i class="icon-nav">
+                    <img src="images/ic-nav2.png" alt="">
+                    <img src="images/ic-nav2-active.png" alt="">
+
+                </i>
+                <span class="nav-label">问卷</span></a>
+        </li>
+        <li class="ng-scope" ng-class="{active:menu_active=='account'}" ng-show="root.user.super">
+
+            <a href="#/app/admin/list" class="ng-binding" ng-click="menu_active='account'">
+                <i class="icon-nav">
+                    <img src="images/ic-nav3.png" alt="">
+                    <img src="images/ic-nav3-active.png" alt="">
+
+                </i>
+                <span class="nav-label">账户</span></a>
+        </li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <!-- ngInclude: -->
+    <ng-include src="'project/main/views/top-bar.html'" class="ng-scope"></ng-include>
+    <!--ui-view-->
+    <!-- uiView: -->
+    <div class="view  clearfix view-content" full-height="" ui-view style="min-height: 929px;"></div>
+    <!-- ngInclude: -->
+    <ng-include src="'project/main/views/footer.html'" class="ng-scope"></ng-include>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="con">
+    <div class="tit"> {{'COMPONENT.VOICE_LIST.TITLE'|translate}} <a class="primary" (tap)="removeAll()">{{'COMPONENT.VOICE_LIST.BTN_REMOVE'|translate}}</a>
+    </div>
+
+    <div class="voice-wrap" *ngFor=" let item of list;let index = index">
+        <voice [localId]="item.localId" [list]="voiceComponentList" (onRemove)="removeVoice($event)"><span
+                class="pull-right m-r gray" *ngIf="index==0">{{'COMPONENT.VOICE_LIST.TIP'|translate}}</span>{{item.duration/1000|ceil}}"
+            <!--刚刚-->
+        </voice>
+    </div>
+    <div class="gray p f14" *ngIf="!list.length">
+        暂无语音
+
+    </div>
+
+</div>

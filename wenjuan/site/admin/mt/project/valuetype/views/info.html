@@ -1,0 +1,50 @@
+<div class="padding">
+
+    <table class="table table-bordered table-hover table-striped w800">
+        <tr>
+            <td><b>ID</b></td>
+            <td>{{vm.id}}</td>
+            <td><b>名称</b></td>
+            <td>{{vm.item.name}}</td>
+        </tr>
+        <tr>
+            <td><b>最小长度</b></td>
+            <td>{{vm.item.min_length}}</td>
+            <td><b>最大长度</b></td>
+            <td>{{vm.item.max_length}}</td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-href="#/app/valuetype/edit/{{vm.item.id}}">编辑信息</a>
+        <a class="btn btn-warning" ng-click="vm.delete()">删除</a>
+        <a class="btn btn-default" href="#/app/valuetype/list">返回</a>
+    </div>
+    <br>
+
+    <table class="table table-bordered table-hover table-striped w1000">
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="value in vm.item.values">
+            <td>{{value.id}}</td>
+            <td ng-if="!value.$edit">{{value.name}}</td>
+            <td ng-if="value.$edit"><input ng-model="value.name"></td>
+            <td style="width: 200px;">
+                <a class="btn btn-info" ng-click="value.$edit=1" ng-if="!value.$edit">编辑</a>
+                <a class="btn btn-info" ng-click="vm.editValue(value);value.$edit=0" ng-if="value.$edit">保存</a>
+                <a class="btn btn-default" ng-click="value.$edit=0" ng-if="value.$edit">取消</a>
+                <a class="btn btn-warning" ng-click="vm.deleteValue(value.id)">删除</a>
+
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <input class="input-lg" ng-model="vm.quest.name">
+        <a class="btn btn-info" ng-click="vm.saveValue()">添加</a>
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+<div class="padding">
+    <table class="table table-bordered">
+        <tr>
+            <td><textarea ng-model="vm.raw_data" rows="20" cols="140"></textarea></td>
+            <td>
+                范例：
+                <pre>
+                    qy_name
+                    name
+
+                    10437930
+                    Vivy Duan
+                    推进TDS项目　
+                    FY1617年度培训计划实施　
+
+                    10448036
+                    Jonathan Gu
+                    提升中国项目
+                </pre>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><button ng-click="vm.parseData()">解析</button></td>
+        </tr>
+    </table>
+    <br>
+    <table class="table table-bordered">
+        <tr>
+            <th ng-repeat="col in vm.cols">
+                {{col}}
+            </th>
+            <th>目标</th>
+        </tr>
+        <tr ng-repeat="d in vm.data">
+            <td ng-repeat="col in vm.cols">{{d[col]}}</td>
+            <td> <ul>
+                <li ng-repeat="g in d['goals']">
+                    {{g}}
+                </li>
+            </ul> </td>
+        </tr>
+        <tr ng-if="vm.data.length > 0">
+            <td colspan="3"><button ng-click="vm.doImport()">导入</button></td>
+        </tr>
+    </table>
+</div>
+

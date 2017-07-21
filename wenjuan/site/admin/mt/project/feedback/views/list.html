@@ -1,0 +1,38 @@
+<div class="padding">
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>用户</th>
+            <th>内容</th>
+            <th>电话</th>
+            <th>创建时间</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td><span class="avatar avatar-sm mr5"><img ng-if="item.user.avatar" ng-src="{{item.user.avatar}}" alt=""></span>
+                <span>
+                    {{item.user.name}}
+                    [{{item.user.qy_name}}]
+                </span></td>
+            <td style="max-width: 90px">{{item.content}}</td>
+            <td style="max-width: 230px">{{item.mobile}}</td>
+            <td style="max-width: 230px">{{item.created}}</td>
+        </tr>
+    </table>
+
+    <div class="text-right mt10">
+        <uib-pagination
+                items-per-page="vm._meta.perPage"
+                boundary-links="true"
+                max-size="5"
+                ng-change="vm.pageChanged()"
+                total-items="vm._meta.totalCount"
+                ng-model="vm._meta.currentPage"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></uib-pagination>
+
+    </div>
+</div>
+

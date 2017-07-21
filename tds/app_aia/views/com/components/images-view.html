@@ -1,0 +1,17 @@
+<div class="images-view ">
+    <div ng-if="list" ng-class="{'no-wrap':noWrap}" class="images-view length{{list.length}}">
+        <ion-scroll direction="x"  scrollbar-x="false" class="feed-detail-scroll" ng-if=" noWrap">
+            <div class="con" wx-preview-img ng-style="getConStyle()">
+                <div class="iv-item" ng-class="{'avatar':list.length>1}" ng-repeat="item in list"><img
+                        ng-src="{{item.href}}" data-full-href="{{item.full_href}}" alt=""></div>
+
+            </div>
+        </ion-scroll>
+        <div class="con" wx-preview-img  ng-if="!noWrap">
+            <div class="iv-item" ng-class="{'avatar':list.length>1}" ng-repeat="item in list"><img
+                    ng-src="{{item.href}}" data-full-href="{{item.full_href}}" alt=""></div>
+
+        </div>
+
+    </div>
+</div>

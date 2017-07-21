@@ -1,0 +1,10 @@
+<div class="top-bar">
+    <a class="pull-right btn btn-default btn-sm mt5" ng-click="vm.logout()"><span
+            class="glyphicon glyphicon-log-out"></span> </a>
+
+    <div class="wel">
+        <img class="avatar" ng-if="!user['0'].avatar" ng-src="images/ic-top-person.png" alt=""/>
+        <img class="avatar" ng-if="user[0].avatar" ng-src="{{user[0].avatar}}" alt=""/>
+        {{vm.time|greeting}}，<a ng-href="#/user-info">{{user.username}}</a>！
+    </div>
+</div>

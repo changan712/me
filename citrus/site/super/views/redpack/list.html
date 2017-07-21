@@ -1,0 +1,27 @@
+<!--<div class="debug">{{vm.companyList}}</div>-->
+<div class="company-list">
+    <label>客户列表</label>
+    <table class="table table-hover table-striped ">
+        <thead>
+        <tr>
+            <th> 客户编号 </th>
+            <th> 客户名称 </th>
+            <th> 金额汇总 </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-class="{'pos-closed':item.status == 0}"  ng-repeat="item in vm.list" ng-class="{'closed':!item.status}">
+            <td>{{vm._meta.perPage*(vm._meta.currentPage-1)+$index+1}}</td>
+            <td><a class="blue" ng-href="#/redpack/detail?company_id={{item.company_id}}">{{item.company_name}}</a></td>
+            <td>{{item.money}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="pull-right">
+        <pagination ng-if="vm._meta.totalCount>1" items-per-page="vm._meta.perPage" boundary-links="true"
+                    total-items="vm._meta.totalCount"
+                    ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                    last-text="&raquo;"></pagination>
+    </div>
+</div>

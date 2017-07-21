@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=640, user-scalable=no"/>
+    <title>bonus</title>
+    <link rel="stylesheet" href="css/bonus.css"/>
+
+</head>
+
+<body>
+<div class="con" id="con">
+    <img src="images/logo.png" style="left:18px; bottom:14px; position:absolute;z-index:1;width:100px;"  alt=""/>
+    <canvas id="canvas" width="640" height="1136" style="background-color:#fff"></canvas>
+    <a class="btn" id="btn"></a>
+
+    <div class="popup" id="popup">
+        <div class="popup-img"><img src="images/popup.png" alt=""/><a class="close" id="close"></a></div>
+
+    </div>
+</div>
+
+</body>
+</html>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.8.1.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+<script src="js/bonus.js"></script>
+
+<script>
+    var canvas, stage, exportRoot;
+    document.body.scrollTop = 10000;
+    init();
+
+    function init() {
+        canvas = document.getElementById("canvas");
+        images = images || {};
+        ss = ss || {};
+
+
+        var loader = new createjs.LoadQueue(false);
+        loader.addEventListener("fileload", handleFileLoad);
+        loader.addEventListener("complete", handleComplete);
+        loader.loadFile({src: "images/bonus_atlas_.json", type: "spritesheet", id: "bonus_atlas_"}, true);
+        loader.loadManifest(lib.properties.manifest);
+    }
+
+    function handleFileLoad(evt) {
+        if (evt.item.type == "image") {
+            images[evt.item.id] = evt.result;
+        }
+    }
+
+    function handleComplete(evt) {
+        var queue = evt.target;
+        ss["bonus_atlas_"] = queue.getResult("bonus_atlas_");
+        exportRoot = new lib.bonus();
+
+        stage = new createjs.Stage(canvas);
+        stage.addChild(exportRoot);
+        stage.update();
+        stage.enableMouseOver();
+
+        createjs.Ticker.setFPS(lib.properties.fps);
+        createjs.Ticker.addEventListener("tick", tick);
+
+    }
+    var btnShow = false, btn = $('#btn'), popup = $('#popup'), popupCloser = $('#close');
+    function tick() {
+        if (exportRoot.currentFrame >= 60 && !btnShow) {
+            btn.show();
+            btnShow = true;
+        }
+        stage.update();
+    }
+    btn.on('tap', function () {
+        popup.show();
+    });
+    popupCloser.on('tap', function () {
+        popup.hide();
+    })
+</script>

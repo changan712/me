@@ -1,0 +1,45 @@
+<div class="ml30 mt20">
+    <form novalidate ng-submit="vm.submitForm(formTalents)" name="formTalents">
+        <div class="modal-header mt20">
+            <h4 class="modal-title">
+                <span ng-if="vm.typeNew">您正在将候选人：<b>{{vm.name}}</b> 加入人才库。<br>请编辑该候选人的相关标签信息。</span>
+                <span ng-if="!vm.typeNew">您正在编辑候选人：<b>{{vm.name}}</b> 的人才标签。</span>
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div class="mt20">
+
+                <label >
+                    <span class="mr20">能力层次</span>
+                    <label class="radio-inline " ng-repeat="radio in vm.level">
+                        <input type="radio"  name="level" ng-value="radio.id" ng-model="vm.talenter.level_id" required> {{radio.name}}
+                    </label>
+                </label>
+            </div>
+            <div class="mt15">
+                <div class="form-group" ng-class="{'error':(formTalents.$submitted&&formTalents.func.$error.required)}">
+                    <label class="mr20">职能类型</label>
+
+                    <ui-select ng-model="vm.talenter.func_id" name="func" required theme="select2" style="width: 160px;display: inline-block" class="mr20" search-enabled="false">
+                        <ui-select-match placeholder="--所有职能--">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="item.id as item in vm.func">
+                            <div ng-bind-html="item.name|highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="mt20">
+                <label class="mr20">备注</label><br>
+                <textarea name="remark" ng-model="vm.talenter.remark"   class="form-control" rows="10" placeholder="最多500字" maxlength="500">
+
+                </textarea>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-default" type="button" ng-click="vm.cancel()">取消</button>
+            <button class="btn btn-default" ng-if="vm.typeNew">确定加入</button>
+            <button class="btn btn-default" ng-if="!vm.typeNew">确定</button>
+        </div>
+    </form>
+</div>

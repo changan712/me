@@ -1,0 +1,18 @@
+<div class="padding">
+    <table class="table ">
+        <tr ng-repeat="role in vm.roles">
+            <td>{{role.name}}</td>
+            <td>
+                <input type="checkbox"
+                        ng-model="role.$enable"
+                        ng-true-value="1"
+                        ng-false-value="0">
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.edit()">保存</a>
+        <a class="btn btn-default" ng-click="vm.close()">关闭</a>
+    </div>
+</div>

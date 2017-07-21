@@ -1,0 +1,79 @@
+<div class="resume-detail">
+    <div class="row detail-top">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul>
+                        <li>姓  名  ：
+                            <span ng-if="!vm.edit">{{vm.resume.name}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.name"></span>
+                        </li>
+                        <li><span ng-if="!vm.edit">{{vm.resume.gender == 1 ? '男' : '女'}}</span>
+                            <span ng-if="vm.edit">
+                                <select ng-model="vm.resume.gender"><option value=1>男</option><option value=0>女</option></select>
+                            </span>
+                         | <span ng-if="!vm.edit">{{vm.resume.age}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.age"></span>
+                            岁
+                         | <span ng-if="!vm.edit">{{vm.resume.degree}}</span>
+                            <span ng-if="vm.edit">
+                                <select ng-model="vm.resume.degree"><option value=1>男</option><option value=0>女</option></select>
+                            </span>
+                        </li>
+                        <li>工作经验：
+                            <span ng-if="!vm.edit">{{vm.resume.work_exp}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.work_exp"></span>
+                        </li>
+                        <li>毕业院校：
+                            <span ng-if="!vm.edit">{{vm.resume.edu[0].school}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.edu[0].school"></span>
+                        </li>
+                        <li>联系电话：
+                            <span ng-if="!vm.edit">{{vm.resume.mobile}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.mobile"></span>
+                        </li>
+                        <li>Email：
+                            <span ng-if="!vm.edit">{{vm.resume.email}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.email"></span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-sm-8">
+            <div class="panel  panel-default">
+                <div class="panel-body">
+                    <a class="btn edit btn-sm btn-default pull-right" ng-click="vm.edit=1"><span class="glyphicon glyphicon-edit"></span></a>
+                    <ul>
+                        <li>应聘职位：<a ng-href="#/position/{{vm.resume.position_id}}">{{vm.resume.position_name}}</a></li>
+                        <li>投递时间：{{vm.resume.create_time}}</li>
+
+                    </ul>
+
+                </div>
+                <div class="panel-footer text-right">
+                    <div class="btn-group-sm btn-group">
+                        <a class="btn btn-default">导出</a>
+                        <!--<div class="btn-group  btn-group-sm dropdown" >
+
+                            <a class="btn btn-default" click-stop-prop ng-click="vm.emailShow = true">发送邮件</a>
+
+                            <div class="dropdown-menu my-dorpdown albr"  click-outer-hide on-hide="vm.emailShow = false" ng-if="vm.emailShow" style="width: 600px;">
+                                <email is-show="vm.emailShow" on-submit="vm.sendEmail(data)"></email>
+                            </div>
+                        </div>-->
+                    </div>
+            </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <div class="preview">
+        <iframe src="http://112.124.118.82/test/a.pdf"  frameborder="0"></iframe>
+    </div>
+
+</div>

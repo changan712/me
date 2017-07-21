@@ -1,0 +1,54 @@
+<ion-view class="view-message">
+    <ion-header-bar class="bar-light ">
+        <div class="buttons">
+            <a class="button " ui-sref="{{vm.from}}"> <i
+                    class="icon ion-android-arrow-back"></i></a>
+        </div>
+        <h4 class="title">我的未读消息</h4>
+        <div class="buttons">
+            <a class="button" ng-click="vm.setReadAll()">全部设为已读</a>
+        </div>
+
+    </ion-header-bar>
+    <ion-content>
+        <div class="text-center padding gray" ng-if="!vm.list.length">暂无消息</div>
+        <ion-list class="list list-sm sm-bd " ng-if="vm.list.length">
+            <!-- <div class="item item-divider"><span class="mt5 small pull-right" ng-click="vm.setReadAll()">全部设为已读</span>
+             </div>-->
+            <ion-item ui-sref="app.feed.detail({id:item.feed_id,msgType:item.type})"
+                      ng-click="vm.setRead(item)"
+                      ng-repeat="item in vm.list">
+
+                <span ng-if="item.type=='related'">
+                    <span class="avatar avatar-sm"> <img ng-src="{{item.user.avatar}}" alt=""></span>
+                    <span class="blue">{{item.user.name}}</span> 分享了您的{{item.message}}
+
+                </span>
+                <span ng-if="item.type=='feed'">
+                     <span class="avatar avatar-sm"> <img ng-src="{{item.user.avatar}}" alt=""></span>
+                   <span class="blue">{{item.user.name}}</span> 有新的发布
+
+                </span>
+                <span ng-if="item.type=='comment'">
+                     <span class="avatar avatar-sm"> <img ng-src="{{item.user.avatar}}" alt=""></span>
+                    <span class="blue">{{item.user.name}}</span> 给您评论了
+
+                </span>
+                <span ng-if="item.type=='like'">
+                    <span class="avatar avatar-sm"> <img ng-src="{{item.user.avatar}}" alt=""></span>
+                    <span class="blue">{{item.user.name}}</span> 为您点赞了
+                </span>
+                <!--    <span class="item-note">{{item.created_at|limitTo:10}}</span>-->
+                <ion-option-button class="button-calm"
+                                   ng-click="vm.setRead(item)">
+                    设为已读
+                </ion-option-button>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+
+
+

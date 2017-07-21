@@ -1,0 +1,43 @@
+<ion-view class=" feed-comment-list" hide-tabs="true" cache-view="false">
+    <ion-nav-title><h4>评论列表</h4></ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a class="button  " back back-default-state="^.list"> <i class="icon ion-android-arrow-back"></i></a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <a class="button " ng-click=" vm.createNewComment(vm.feedDetail)"><i class="icon ion-ios-compose-outline"></i></a>
+    </ion-nav-buttons>
+    <ion-content>
+<!--
+        <div class="card">
+            <ul class="aia-starr">
+                <li>
+                    <span class="label label-theme">情景/任务</span>
+                    {{vm.feedDetail.task}}
+                </li>
+                <li>
+                    <span class="label label-theme2">行动/行为</span>
+                    {{vm.feedDetail.action}}
+                </li>
+                <li>
+                    <span class="label label-theme2">结果/影响</span>
+                    {{vm.feedDetail.result}}
+                </li>
+
+            </ul>
+        </div>-->
+
+        <feed-comment class="feed-comment-common" view="vm.list" feed="vm.feedDetail"></feed-comment>
+        <!--  <ul class="list comment list-sm sm-bd">
+              <li class="item item-text-wrap" ng-repeat="comment in vm.list"
+                  ng-click="vm.feedUpdate.createComment($event,vm.detail,comment)">
+                  <a>{{::comment.user.name}}</a><span ng-if="comment.reply_user"> 回复 <a>{{::comment.reply_user.name}}</a></span>：{{::comment.info}}
+                  <span ng-class="{'ml2':$index>0}" ng-repeat="at in comment.at_user_list">@{{::at.name}}</span>
+                  <span class="gray small">({{::comment.created_at|myDate}})</span>
+              </li>
+          </ul>-->
+    </ion-content>
+
+</ion-view>
+
+
+

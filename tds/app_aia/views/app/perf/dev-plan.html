@@ -1,0 +1,71 @@
+<ion-view class="goal-setting" hide-tabs="true" hide-nav-bar="true" cache-view="false">
+    <form name="form" novalidate ng-submit="vm.submit(form)">
+        <ion-header-bar class="bar-positive bg-positive">
+            <div class="buttons">
+                <a class="button bg-positive" ui-sref="^.overview"> <i
+                        class="icon ion-android-close"></i></a>
+            </div>
+            <h4 class="title">个人发展计划</h4>
+            <div class="buttons">
+                <button class="button" ng-click="vm.create()"><i class="ion-android-add icon"></i></button>
+            </div>
+
+        </ion-header-bar>
+        <nav-perf data="vm.detail" scroll-to-value="1000"></nav-perf>
+        <ion-content style="top: 88px;">
+            <ng-include data-src="'views/app/perf/user-perf.html'"></ng-include>
+            <ion-refresher
+                    pulling-text="<span class='small gray'>向下滑动刷新</span>"
+                    spinner="spiral"
+                    on-refresh="vm.pageList.refresh()">
+            </ion-refresher>
+            <div class="list list-sm sm-bd">
+
+                <a class="item  item-icon-right " ui-sref="app.perf.devPlanDetail({perfId:vm.id,id:item.id})" ng-repeat="item in vm.pageList.list">
+
+                    <span class="avatar avatar-sm"><img ng-src="{{item.user.avatar}}"  alt=""></span>
+                    {{item.development}}
+                    <i class="icon  ion-ios-arrow-right"></i>
+                </a>
+            </div>
+            <ion-infinite-scroll ng-if="vm.pageList.hasMore" immediate-check="false"
+                                 spinner="dots"
+                                 on-infinite="vm.pageList.loadMore()"
+                                 distance="10%">
+            </ion-infinite-scroll>
+            <div class="small padding-bottom text-center gray" ng-if="!vm.pageList.hasMore">暂无更多</div>
+        </ion-content>
+    </form>
+</ion-view>
+
+<script type="text/ng-template" id="dev-plan-edit.tpl">
+    <div class="list list-sm sm-bd">
+            <div class="item item-divider  item-divider-ios">
+            重点发展区域
+            </div>
+            <div class="item item-textarea" ng-class="{'error':form.$submitted&&form.development.$invalid}">
+            <textarea  name="development" rows="3" maxlength="200" required ng-model="vm.data.development"
+    class="form-control"></textarea>
+            </div>
+            <div class="item mt5 item-divider  item-divider-ios">
+            行动计划
+            </div>
+            <div class="item item-textarea" ng-class="{'error':form.$submitted&&form.plan.$invalid}">
+            <textarea ng-model="vm.data.plan" name="plan" maxlength="200" rows="3" required placeholder=""
+    class="form-control"> </textarea>
+
+            </div>
+            <div class="item mt5 item-divider  item-divider-ios">
+            回顾
+            </div>
+            <div class="item item-textarea" ng-class="{'error':form.$submitted&&form.review.$invalid}">
+            <textarea ng-model="vm.data.review" name="review" required maxlength="200" rows="3" required placeholder=""
+    class="form-control"> </textarea>
+
+            </div>
+            </div>
+</script>
+
+
+
+

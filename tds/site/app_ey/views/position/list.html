@@ -1,0 +1,106 @@
+<ion-view class="view-pos-list" view-title="职位列表">
+    <div class="filter row  padding list " ng-if="corp.filters.length&&!user.hasApplied">
+        <!--sticky sticky-evnet="filter" sticky-top='61'-->
+        <!--ng-repeat="item in corp.filters"-->
+        <div class="btn col btn-small btn-select btn-block"
+             on-tap="vm.showModal('city')">
+            <span class="force">{{vm.getLabel('city')}}</span>
+            <i class="icon ion-arrow-down-b"></i>
+        </div>
+        <div class="btn col btn-small btn-select btn-block"
+             on-tap="vm.showModal('department')">
+            <span class="force">{{vm.getLabel('department')}}</span>
+            <i class="icon ion-arrow-down-b"></i>
+        </div>
+    </div>
+    <ion-content ng-class="{'has-filter':!!corp.filters.length&&!user.hasApplied}"
+                 overflow-scroll='{{isIOS?false:true}}'
+                 delegate-handle="posContent" ng-switch on="user.hasApplied"
+                 id="sticky_content" class="pos-list">
+        <div class="banner">
+            <img ng-src="images/banner-ey.jpg" alt=""/>
+
+            <div class="tag">
+                <h3 class="title">{{user.meeting.location}}场</h3>
+
+                <div class="content">校园宣讲会</div>
+                <div class="content">{{user.meeting.date}}</div>
+            </div>
+        </div>
+        <div ng-switch-when="true">
+            <div class="ey-hd"><span class="tit">{{user.positionSelected.name}}</span></div>
+            <div class="pos-info">
+                <ul>
+                    <li>
+                        <span>申请人：</span>
+                        <span>{{user.resume.info.name}}</span>
+                    </li>
+                    <li>
+                        <span>申请城市:</span>
+                        <span>{{user.meeting.location}}</span>
+                    </li>
+                    <li>
+                        <span>申请部门:</span>
+                        <span>{{user.positionSelected.department.name}}</span>
+                    </li>
+                    <li>
+                        <span>申请日期:</span>
+                        <span>{{user.resume.apply_at|date:'yyyy/MM/dd'}}</span>
+                    </li>
+                    <li>
+                        <span>申请状态:</span>
+                        <span>简历提交成功</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer">
+                <a class="button button-block button-ey btn-bottom" ui-sref="resume.edit({id:user.resume.id})">修改简历</a>
+                <a class="button button-block button-ey" ui-sref="position.detail({id:user.positionSelected.id})">查看职位</a>
+                <a class="button button-block button-ey" on-tap="vm.clear()" ng-if="debug">clear</a>
+            </div>
+        </div>
+        <div class="pos-list-body">
+            <div class="list search-con list-inset" ng-switch-when="false" ng-if="corp.search_bar =='ON'">
+                <!--sticky sticky-evnet="search"-->
+                <label class="item item-input">
+                    <input type="text" placeholder="请输入职位名称" ng-model="vm.filter.keyword">
+                    <i class="icon ion-search search-icon  color-theme gray-reset pull-right"
+                       on-tap=" vm.keywordSearch()"></i>
+                </label>
+            </div>
+
+            <div ng-switch-when="false">
+                <ion-list class="job-list">
+                    <div class="text-center" ng-if="vm.isLoading">
+                        <ion-spinner icon="dots"></ion-spinner>
+                    </div>
+                    <a class="item  item-icon-right item-border" ng-repeat="item in vm.list"
+                       href="#/position/{{item.id}}">
+                        <!--<span class="iconfont" ng-style="{color:item.department.icon_color}"
+                              ng-class="item.department.icon_name"></span>-->
+
+                        <h2 class="poslist-font">{{item.name}}<span class="pos-tags"><span
+                                ng-repeat="tag in item.tag" class=" pos-label"
+                                ng-class="{'hot':'label-danger','urgent':'label-warning'}[tag]">{{tag|posTag}}</span></span>
+                        </h2>
+
+                        <div class="gray info text-overflow"><span class="city">[<span
+                                ng-repeat="city in item.city_list">{{city.label}}</span>]</span>
+                            <span>{{item.department.name}}</span><span
+                                    ng-if="item.department.name&&item.category.name"> / </span><span class="">{{item.category.name}}</span>
+                        </div>
+                        <i class=" arrow ion-ios-arrow-right icon"></i>
+                    </a>
+                </ion-list>
+                <ion-infinite-scroll immediate-check="false" spinner="spiral" ng-if="!vm.noMoreItemsAvailable"
+                                     on-infinite="vm.loadMore()" distance="5%">
+                </ion-infinite-scroll>
+                <div class="text-center gray small padding" ng-if="vm.noMoreItemsAvailable&&!vm.isLoading">暂无更多</div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+
+

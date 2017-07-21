@@ -1,0 +1,104 @@
+<div class="padding">
+
+    <table class="table table-bordered table-hover table-striped w800">
+        <tr>
+            <td>ID</td>
+            <td>{{vm.id}}</td>
+            <td>企业号账号名</td>
+            <td>{{vm.item.qy_name}}</td>
+        </tr>
+        <tr>
+            <td>创建时间</td>
+            <td>{{vm.item.created_at | limitTo:16}}</td>
+            <td>更新时间</td>
+            <td>{{vm.item.updated_at | limitTo:16}}</td>
+        </tr>
+        <tr>
+            <td>用户名</td>
+            <td>{{vm.item.name}}</td>
+            <td>性别</td>
+            <td ng-if="!vm.$edit">{{vm.item.gender | showFilter: 'gender'}}</td>
+            <td ng-if="vm.$edit">
+                <select name="gender" ng-model="vm.req.gender"
+                        ng-options="option.value as option.name for option in vm.options.gender ">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>location</td>
+            <td ng-if="!vm.$edit">{{vm.item.location}}</td>
+            <td ng-if="vm.$edit"><input ng-model="vm.req.location"></td>
+            <td>手机</td>
+            <td ng-if="!vm.$edit">{{vm.item.mobile}}</td>
+            <td ng-if="vm.$edit"><input ng-model="vm.req.mobile"></td>
+        </tr>
+        <tr>
+            <td>admin</td>
+            <td ng-if="!vm.$edit">{{vm.item.is_admin | showFilter: 'whether'}}</td>
+            <td ng-if="vm.$edit">
+                <select name="is_admin" ng-model="vm.req.is_admin"
+                        ng-options="option.value as option.name for option in vm.options.whether ">
+                </select>
+            </td>
+            <td>HR</td>
+            <td ng-if="!vm.$edit">{{vm.item.is_hr | showFilter: 'whether'}}</td>
+            <td ng-if="vm.$edit">
+                <select name="is_admin" ng-model="vm.req.is_hr"
+                        ng-options="option.value as option.name for option in vm.options.whether ">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>职位</td>
+            <td ng-if="!vm.$edit">{{vm.item.legal_entity}}</td>
+            <td ng-if="vm.$edit"><input ng-model="vm.req.legal_entity"></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.$edit=1" ng-if="!vm.$edit">编辑</a>
+        <a class="btn btn-info" ng-click="vm.save() ; vm.$edit=0" ng-if="vm.$edit">保存</a>
+        <a class="btn btn-default" ng-click="vm.$edit=0" ng-if="vm.$edit">取消</a>
+        <a class="btn btn-default" href="#/app/user/list">返回</a>
+    </div>
+
+    <br>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>目标</th>
+            <th>完成率</th>
+            <th>修改时间</th>
+            <th></th>
+        </tr>
+
+        <tr ng-repeat="item in vm.goal.items">
+            <td width="30">{{item.id}}</td>
+            <td ng-if="!item.$edit" style="max-width: 300px">{{item.info}}</td>
+            <td ng-if="item.$edit" style="max-width: 300px">
+                <textarea ng-model="item.$info" rows="10" cols="70">
+                </textarea>
+            </td>
+            <td>{{item.ratio}}</td>
+            <td>{{item.updated_at | limitTo:10}}</td>
+            <td>
+                <a class="btn btn-info" ng-click="item.$edit=1;item.$info=item.info" ng-if="!item.$edit">编辑</a>
+                <a class="btn btn-info" ng-click="vm.edit_goal(vm.item.active_perf_id, item.id, item.$info);item.$edit=0" ng-if="item.$edit">保存</a>
+                <a class="btn btn-default" ng-click="item.$edit=0" ng-if="item.$edit">取消</a>
+                <a class="btn btn-warning" ng-click="vm.delete_goal(vm.item.active_perf_id, item.id)">删除</a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <textarea ng-model="vm.goal.new_goal" rows="10" cols="70">
+        </textarea>
+    </div>
+    <div>
+        <a class="btn btn-info" ng-click="vm.new_goal(vm.item.active_perf_id)">保存</a>
+    </div>
+</div>
+

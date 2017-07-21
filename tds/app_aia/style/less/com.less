@@ -1,0 +1,371 @@
+@import "variable.less";
+
+body {
+  background: #efeff4;
+}
+
+li, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:focus {
+  outline: none !important;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+
+  background: #f2f2f2;
+  color: #333;
+  overflow: auto;
+
+  font: 14px/1.6 tahoma, arial, sans-serif;
+
+}
+
+h1, h2, h3, h4, h5 {
+  .font-yahei
+}
+
+.btn {
+
+  .border-radius(3px)
+}
+
+body > .wrap {
+  width: 1200px;
+  margin: 0 auto;
+
+  min-height: 100%;
+
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+img {
+  vertical-align: middle;
+  border: none;
+}
+
+a, .link {
+  text-decoration: none;
+  color: #4e658f;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.h100pct {
+  height: 100%;;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.v-middle {
+  vertical-align: middle !important;
+}
+
+.small {
+  font-size: .8em !important;
+}
+
+.font10 {
+  font-size: 10px !important;
+}
+
+.font16 {
+  font-size: 16px !important;
+}
+
+.font18 {
+  font-size: 18px !important;
+}
+
+.big {
+  font-size: 1.2em !important;
+}
+
+.bigger {
+  font-size: 1.5em !important;
+}
+
+.line {
+  border-bottom: 1px solid #ddd;
+  height: 1px;
+  overflow: hidden;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.pl16{
+  padding-left: 16px;
+}
+
+.no-pd-top{
+  padding-top: 0!important;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0 !important;
+}
+
+.btn-blue {
+  background: #7aa6d4;
+  border-color: #aaa;
+  color: #fff;
+}
+
+.no-bd {
+  border: none !important;;
+}
+
+h2.title {
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  padding: 10px 0;
+  margin: 0 0 20px 0;
+}
+
+.mt5 {
+  margin-top: 5px !important;
+}
+
+.mt10 {
+  margin-top: 10px !important;
+}
+
+.mt15 {
+  margin-top: 15px !important;
+}
+
+.mt20 {
+  margin-top: 20px !important;
+}
+
+.mt30 {
+  margin-top: 30px !important;
+}
+
+.mt44 {
+  margin-top: 44px !important;
+}
+
+.mb5 {
+  margin-bottom: 5px !important;
+}
+
+.mb10 {
+  margin-bottom: 10px !important;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mr30 {
+  margin-right: 30px;
+}
+
+.ml2 {
+  margin-left: 2px;
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.ml15 {
+  margin-left: 15px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.ml30 {
+  margin-left: 30px;
+}
+
+.mt-1 {
+  margin-top: -1px;
+}
+
+.no-border-td {
+  tbody tr td {
+    border: none;
+  }
+}
+
+.relative {
+  position: relative !important;
+}
+
+.scroll {
+  .list {
+    margin-top: -1px;
+  }
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.sm-bd-top {
+  border-top: none;
+  &:before {
+    content: ' ';
+    border-top: 1px solid #ccc;
+    height: 0;
+    right: 0;
+    top: 0;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    .scale(1, .33, 1);
+    transform-origin: center top;
+  }
+}
+
+.sm-bd-top-ml {
+  &:not(:first-child) {
+    &:before {
+      left: 50px;;
+    }
+  }
+
+}
+
+.sm-bd-bottom-ml {
+  &:not(:last-child) {
+    &:after {
+      left: 40px;
+    }
+  }
+}
+
+.sm-bd-bottom {
+  border-bottom: none;
+
+  &:after {
+
+    content: ' ';
+    border-bottom: 1px solid #ccc;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+    transform-origin: center bottom;
+    .scale(1, .33, 1)
+  }
+}
+
+.sm-bd-right {
+  border-right: none;
+
+  &:before {
+    content: ' ';
+    border-right: 1px solid #ccc;
+    right: 0;
+    bottom: 0;
+    top: 0;
+
+    position: absolute;
+    z-index: 10;
+    transform-origin: right center;
+    .scale(.33, 1, 1)
+  }
+}
+
+.sm-bd {
+  &.sm-bd-ml, .sm-bd-ml {
+    .item {
+      .sm-bd-bottom-ml;
+      .sm-bd-top-ml;
+    }
+  }
+  .item {
+    .sm-bd-bottom;
+    .sm-bd-top;
+  }
+}
+
+.button-option {
+
+  font-size: 13px;
+}
+
+.bar {
+  .title {
+    font-size: 15px;
+  }
+}
+
+.font12 {
+  font-size: 12px;
+}
+
+.font13 {
+  font-size: 13px;
+}
+
+.inline-block{
+  display:inline-block;
+}
+
+
+
+
+.bar-light, .bar-header:not(.bar-dark){
+  .button:not(.no-theme){
+    color:@theme !important;
+  }
+}

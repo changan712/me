@@ -1,0 +1,30 @@
+<div class="padding">
+<!--    <div>
+        <ol class="breadcrumb">
+            <li ng-repeat="p in vm.path">
+                <a href="#/app/project/view/{{p.id}}">{{p.name}}</a>
+            </li>
+        </ol>
+    </div>-->
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td>名称</td>
+            <td><input ng-model="vm.item.name"></td>
+        </tr>
+        <tr>
+            <td>最小长度</td>
+            <td><input ng-model="vm.item.min_length"></td>
+        </tr>
+        <tr>
+            <td>最大长度</td>
+            <td><input ng-model="vm.item.max_length"></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.save()">提交</a>
+        <a class="btn btn-default" href="#/app/valuetype/list">返回</a>
+    </div>
+</div>
+

@@ -1,0 +1,75 @@
+<div class="padding">
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td class="w100">封面</td>
+            <td>
+                <sim-uploader exports="opt.uploaderExports"></sim-uploader>
+                <a class="btn btn-default" ng-click="opt.uploadAttachment()">确认</a>
+                <input type="hidden" ng-model="vm.item.cover">
+            </td>
+        </tr>
+        <tr ng-if="vm.cover.path">
+            <td class="w100"></td>
+            <td>
+                <img ng-src="/api/admin/data/common-image?corp_id={{vm.corp_id}}&custom={{vm.custom}}&path={{vm.cover.path}}" style="max-width: 300px">
+            </td>
+        </tr>
+        <tr>
+            <td class="w100">标题</td>
+            <td><input ng-model="vm.item.title"></td>
+        </tr>
+        <tr>
+            <td class="w100">类型</td>
+            <td><select ng-model="vm.item.type">
+                <option value="1">图文</option>
+                <option value="2">长图</option>
+                <option value="3">iframe</option>
+            </select></td>
+        </tr>
+        <tr ng-if="vm.item.type==1">
+            <td>内容</td>
+            <td><div text-angular ng-model="vm.item.content"></div></td>
+        </tr>
+        <tr ng-if="vm.item.type==2">
+            <td>上传图片</td>
+            <td>
+                <sim-uploader exports="opt.staticUploader"></sim-uploader>
+                <a class="btn btn-default" ng-click="opt.uploadStatic()">确认</a>
+                <input type="hidden" ng-model="vm.item.image_url">
+                <a ng-if="vm.item.image_url" class="btn btn-success" ng-href="{{vm.item.image_url}}" target="_blank">预览</a>
+            </td>
+        </tr>
+        <tr ng-if="vm.item.type==3">
+            <td>链接</td>
+            <td>
+                <input ng-model="vm.item.url">
+                <a ng-if="vm.item.url" class="btn btn-success" ng-href="{{vm.item.url}}" target="_blank">预览</a>
+            </td>
+        </tr>
+        <tr>
+            <td>是否置顶</td>
+            <td>
+                <select name="top" ng-model="vm.item.top"
+                        ng-options="option.value as option.name for option in vm.option.whether">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>微信提醒</td>
+            <td>
+                <select name="top" ng-model="vm.item.wx_message"
+                        ng-options="option.value as option.name for option in vm.option.whether">
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.save()">提交</a>
+        <a class="btn btn-default" ng-href="#/app/notice/list">返回</a>
+    </div>
+</div>
+
+
+

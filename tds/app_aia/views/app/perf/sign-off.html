@@ -1,0 +1,51 @@
+<ion-view class="goal-setting" hide-tabs="true" hide-nav-bar="true" cache-view="false">
+    <ion-header-bar class="bar-positive bg-positive">
+        <div class="buttons">
+            <a class="button bg-positive" ui-sref="^.overview"> <i
+                    class="icon ion-android-close"></i></a>
+        </div>
+        <h4 class="title">承知</h4>
+        <div class="buttons">
+        </div>
+    </ion-header-bar>
+    <nav-perf data="vm.detail" scroll-to-value="200"></nav-perf>
+    <ion-content style="top: 88px;">
+        <ng-include data-src="'views/app/perf/user-perf.html'"></ng-include>
+        <ion-list class="list-goal list list-sm sm-bd">
+            <div class="item item-divider-ios item-divider m-bd-bottom sm-bd-top">总结</div>
+            <ion-item class="item item-text-wrap item-icon-right">
+                <span class="gray">员工姓名</span> <span class="label">{{vm.detail.user.name}}</span>
+                <i ng-if="vm.detail.sign_off.talent.signature_name"
+                   class="ion-ios-checkmark color-balanced icon  "></i>
+                <i ng-if="vm.permission&&vm.detail.opts.talent==1&&!vm.detail.sign_off.talent.signature_name"
+                   ng-click="vm.review('talent')"
+                   class="icon    color-calm ion-ios-more-outline"></i>
+            </ion-item>
+            <ion-item class="item item-text-wrap item-icon-right">
+                <span class="gray">上级姓名</span> <span class="label">{{currentUser.name}}</span>
+
+                <i ng-if="vm.detail.sign_off.manager.signature_name"
+                   class="ion-ios-checkmark color-balanced icon"></i>
+                <i ng-if="vm.permission&&vm.detail.opts.talent==1&&!vm.detail.sign_off.manager.signature_name"
+                   ng-click="vm.review('manager')"
+                   class="icon   color-calm ion-ios-more-outline"></i>
+            </ion-item>
+
+
+        </ion-list>
+
+
+    </ion-content>
+</ion-view>
+
+<script type="text/ng-template" id="modal-sign-off.tpl">
+    <div class="list list-sm sm-bd">
+        <label class="item item-input " ng-class="{'error':form.$submitted&&form.info.$invalid}">
+            <input  type="text" required ng-model="vm.data.info" name="info" placeholder="请输入你的姓名"/>
+        </label>
+    </div>
+
+</script>
+
+
+

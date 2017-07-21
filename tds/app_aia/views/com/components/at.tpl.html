@@ -1,0 +1,23 @@
+<div>
+    <a class="item item-icon-left item-icon-right" name="at"
+       ng-click="vm.showModalUsers()">
+        <i class="icon ion-ios-at-outline"></i> <span ng-if="!vm.data.length">提醒谁</span>
+
+                    <span class="label mr5" ng-repeat="at in vm.data">
+                        {{at.name}}
+                    </span>
+
+        <i class="icon ion-ios-arrow-right "></i>
+
+    </a>
+    <script type="text/ng-template" id="modal-at.tpl">
+        <ion-list class="list-sm sm-bd">
+            <div class="item item-input">
+                <input type="text" ng-model="vm.userFilter" placeholder="输入关键字查找">
+            </div>
+            <ion-checkbox class="checkbox-theme" ng-model="item.checked" ng-repeat="item in vm.data|filter:vm.userFilter"
+                          ng-disabled="!item.checked&&vm.selectedLength>=vm.maxLength&&vm.maxLength>1">{{item.name}}
+            </ion-checkbox>
+        </ion-list>
+    </script>
+</div>

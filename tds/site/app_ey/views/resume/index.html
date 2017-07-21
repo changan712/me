@@ -1,0 +1,42 @@
+<ion-view>
+    <ion-content delegate-handle="posContent" overflow-scroll='{{isIOS?false:true}}' class="resume-index">
+        <div class="filter-title">
+            <div class="ey-hd"><span class="tit">我的简历</span></div>
+        </div>
+
+        <div class="list mt10 padding gray text-center" ng-if="!vm.resumeList.length">
+            暂无简历，简单几步添加新简历来投递职位吧 <i class="ion-ios-lightbulb-outline big "></i>
+        </div>
+        <div class="resume-list">
+            <h4 ng-if="user.positionSelected&&vm.resumeList.length&&!user.hasApplied" class="pos-selected white">
+
+                您要申请的职位是：{{user.positionSelected.name}}</h4>
+            <ion-list class="list " can-swipe="!vm.showOptions" show-item-options
+                      show-item-options-value="vm.showOptions"
+                      ng-if="vm.resumeList.length">
+
+                <ion-item ng-click="vm.editResume(item.id)" class="item-icon-right"
+                          ng-repeat="item in vm.resumeList">{{item.info.cv_name}} <span class="gray small ml5 ">来源:{{item.cv_source|source}}</span>
+                    <ion-option-button class="button-assertive"
+                                       ng-click="vm.deleteResume(item.id)">
+                        删除
+                    </ion-option-button>
+                    <ion-option-button href="#" class="button-calm theme"
+                                       ng-click="vm.editResume(item.id)"> 编辑
+                    </ion-option-button>
+                    <!--<i class="icon ion-android-done green" ng-if="vm.pos.position_id&&item.active&&!vm.showOptions"></i>-->
+                </ion-item>
+            </ion-list>
+        </div>
+        <div class="footer">
+            <a class="button button-block button-ey but-center" ng-click="vm.apply()"
+               ng-if="vm.resumeList.length&&user.positionSelected&&!user.hasApplied">提交</a>
+            <a class="button button-block button-ey but-center" ng-if="!vm.resumeList.length" ng-href="#/resume/add">添加简历</a>
+            <a class="button button-block button-ey " ui-sref="position.listByProperty({property:2})"><span
+                    ng-if="!user.hasApplied">返回职位列表</span><span
+                    ng-if="user.hasApplied">返回我申请的职位</span></a>
+        </div>
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,268 @@
+<div class="pos-detail">
+
+    <div class="com-panel pos-info">
+        <div class="hd ">
+            <div class="con  no-bd ">
+                <span class="position-tit">{{vm.data.name}}</span>
+                <span class="pos-tags"><span ng-repeat="tag in vm.position.tag" class=" pos-label"
+                                             ng-class="{'hot':'label-danger','urgent':'label-warning'}[tag]">{{tag|posTag}}</span></span>
+            </div>
+        </div>
+        <div class="mn">
+            <div class="con">
+                <!--update-->
+<!--                <div class="btn-group group2 pull-right btn-group-sm">
+                    <a class="btn btn-default" ng-if="vm.position.status" ng-click="vm.setStatus(0)"> 关闭职位</a>
+                    <a class="btn btn-default" ng-if="!vm.position.status" ng-click="vm.setStatus(1)"> 开启职位</a>
+
+                    <a class="btn btn-default" ng-href="#/position/edit/{{vm.position_id}}"> 编辑职位</a>
+
+                    <a class="btn btn-default" ng-click="vm.addTag('urgent')"
+                       ng-if="vm.position.tag.indexOf('urgent') ==-1"> 设为加急职位</a>
+                    <a class="btn btn-default" ng-click="vm.deleteTag('urgent')"
+                       ng-if="vm.position.tag.indexOf('urgent') >-1"> 取消加急状态</a>
+
+                    <a class="btn btn-default" ng-click="vm.addTag('hot')" ng-if="vm.position.tag.indexOf('hot') ==-1">
+                        设为热招职位</a>
+                    <a class="btn btn-default" ng-click="vm.deleteTag('hot')"
+                       ng-if="vm.position.tag.indexOf('hot') >-1"> 取消热招职位</a>
+                </div>-->
+
+                <div class="row">
+                    <div class="col-sm-2 hd">发布日期</div>
+                    <div class="col-sm-2">{{vm.data.created_at | limitTo:10 }}</div>
+                    <div class="col-sm-2 hd">状态</div>
+                    <div class="col-sm-2 blue3" ng-if="vm.data.status=='ENABLE'"> 启用</div>
+                    <div class="col-sm-2 red" ng-if="vm.data.status=='DISABLE'"> 禁用</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 hd">公司全称</div>
+                    <div class="col-sm-4">{{vm.data.full_name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 hd">英文名</div>
+                    <div class="col-sm-2">{{vm.data.en}}</div>
+                    <div class="col-sm-2 hd">URL名</div>
+                    <div class="col-sm-2">{{vm.data.url_name}}  <a target="_blank" ng-href="/{{vm.data.url_name}}/admin/index.html">后台</a></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 hd">联系人</div>
+                    <div class="col-sm-2">{{vm.data.contact}}</div>
+                    <div class="col-sm-2 hd">电话</div>
+                    <div class="col-sm-2">{{vm.data.mobile}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 hd">邮件</div>
+                    <div class="col-sm-2">{{vm.data.mail}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <form class="form form-horizontal" novalidate name="form_config" ng-submit="vm.submit();">
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>LOGO1：（建议400*140，不超过200k，PNG-24 透明图片）</label>
+                <div class="col-sm-4">
+                    <input type="file" file-info="vm.fileInfo"
+                           reader-error="vm.readerError(msg)"
+                           fileread="vm.images.logo1_data"
+                           filetype="vm.images.logo1_type"
+                           class="file"/>
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setLogo('logo_1', vm.images.logo1_data, vm.images.logo1_type)">保存</a>
+                </div>
+                <div class="col-sm-4">
+                    <img ng-src="{{vm.data.logo_1}}?r={{vm.rand}}" style="width: 200px" ng-if="vm.data.logo_1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>LOGO2：（建议200*200，不超过50k）</label>
+                <div class="col-sm-4">
+                    <input type="file" file-info="vm.fileInfo"
+                           reader-error="vm.readerError(msg)"
+                           fileread="vm.images.logo2_data"
+                           filetype="vm.images.logo2_type"
+                           class="file"/>
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setLogo('logo_2', vm.images.logo2_data, vm.images.logo2_type)">保存</a>
+                </div>
+                <div class="col-sm-4">
+                    <img ng-src="{{vm.data.logo_2}}?r={{vm.rand}}" style="width: 200px" ng-if="vm.data.logo_2">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>BANNER：（建议400*140，不超过200k）</label>
+                <div class="col-sm-4">
+                    <input type="file" file-info="vm.fileInfo"
+                           reader-error="vm.readerError(msg)"
+                           fileread="vm.images.banner_data"
+                           filetype="vm.images.banner_type"
+                           class="file"/>
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setLogo('banner', vm.images.banner_data, vm.images.banner_type)">保存</a>
+                </div>
+                <div class="col-sm-4">
+                    <img ng-src="{{vm.data.banner}}?r={{vm.rand}}" style="width: 200px" ng-if="vm.data.banner">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>二维码：（建议150*150，不超过300k）</label>
+                <div class="col-sm-4">
+                    <input type="file" file-info="vm.fileInfo"
+                           reader-error="vm.readerError(msg)"
+                           fileread="vm.images.qrcode_data"
+                           filetype="vm.images.qrcode_type"
+                           class="file"/>
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setLogo('qrcode', vm.images.qrcode_data, vm.images.qrcode_type)">保存</a>
+                </div>
+                <div class="col-sm-4">
+                    <img ng-src="{{vm.data.qrcode}}?r={{vm.rand}}" style="width: 200px" ng-if="vm.data.qrcode">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>主题色</label>
+                <div class="col-sm-4">
+                    <input colorpicker class="form-control" ng-model="vm.data.theme_color" type="text" />
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setValue('theme_color', vm.data.theme_color)">保存</a>
+                </div>
+                <div class="col-sm-1">
+                    <div ng-style="{'background-color':vm.data.theme_color}">　　　</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>边框色</label>
+                <div class="col-sm-4">
+                    <input colorpicker class="form-control" ng-model="vm.data.border_color" type="text" />
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setValue('border_color', vm.data.border_color)">保存</a>
+                </div>
+                <div class="col-sm-1">
+                    <div ng-style="{'background-color':vm.data.border_color}">　　　</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>主题方案</label>
+                <div class="col-sm-4">
+                    <select ng-model="vm.data.style_no">
+                        <option ng-selected="vm.data.style_no == item.id" ng-value="item.id" ng-repeat="item in vm.options.style_no">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setValue('style_no', vm.data.style_no)">保存</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>职位筛选条件</label>
+                <div class="col-sm-4">
+                    <input type="checkbox" ng-model="vm.filter[0]" ng-true-value="true" ng-false-value="false"> 部门
+                    <input type="checkbox" ng-model="vm.filter[1]" ng-true-value="true" ng-false-value="false"> 类别
+                    <input type="checkbox" ng-model="vm.filter[2]" ng-true-value="true" ng-false-value="false"> 地点
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setOption('filter_option', vm.filter)">保存</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>导入选项</label>
+                <div class="col-sm-4">
+                    <input type="checkbox" ng-model="vm.import[0]" ng-true-value="true" ng-false-value="false"> 51JOB
+                    <input type="checkbox" ng-model="vm.import[1]" ng-true-value="true" ng-false-value="false"> 智联招聘
+                    <input type="checkbox" ng-model="vm.import[2]" ng-true-value="true" ng-false-value="false"> 猎聘网
+                    <br>
+                    <input type="checkbox" ng-model="vm.import[3]" ng-true-value="true" ng-false-value="false"> LinkedIn
+                    <input type="checkbox" ng-model="vm.import[4]" ng-true-value="true" ng-false-value="false"> 大街网
+                    <input type="checkbox" ng-model="vm.import[5]" ng-true-value="true" ng-false-value="false"> m91.cn
+                    <br>
+                    <input type="checkbox" ng-model="vm.import[6]" ng-true-value="true" ng-false-value="false"> 应届生
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setOption('import_option', vm.import)">保存</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>搜索框设置</label>
+                <div class="col-sm-4">
+                    <input type="radio" ng-model="vm.data.search_bar" value="ON"> 显示
+                    <input type="radio" ng-model="vm.data.search_bar" value="OFF"> 隐藏
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setValue('search_bar', vm.data.search_bar)">保存</a>
+                </div>
+            </div>
+            <div class="form-group" ng-show="vm.data.search_bar == 'ON'">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>搜索框位置</label>
+                <div class="col-sm-4">
+                    <input type="radio" ng-model="vm.data.search_bar_location" value="UP"> 上部
+                    <input type="radio" ng-model="vm.data.search_bar_location" value="DOWN"> 下部
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setValue('search_bar_location', vm.data.search_bar_location)">保存</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>分享描述-列表</label>
+                <div class="col-sm-4">
+                    <input class="form-control" ng-model="vm.data.share_list_des" type="text" />
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setValue('share_list_des', vm.data.share_list_des)">保存</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2"><span style="color: red">*</span>分享描述-详情</label>
+                <div class="col-sm-4">
+                    <input class="form-control" ng-model="vm.data.share_detail_des" type="text" />
+                </div>
+                <div class="col-sm-2">
+                    <a href="javascript:" ng-click="vm.setValue('share_detail_des', vm.data.share_detail_des)">保存</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-8">
+                    <p>
+                    描述字段配置形如：<%=pos.name%> - <%=pos.city_str%>
+                    </p>
+                    可用字段包括：corp.name[公司名] corp.en[公司英文名] corp.full_name[公司全称]<br>
+                    pos.name[职位名] pos.category.name[职位类别名] pos.department.name[部门名] pos.city_str[所在地区]
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-right clearfix mb10">
+        <a ng-href="#/user/new/{{vm.data.id}}" class="btn btn-success pull-left"><span class="glyphicon glyphicon-download-alt"></span> 创建用户 </a>
+    </div>
+    <table class="table table-hover table-striped ">
+        <thead>
+        <tr>
+            <th width="20%"> 用户名 </th>
+            <th> 邮件 </th>
+            <th> 角色 </th>
+            <th> 创建时间 </th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-class="{'pos-closed':item.status == 0}"  ng-repeat="item in vm.data.users">
+            <td>{{item.username}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.role}}</td>
+            <td>{{item.created_at | limitTo:10}}</td>
+            <td><span class="btn-group btn-group-sm">
+                <a class="btn btn-sm btn-default" ng-href="#/user/edit/{{vm.data.id}}/{{item.id}}">编辑</a>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

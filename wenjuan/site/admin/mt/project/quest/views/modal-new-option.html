@@ -1,0 +1,52 @@
+<div class="padding">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td class="w100">类型</td>
+            <td><select ng-model="vm.item.type">
+                <option value="select">选择题</option>
+                <option value="text">文字问答</option>
+                <!--<option value="audio">语音问答</option>-->
+            </select></td>
+        </tr>
+        <tr>
+            <td>问题内容</td>
+            <td>
+                <textarea ng-model="vm.item.name" rows="3" cols="60"></textarea></td>
+        </tr>
+        <tr>
+            <td>问题内容(EN)</td>
+            <td>
+                <textarea ng-model="vm.item.en_name" rows="3" cols="60"></textarea></td>
+        </tr>
+        <tr>
+            <td>题目分值</td>
+            <td>
+                <input type="text" ng-model="vm.item.type_option.score">
+            </td>
+        </tr>
+        <tr>
+            <td>行为标准</td>
+            <td>
+                <textarea ng-model="vm.item.type_option.score_ref" rows="4" cols="60"></textarea></td>
+        </tr>
+        <tr ng-if="vm.item.type=='select'">
+            <td>选项列表</td>
+            <td>
+                <a class="btn btn-info btn-sm" ng-click="vm.addOption()">+</a>
+            </td>
+        </tr>
+        <tr ng-if="vm.item.type=='select'" ng-repeat="option in vm.item.type_option.options track by $index">
+            <td>选项  <a class="btn btn-danger btn-sm" ng-click="vm.delOption($index)">-</a></td>
+            <td>
+                <textarea ng-model="option.label" rows="2" cols="60" placeholder="中文"></textarea>
+                <textarea ng-model="option.en_label" rows="2" cols="60" placeholder="英文"></textarea>
+                <div>答案得分：<input ng-model="option.score"></div>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.create()">保存</a>
+        <a class="btn btn-default" ng-click="vm.close()">关闭</a>
+    </div>
+</div>

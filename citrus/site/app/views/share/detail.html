@@ -1,0 +1,42 @@
+<ion-view class="view-share-detail" view-title="我的转发">
+    <ion-content class=" share-detail">
+        <div class="detail-banner"><img src="images/detail-banner.jpg" alt="" style="width:100%"></div>
+        <div class="list share-list">
+            <div class="item item-icon-left">
+                <i class="ion-ios-paperplane icon "></i> 转发次数（{{vm.data['sum_share']}}）
+                <span ng-if="!!vm.rank['sum_share']" class="item-note">第 <span class="notable big">{{vm.rank['sum_share']}}</span> 名</span>
+                <span ng-if="!vm.rank['sum_share']" class="item-note">第 <span class="notable big"> - </span> 名</span>
+            </div>
+            <div class="ins">
+               <span class="gray" ng-if="!!vm.rank['sum_share'] && vm.rank['sum_share'] != 1">距离第一名还有：<span class="red">{{vm.count['sum_share']}}</span> 次</span>
+               <span class="gray" ng-if="!!vm.rank['sum_share'] && vm.rank['sum_share'] == 1"></span>
+               <span class="gray" ng-if="!vm.rank['sum_share']">暂时没有名次</span>
+
+            </div>
+            <div class="item item-icon-left">
+                <i class="ion-eye icon "></i> 经转发浏览量（{{vm.data['sum_share_view']}}）
+                <span ng-if="!!vm.rank['sum_share_view']" class="item-note">第 <span class="notable big">{{vm.rank['sum_share_view']}}</span> 名</span>
+                <span ng-if="!vm.rank['sum_share_view']" class="item-note">第 <span class="notable big"> - </span> 名</span>
+            </div>
+            <div class=" ins">
+                <span class="gray" ng-if="!!vm.rank['sum_share_view'] && vm.rank['sum_share_view'] != 1">距离第一名还有：<span class="red">{{vm.count['sum_share_view']}}</span> 次</span>
+                <span class="gray" ng-if="!!vm.rank['sum_share_view'] && vm.rank['sum_share_view'] == 1"></span>
+                <span class="gray" ng-if="!vm.rank['sum_share_view']">暂时没有名次</span>
+
+            </div>
+            <div class="item item-icon-left">
+                <i class="ion-ios-copy icon "></i> 经转发申请量（{{vm.data['sum_share_apply']}}）
+                <span ng-if="!!vm.rank['sum_share_apply']" class="item-note">第 <span class="notable big">{{vm.rank['sum_share_apply']}}</span> 名</span>
+                <span ng-if="!vm.rank['sum_share_apply']" class="item-note">第 <span class="notable big"> - </span> 名</span>
+            </div>
+            <div class=" ins">
+                <span class="gray" ng-if="!!vm.rank['sum_share_apply'] && vm.rank['sum_share_apply'] != 1">距离第一名还有：<span class="red">{{vm.count['sum_share_apply']}}</span> 次</span>
+                <span class="gray" ng-if="!!vm.rank['sum_share_apply'] && vm.rank['sum_share_apply'] == 1"></span>
+                <span class="gray" ng-if="!vm.rank['sum_share_apply']">暂时没有名次</span>
+            </div>
+
+
+        </div>
+    </ion-content>
+
+</ion-view>

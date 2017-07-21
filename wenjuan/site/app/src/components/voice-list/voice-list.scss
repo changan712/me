@@ -1,0 +1,26 @@
+voice-list{
+  .con{
+    padding:14px 14px 0;
+    background:#fcfcfc;
+    border-top:0.55px solid #ddd;
+    border-bottom:0.55px solid #ddd;
+  }
+
+  .tit{
+    font-size:16px;
+    text-align:center;
+    overflow:hidden;
+    position:relative;
+    line-height:30px;
+    a{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+  }
+  .voice-wrap{
+    margin:16px 0;
+  }
+
+
+}

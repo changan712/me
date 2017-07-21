@@ -1,0 +1,44 @@
+<div class="padding">
+
+    <table class="table table-bordered table-hover table-striped w800">
+        <tr>
+            <td><b>ID</b></td>
+            <td>{{vm.id}}</td>
+            <td><b>项目名称</b></td>
+            <td>{{vm.item.name}}</td>
+        </tr>
+    </table>
+    <br>
+
+
+    <table class="table table-bordered table-hover table-striped w800">
+        <tr>
+            <td><input ng-model="vm.query.search"><a class="btn btn-default" ng-click="vm.doSearch()" >查询</a></td>
+        </tr>
+    </table>
+    <br>
+
+    <table class="table table-bordered table-hover table-striped w1000">
+        <tr>
+            <th><input type="checkbox" ng-change="vm.batchAll()" ng-model="vm.batch_all"/></th>
+            <th>ID</th>
+            <th>账号</th>
+            <th>姓名</th>
+            <th>头像</th>
+        </tr>
+        <tr ng-repeat="user in vm.users">
+            <td><input type="checkbox" checklist-model="vm.batch_items" checklist-value="user"/></td>
+            <td>{{user.id}}</td>
+            <td>{{user.qy_name}}</td>
+            <td>{{user.name}}</td>
+            <td><span class="avatar avatar-sm mr5"><img ng-if="item.avatar" ng-src="{{item.avatar}}" alt=""></span></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.save()">添加到项目</a>
+        <a class="btn btn-default" ng-href="#/app/project/info/{{vm.id}}">返回</a>
+    </div>
+
+</div>
+

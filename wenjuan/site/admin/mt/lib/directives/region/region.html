@@ -1,0 +1,29 @@
+<div class="region-dialog  dialog"   ng-show="isShow">
+
+    <div class="modal-body">
+        <span class="close small glyphicon glyphicon-remove" ng-click="hide()"></span>
+        <div class="region-select">
+            <div class="hd">选择结果 <span class="results"> <a class="item"
+                                                           ng-repeat="item in result">{{item.label}} <span
+                    class="small glyphicon glyphicon-remove" ng-click="removeResult(item)"></span></a></span></div>
+            <div class="content">
+                <div class="cc ">
+                    常用： <a ng-repeat="item in cc" class="item" ng-class="{'active':item.active}" ng-click="clickCc(item)">{{item.label}}</a>
+                </div>
+                <div class="c1">
+                    <a class="item" ng-repeat="item in c1" ng-class="{'active':item.active}" ng-click="clickC1(item)">{{item.label}}</a>
+                </div>
+                <div class="c2" ng-if="c2Show">
+                    <span class="close small glyphicon glyphicon-remove" ng-click="closeC2()"></span>
+                    <a class="item" ng-repeat="item in c2" ng-class="{'active':item.active}" ng-click="clickC2(item)">{{item.label}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="error pull-left" ng-if="error">最多选择{{max}}项</span>
+        <a class="btn btn-primary btn-sm" ng-click="ok()">确定</a>
+        <a class="btn btn-default btn-sm" ng-click="cancel()">取消</a>
+    </div>
+
+</div>

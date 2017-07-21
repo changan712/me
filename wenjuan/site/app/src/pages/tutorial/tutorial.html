@@ -1,0 +1,38 @@
+<ion-content no-bounce>
+
+    <ion-slides #slides pager>
+
+        <ion-slide>
+            <img src="assets/images/g1.jpg" alt=""><!-- <img [src]="currentUser?.agent?.info?.logo" alt="">-->
+            <div class="content a-l">
+                <h2 *ngIf="currentUser?.ext?.info?.name"> {{currentUser?.ext?.info?.name}}，</h2>
+                <div [innerHTML]="'PAGES.TUTORIAL.CONTENT'|translate:{company_name:lang=='zh'?currentUser?.agent?.info?.company_name:'Sanofi'}"></div>
+                <div *ngIf="currentQuest?.quest?.option?.time_end" [innerHTML]="'PAGES.TUTORIAL.CONTENT3'|translate:{time_end:currentQuest?.quest?.option?.time_end}"></div>
+            </div>
+            <!--  欢迎进入 <strong> {{currentUser?.agent?.info?.company_name}}</strong>  在线测试系统 <br>
+                请在 <span class="primary f24">{{currentQuest?.quest?.option?.time_end}}</span> 前开始答题-->
+        </ion-slide>
+
+        <ion-slide>
+            <img src="assets/images/g2.jpg" alt="">
+            <div class="content a-l"
+                 [innerHTML]="'PAGES.TUTORIAL.CONTENT1'|translate:{time_limit:currentQuest?.quest?.option?.time_limit}">
+
+            </div>
+            <!--   本次测试时间为 <strong class="f24 primary">{{currentQuest?.quest?.option?.time_limit}}分钟</strong> <br>
+                请 <strong>提前5分钟提交</strong> 避免超时提交失败-->
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/images/g3.jpg" alt="">
+            <div class="content a-l">
+                <div [innerHTML]="'PAGES.TUTORIAL.CONTENT2'|translate"></div>
+                <div class="a-r m-t-xl"><a ion-button="" large clear color="primary" icon-right="" (click)="startApp()">{{'PAGES.TUTORIAL.BTN_CONTINUE'|translate}}
+                    <ion-icon name="md-arrow-forward"></ion-icon>
+                </a></div>
+            </div>
+            <!--  <strong class="f24 primary">语音识别</strong> 功能辅助输入 <br>
+                您可以 <strong>保留语音记录</strong> 让HR听到你的声音-->
+        </ion-slide>
+
+    </ion-slides>
+</ion-content>

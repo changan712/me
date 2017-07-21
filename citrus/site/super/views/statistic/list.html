@@ -1,0 +1,68 @@
+<style>
+    .panel-right{
+        margin-right: 20px;
+    }
+    div.panel-statistic{
+        width: 48%;
+    }
+    div.panel-statistic > div{
+        padding:10px 0;font-size: larger;font-weight: bolder
+    }
+    div.panel-statistic > div > a > button{
+        position:absolute;right:10px;
+    }
+</style>
+<div class="pos-new container">
+    <h2 class="page-tit"> 统计图表 </h2>
+    <div>
+        <div class="row">
+            <div class="panel-statistic panel-right col-sm-6 panel panel-default">
+                <div class="" align="center">
+                    APP搜索栏使用情况
+                    <a href="#/statistic/app-search"><button type="button" class="btn btn-default btn-sm">详情</button></a>
+                </div>
+                <a href="#/statistic/app-search"><highchart id="chart1" config="app_search_conf" class="span9"></highchart></a>
+
+            </div>
+            <div class="panel-statistic col-sm-6 panel panel-default">
+                <div align="center">
+                    APP导航栏使用情况
+                    <a href="#/statistic/app-nav"><button type="button" class="btn btn-default btn-sm">详情</button></a>
+                </div>
+                <a href="#/statistic/app-nav"><highchart id="chart2" config="app_nav_conf" class="span9"></highchart></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel-statistic panel-right col-sm-6 panel panel-default">
+                <div class="" align="center">
+                    ADMIN排行榜使用情况
+                    <a href="#/statistic/admin-rank"><button type="button" class="btn btn-default btn-sm">详情</button></a>
+                </div>
+                <a href="#/statistic/admin-rank"><highchart id="chart3" config="admin_rank_conf" class="span9"></highchart></a>
+            </div>
+            <div class="panel-statistic col-sm-6 panel panel-default">
+                <div class="" align="center">
+                    ADMIN统计图表使用情况
+                    <a href="#/statistic/admin-statistic"><button type="button" class="btn btn-default btn-sm">详情</button></a>
+                </div>
+                <a href="#/statistic/admin-statistic"><highchart id="chart4" config="admin_statistic" class="span9"></highchart></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel-statistic panel-right col-sm-6 panel panel-default">
+                <div class="" align="center">
+                    ADMIN新收简历使用情况
+                    <a href="#/statistic/admin-resume-list"><button type="button" class="btn btn-default btn-sm">详情</button></a>
+                </div>
+                <a href="#/statistic/admin-resume-list"><highchart id="chart5" config="admin_resume_list" class="span9"></highchart></a>
+            </div>
+            <div class="panel-statistic col-sm-6 panel panel-default">
+                <div class="" align="center">
+                    ADMIN微信后台链接访问量
+                    <a href="#/statistic/admin-wxurl"><button type="button" class="btn btn-default btn-sm">详情</button></a>
+                </div>
+                <a href="#/statistic/admin-wxurl"><highchart id="chart6" config="admin_wxurl" class="span9"></highchart></a>
+            </div>
+        </div>
+    </div>
+</div>

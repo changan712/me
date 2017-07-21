@@ -1,0 +1,73 @@
+<div class="padding">
+    <h2>
+        {{vm.quest.name}}<span class="orange">【人员列表】</span>
+    </h2>
+    <div>
+        导入候选人信息 <a href="/site/admin/mt/data/tpl.xlsx">模板下载</a>
+        <div class="well">
+            <sim-uploader exports="opt.staticUploader"></sim-uploader>
+            <a class="btn btn-info btn-sm" ng-click="opt.uploadStatic()">确认</a>
+        </div>
+    </div>
+
+    <div>
+        <a class="btn btn-success" ng-click="vm.createMobile()">创建候选人信息</a>
+        <a class="btn btn-default" ng-href="#/app/quest/report/{{vm.id}}">去查看报告</a>
+    </div>
+    <br>
+    <div>
+        <input placeholder="手机号或姓名" ng-model="vm.query.keyword" ng-keypress="vm.pressKeyword($event)">
+        <a class="btn btn-sm btn-info" ng-click="vm.loadMqList()">查询</a>
+    </div>
+    <br>
+
+    <table class="table table-bordered table-hover table-striped w1000">
+        <tr>
+            <!--<th>ID</th>-->
+            <th ng-repeat="field in vm.fields">
+                {{field.name}}
+                <span ng-if="field.sort_name">
+                <a ng-click="vm.setSort(field.sort_name,'asc')" ng-if="vm.query.sort_by!=field.sort_name" class="glyphicon glyphicon-retweet" style="color: #1fa67a" href="javascript:"></a>
+                <a ng-click="vm.setSort(field.sort_name,'desc')"  ng-if="vm.query.sort_by==field.sort_name&&vm.query.order_by=='asc'" class="glyphicon glyphicon-chevron-up" style="color: #1fa67a" href="javascript:"></a>
+                <a ng-click="vm.setSort(field.sort_name,'asc')"  ng-if="vm.query.sort_by==field.sort_name&&vm.query.order_by=='desc'" class="glyphicon glyphicon-chevron-down" style="color: #1fa67a" href="javascript:"></a>
+                </span>
+            </th>
+        </tr>
+
+        <tr ng-repeat="item in vm.mq_list">
+            <!--<td width="30">{{item.mobile_id}}</td>-->
+            <td>{{item.mobile.mobile}}</td>
+            <td>{{item.mobile.name}}</td>
+            <td>
+                <ul>
+                    <li ng-repeat="(k, v) in item.mobile.info">【{{k}}】{{v}}</li>
+                </ul>
+            </td>
+            <td>
+                <span ng-if="!item.user_quest" class="red">未登录
+                </span>
+                <span ng-if="item.user_quest.status=='init'" class="pink">未开始
+                </span>
+                <span ng-if="item.user_quest.status=='draft'" class="blue">答题中
+                </span>
+                <span ng-if="item.user_quest.status=='finish'" class="green">完成
+                </span>
+            </td>
+            <td style="max-width: 230px">{{item.mobile.created_at}}</td>
+            <td><a class="btn btn-sm btn-danger" ng-click="vm.deleteItem(item)">删除</a></td>
+        </tr>
+    </table>
+
+    <div class="mt10">
+        <uib-pagination
+                items-per-page="vm._meta.perPage"
+                boundary-links="true"
+                max-size="5"
+                ng-change="vm.pageChanged()"
+                total-items="vm._meta.totalCount"
+                ng-model="vm._meta.currentPage"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></uib-pagination>
+
+    </div>
+</div>

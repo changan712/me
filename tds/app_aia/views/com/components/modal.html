@@ -1,0 +1,24 @@
+<ion-modal-view cache-view="false" ng-class="{true:vm.className}[!!vm.className]">
+    <form novalidate name="form">
+        <ion-header-bar ng-class="{true:vm.headBarClassName,false:'bar-dark'}[!!vm.headBarClassName]">
+            <h4 class="title">{{vm.title}}</h4>
+            <div class="buttons" ng-if="!vm.hideButtons" >
+                <a class="button"  ng-click="vm.cancel(form)" ng-if="!vm.hideBtnCancel">取消</a>
+                <button class="button" ng-click="vm.ok(form)" ng-if="!vm.hideBtnOk">确定</button>
+            </div>
+        </ion-header-bar>
+        <div class="bar bar-subheader item-input-inset search-box" ng-if="vm.hasFilter">
+            <button ng-if="vm.filter" class="button button-close pull-right button-clear ion-close-circled" ng-click="vm.filter=''"></button>
+            <label class="item-input-wrapper ">
+
+
+                <i class="icon ion-ios-search placeholder-icon" ></i>
+                <input type="search" ng-model="vm.filter" ng-change="vm._filterChange(vm.filter)" placeholder="Search">
+            </label>
+        </div>
+        <ion-content ng-style="{'margin-top': vm.hasFilter?'43px':'inherit' }" delegate-handle="mainScroll">
+            <dynamic-element html="vm.innerTemplateString" ng-if="vm.innerTemplateString"></dynamic-element>
+
+        </ion-content>
+    </form>
+</ion-modal-view>

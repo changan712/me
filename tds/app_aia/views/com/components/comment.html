@@ -1,0 +1,24 @@
+<ion-modal-view>
+    <form novalidate name="form">
+        <ion-header-bar>
+            <h1 class="title">评论</h1>
+            <div class="buttons" side="right">
+                <a class="button button-clear button-text color-text" ng-click="vm.commentCancel(form)">取消</a>
+
+            </div>
+
+        </ion-header-bar>
+        <ion-content>
+            <div class="list list-sm">
+                <div class="item item-textarea" ng-class="{'error':form.$submitted&&form.comment.$invalid}">
+                    <textarea rows="3"  name="comment"  ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }" focus-caret required autofocus ng-model="vm.data.comment"></textarea>
+                </div>
+
+              <!--  <at maxlength="4" name="at" ng-model="vm.data.at_list"></at>-->
+                <div class="padding">
+                    <button class="button  button-block button-calm bg-theme" ng-click="vm.commentSbm(form)">发表</button>
+                </div>
+            </div>
+        </ion-content>
+    </form>
+</ion-modal-view>

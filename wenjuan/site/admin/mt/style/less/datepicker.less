@@ -1,0 +1,82 @@
+
+.has-datepicker, .datepicker {
+  background: #fff;
+  table {
+    width: 100%;
+
+  }
+
+  &:focus {
+    outline: none;
+  }
+  tbody * {
+    font-size: 12px !important;
+  }
+
+  .text-muted {
+    color: @gray;
+    text-shadow: none;
+  }
+
+  .btn-default:active:hover {
+    background: none;
+  }
+  .full .btn :after, .partially .btn :after {
+    content: '';
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    background: @green2;
+    .border-radius;
+
+  }
+
+  .partially .btn :after {
+    background: @orange;
+  }
+
+  td {
+
+  }
+  .btn {
+    border-radius: 0;
+    padding: 5px;
+    border: 0;
+    box-shadow: none;
+    background: none;
+    position: relative;
+
+    .text-info {
+      font-weight: bold;
+      color: @color-txt;
+    }
+    &.btn-info {
+      background: lighten(@blue3, 10%);
+    }
+    &.active {
+
+      text-shadow: none;
+
+      .text-info {
+
+        font-weight: bold;
+      }
+    }
+
+  }
+}
+
+.has-datepicker {
+  width: 220px;
+  .dropdown-menu {
+    width: 100%;
+    * {
+      &:focus {
+        outline: none !important;
+      }
+    }
+  }
+}

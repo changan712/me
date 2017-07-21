@@ -1,0 +1,36 @@
+<div class="padding">
+    <div>
+        <ol class="breadcrumb">
+            <li ng-repeat="p in vm.path">
+                <a href="#/app/project/view/{{p.id}}">{{p.name}}</a>
+            </li>
+        </ol>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td>名称</td>
+            <td><input ng-model="vm.item.name"></td>
+        </tr>
+        <tr>
+            <td>开始时间</td>
+            <td>
+                <input type="text" readonly uib-datepicker-popup="yyyy-MM-dd" ng-model="vm.item.start_time"
+                   is-open="vm.$open.st" ng-required="true" close-text="Close" ng-click="vm.$open.st=true" />
+            </td>
+        </tr>
+        <tr>
+            <td>结束时间</td>
+            <td>
+                <input type="text" readonly uib-datepicker-popup="yyyy-MM-dd" ng-model="vm.item.end_time"
+                       is-open="vm.$open.et" ng-required="true" close-text="Close" ng-click="vm.$open.et=true" />
+            </td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-default" ng-click="vm.save()">提交</a>
+        <a class="btn btn-default" href="#/app/project/list">返回</a>
+    </div>
+</div>
+

@@ -1,0 +1,154 @@
+.color-text {
+  color: #333 !important;
+}
+.font-song {
+  font-family: tahoma, arial, sans-serif;
+}
+.font-yahei {
+  font-family: "microsoft yahei", arial, Helvetica, sans-serif;
+}
+.font12 {
+  font-size: 12px !important;
+}
+.font12 * {
+  font-size: 12px !important;
+}
+.font14 {
+  font-size: 14px !important;
+}
+.font14 * {
+  font-size: 14px !important;
+}
+.blue {
+  color: #1562a9;
+}
+.bg-blue {
+  background-color: #1562a9;
+}
+.blue2 {
+  color: dodgerblue;
+}
+.blue3 {
+  color: #2395ff;
+}
+.gray {
+  color: #a5a5a5;
+}
+.white {
+  color: #fff;
+}
+.black {
+  color: #000;
+}
+.orange {
+  color: #ff7e00;
+}
+.yellow {
+  color: yellow;
+}
+.yellow-ey {
+  color: #fee533;
+}
+.red {
+  color: red;
+}
+.darkred {
+  color: darkred;
+}
+.brick-red {
+  color: #d9524e;
+}
+.color-txt {
+  color: #333 !important;
+}
+.pink {
+  color: #ff5dcd;
+}
+.bg-pink {
+  background-color: #ff5dcd;
+}
+.blue2 {
+  color: #56a0d8;
+}
+.green {
+  color: green;
+}
+.green2 {
+  color: #77bf6e;
+}
+.color-positive {
+  color: #10307d !important;
+}
+.color-calm {
+  color: #11a5fb !important;
+}
+.color-balanced {
+  color: #1fa67a !important;
+}
+.color-theme {
+  color: #d21045 !important;
+}
+.color-theme2 {
+  color: #9b9b9b !important;
+}
+.bg-positive {
+  background: #10307d !important;
+}
+.bg-positive.activated {
+  background: #0d2766 !important;
+}
+.bg-calm {
+  background: #11a5fb !important;
+}
+.bg-calm.activated {
+  background: #0498ee !important;
+}
+.bg-balanced {
+  background: #1fa67a !important;
+}
+.bg-balanced.activated {
+  background: #1b916a !important;
+}
+.bg-theme {
+  background: #d21045 !important;
+}
+.bg-theme.activated {
+  background: #ba0e3d !important;
+}
+.bg-theme2 {
+  background: #9b9b9b !important;
+}
+.bg-theme2.activated {
+  background: #8e8e8e !important;
+}
+.checkbox-theme .checkbox-icon:before {
+  border-color: #ba0e3d;
+}
+.checkbox-theme input:checked + .checkbox-icon:before {
+  background: #d21045 !important;
+  border-color: #ba0e3d;
+}
+.checkbox-theme input:checked + .checkbox-icon:before.activated {
+  background: #ba0e3d !important;
+}
+.item-checkbox-wrap.has-right-icon .button-right-icon {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  z-index: 2;
+}
+.item-checkbox-wrap.has-right-icon .button-right-icon .icon {
+  font-size: 24px;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #999;
+  shape-rendering: crispEdges;
+  stroke-width: .5px;
+}
+text {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZhcmlhYmxlLmxlc3MiLCI8aW5wdXQgY3NzIDE+IiwiZDMubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEyRUE7RUFDRSx1QkFBQTtDQzFFRDtBRDZFRDtFQUNFLHVDQUFBO0NDM0VEO0FEOEVEO0VBQ0UsNkRBQUE7Q0M1RUQ7QUQrRUQ7RUFDRSwyQkFBQTtDQzdFRDtBRDRFRDtFQUdJLDJCQUFBO0NDNUVIO0FEZ0ZEO0VBQ0UsMkJBQUE7Q0M5RUQ7QUQ2RUQ7RUFHSSwyQkFBQTtDQzdFSDtBRGlGRDtFQUNFLGVBQUE7Q0MvRUQ7QURpRkQ7RUFDRSwwQkFBQTtDQy9FRDtBRGtGRDtFQUNFLGtCQUFBO0NDaEZEO0FEbUZEO0VBQ0UsZUFBQTtDQ2pGRDtBRG9GRDtFQUNFLGVBQUE7Q0NsRkQ7QURxRkQ7RUFDRSxZQUFBO0NDbkZEO0FEc0ZEO0VBQ0UsWUFBQTtDQ3BGRDtBRHVGRDtFQUNFLGVBQUE7Q0NyRkQ7QUR3RkQ7RUFDRSxjQUFBO0NDdEZEO0FEeUZEO0VBQ0UsZUFBQTtDQ3ZGRDtBRDBGRDtFQUNFLFdBQUE7Q0N4RkQ7QUQyRkQ7RUFDRSxlQUFBO0NDekZEO0FENEZEO0VBQ0UsZUFBQTtDQzFGRDtBRDZGRDtFQUNFLHVCQUFBO0NDM0ZEO0FEOEZEO0VBQ0UsZUFBQTtDQzVGRDtBRDhGRDtFQUNFLDBCQUFBO0NDNUZEO0FEK0ZEO0VBQ0UsZUFBQTtDQzdGRDtBRGdHRDtFQUNFLGFBQUE7Q0M5RkQ7QURpR0Q7RUFDRSxlQUFBO0NDL0ZEO0FEbUdEO0VBQ0UsMEJBQUE7Q0NqR0Q7QURvR0Q7RUFDRSwwQkFBQTtDQ2xHRDtBRHFHRDtFQUNFLDBCQUFBO0NDbkdEO0FEc0dEO0VBQ0UsMEJBQUE7Q0NwR0Q7QUR1R0Q7RUFDRSwwQkFBQTtDQ3JHRDtBRHdHRDtFQUNFLCtCQUFBO0NDdEdEO0FEdUdDO0VBQ0UsK0JBQUE7Q0NyR0g7QUR5R0Q7RUFDRSwrQkFBQTtDQ3ZHRDtBRHdHQztFQUNFLCtCQUFBO0NDdEdIO0FEMEdEO0VBQ0UsK0JBQUE7Q0N4R0Q7QUR5R0M7RUFDRSwrQkFBQTtDQ3ZHSDtBRDJHRDtFQUNFLCtCQUFBO0NDekdEO0FEMEdDO0VBQ0UsK0JBQUE7Q0N4R0g7QUQ0R0Q7RUFDRSwrQkFBQTtDQzFHRDtBRDJHQztFQUNFLCtCQUFBO0NDekdIO0FENkdEO0VBRUksc0JBQUE7Q0M1R0g7QURnSEc7RUFuQkYsK0JBQUE7RUFxQkksc0JBQUE7Q0M5R0w7QUQwRkM7RUFDRSwrQkFBQTtDQ3hGSDtBRGlIQztFQUVJLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLFNBQUE7RUFDQSxXQUFBO0NDaEhMO0FEMkdDO0VBUU0sZ0JBQUE7Q0NoSFA7QUMzSUQ7O0VBRUUsV0FBQTtFQUNBLGFBQUE7RUFDQSw0QkFBQTtFQUNBLG1CQUFBO0NENklEO0FDMUlEO0VBQ0Usd0JBQUE7RUFDQSxnQkFBQTtDRDRJRCIsImZpbGUiOiJ0by5jc3MifQ== */

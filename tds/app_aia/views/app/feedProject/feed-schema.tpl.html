@@ -1,0 +1,97 @@
+<div class="feed-schema">
+     <span class="avatar-wrap" ng-if="type!='home'">
+    <img src="images/crown.png" class="crown" alt="" ng-if="view.user.metal_crown">
+    <a class="avatar" ui-sref="^.home({id:view.user.id})">
+        <img ng-src="{{::view.user.avatar}}" alt="">
+    </a>
+   </span>
+    <div class="schedule " ng-if="type=='home'">
+        <div ng-if="!view.timeMTh3Day" class="l3d"><span
+                class="tp">{{::view.created_at|myDate:vm.dateStrategy(view)}}</span>
+        </div>
+        <div ng-if="view.timeMTh3Day" class="m3d">
+            <div class="tp">{{::view.created_at|myDate:vm.dateStrategy(view)|date:'MM-dd'}}</div>
+            <div class="bt">{{::view.created_at|myDate:vm.dateStrategy(view)|date:'yyyy'}}</div>
+        </div>
+    </div>
+    <div class="main " ng-if="view">
+        <div class="top">
+            <span class="gray   date pull-right" ng-if="type!='home'">{{::view.created_at|myDate}}</span>
+            <a class="user-name" ui-sref="^.home({id:view.user.id})">{{::view.user.name}}</a>
+            <!-- <i class="icon icon-gender ml5 mr5 {{::view.user.gender|sex:'icon'}}"
+             ></i>-->
+            <span class="label label-outline" ng-if="::view.user.location">{{::view.user.location|uppercase}}</span>
+            <div class="user-metal">
+                <img ng-src="{{metalId|aiaMetal}}" ng-repeat="metalId in ::view.user.metal_ids" alt="">
+            </div>
+
+        </div>
+        <div class="content">
+
+            <div ui-sref="^.detail({id:view.id})" class="aia">
+                <ul class="aia-starr">
+                    <li>
+                        <span class="label label-theme mr5">项目</span>
+                        {{view.aia_project.project.name}}
+                    </li>
+                    <li class="project-goal">
+                        <span class="label label-theme mr5">目标</span>
+                        <div class="r">
+                            <div class="text-overflow"
+                                 ng-repeat=" goal in view.aia_project.project.extra.goal|splitByN">{{goal}}
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="label label-theme2 mr5">行动</span>
+                        {{view.action}}
+                    </li>
+                    <li>
+                        <span class="label label-theme2 mr5">影响</span>
+                        {{view.result}}
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- <span ng-if="view.result.milestone"
+                   ng-click="vm.feedUpdate.scoreMilestone(view)"
+                   class="label link label-milestone"><i class="ion-navigate icon"></i> milestone</span>-->
+            <images-view data='view.images' ng-if="view.images.length" class="mt10"></images-view>
+        </div>
+        <div class="sub clearfix ">
+            <span class="pull-right">
+            <!--   <span ng-if="view.score_switch" class="mr10">
+                   &lt;!&ndash;如果自己没打过分 &ndash;&gt;
+                   <span ng-if="!view.score" ng-click="vm.feedUpdate.score(view)"> <i class="ion-ios-star-outline "></i> 评分</span>
+                   <a ng-if="view.score" ui-sref="^.scoreDetail({id:view.id})"> <i class="ion-ios-star orange "></i>
+                       {{::view.score_avg}}</a>
+               </span>-->
+               <span ng-click="vm.feedUpdate.toggleLike(view)">
+                    <i class="ion-ios-heart brick-red" ng-if="view.liked"></i>
+                    <i ng-if="!view.liked" class="ion-ios-heart-outline"></i>
+                      {{view.likes.length}}
+                </span>
+                <span class=" ml10" ng-click="vm.createNewComment(view)">
+                    <i class="ion-chatbox-working icon"></i> {{view.comments.data.length}}
+                </span>
+            </span>
+            <span class="project_user" ng-click="vm.modalProjectUser.show(view.aia_project.project.id)">
+                <i class="ion-ios-people big"></i>
+                {{::view.aia_project.project.user_count}}
+            </span>
+
+        </div>
+        <div class="others" ng-if="view.comments.data.length || view.likes.length">
+            <div class="likes" ng-if="view.likes.length" ng-class="{'has-comments':view.comments.data.length}">
+                <i class="ion-ios-heart-outline bold"></i> <span ng-repeat="like in view.likes"><a
+                    ui-sref="^.home({id:like.user.id})">{{::like.user.name}}</a><span
+                    ng-if="!$last">,</span></span>
+            </div>
+            <feed-comment ng-if="view.comments.data.length" view="view.comments.data" feed="view"></feed-comment>
+            <div class="more" ng-if=" view.comments.has_more"><a ui-sref="^.comments({feedId:view.id})">更多 <i
+                    class="ion-ios-more"></i></a></div>
+        </div>
+
+    </div>
+</div>

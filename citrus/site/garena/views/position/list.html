@@ -1,0 +1,40 @@
+<ion-view>
+    <ion-content delegate-handle="posContent" class="pos-list">
+        <div class=" filter">
+            <ul class="tab">
+                <li ng-repeat="tab in vm.view.tabs" on-tap="vm.tabClicked($index)" ng-class="{'active':tab.active}">
+                    {{tab.label}}
+                </li>
+            </ul>
+            <ul class="tab-con">
+                <li ng-if="vm.tabShow==1">
+                    <div class="filter-item" on-tap="vm.filterChange($index,'cat')" ng-class="{'active':item.active}"
+                         ng-repeat="item in vm.view.cat">
+                        <div class="img-con"><img ng-src="{{item.img}}" alt=""/></div>
+                        <div class="label">{{item.label}}</div>
+                    </div>
+                </li>
+                <li ng-if="vm.tabShow==2">
+                    <div class="filter-item" on-tap="vm.filterChange($index,'loc')" ng-class="{'active':item.active}"
+                         ng-repeat="item in vm.view.loc">
+                        <div class="img-con"><img ng-src="{{item.img}}" alt=""/></div>
+                        <div class="label">{{item.label}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <ion-list class="news-list ">
+            <a class="item  item-avatar  item-icon-right" ng-repeat="item in vm.list" href="#/position/{{item.id}}">
+                <div class="con">
+                    <img ng-src="{{item.category|catImg}}" alt=""/> <!--{{item.category|catImg}}-->
+                    <h2>
+                        {{item.name}}
+                    </h2>
+                    <div class="info gray">[{{item.city_list[0].label}}] {{item.category}}</div>
+                    <i class="ion-ios-arrow-right icon"></i>
+                </div>
+            </a>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

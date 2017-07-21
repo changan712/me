@@ -1,0 +1,103 @@
+
+body, html {
+    height: 100%;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.top .caicvlogo {
+    margin: 15px 0 0 50px;
+    height: 100px;
+}
+
+.main {
+    background: url("../images/bg-auth.jpg") no-repeat center 0;
+    height: 77%;
+    border-bottom: 10px solid #eee;
+    min-height: 620px;
+    position: relative;
+}
+
+.auth-panel {
+    background: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    box-shadow: 5px 6px 15px rgba(0, 0, 0, .3);
+    width: 458px;
+    left: 51%;
+    top: 46%;
+    margin: -250px 0 0 -250px;
+    height: 578px;
+    border-radius: 10px;
+}
+
+.auth-img {
+    display: inline-block;
+    background: url("../images/auth-success.png") no-repeat center;
+    padding: 146px 109px;
+}
+
+.auth-success {
+    padding-left: 120px;
+    position: relative;
+    font: 30px/50px "黑体", sans-serif;
+    color: #666;
+}
+
+.message {
+    width: 100%;
+    position: relative;
+    padding-top: 14px;
+    padding-left: 68px;
+    padding-right: 67px;
+}
+
+.auth-info {
+    font: 17px/24px "黑体", sans-serif;
+    color: #666;
+}
+
+.auth-panel .dot {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    background: #848484;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.auth-panel ul {
+    margin: 0 0 0 30px;
+}
+
+.btn-auth {
+    background: url("../images/btn-auth.png") no-repeat;
+    display: inline-block;
+    height: 60px;
+    width: 270px;
+    text-indent: -999px;
+    overflow: hidden;
+}
+
+.box {
+    height: 347px;
+    width: 100%;
+    padding-left: 116px;
+    padding-top: 49px;
+    /*padding: 60px 60px 140px;*/
+    position: relative;
+}
+
+.btn-shadow {
+    opacity: 1;
+    box-shadow: 2px 2px 2px #cecece;
+}

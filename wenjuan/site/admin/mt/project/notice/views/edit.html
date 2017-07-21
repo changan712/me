@@ -1,0 +1,47 @@
+<div class="padding">
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td class="w100">ID</td>
+            <td>{{vm.item.id}}</td>
+        </tr>
+        <tr>
+            <td>标题</td>
+            <td><input ng-model="vm.item.title"></td>
+        </tr>
+        <tr>
+            <td>内容</td>
+            <td><div text-angular ng-model="vm.item.content"></div></td>
+        </tr>
+        <tr>
+            <td>是否置顶</td>
+            <td>
+                <select name="top" ng-model="vm.item.top"
+                        ng-options="option.value as option.name for option in vm.option.whether">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>作者</td>
+            <td>{{vm.item.user.name}}</td>
+            <!--<td><input ng-model="vm.item.user.name"></td>-->
+        </tr>
+        <tr>
+            <td>创建时间</td>
+            <td>{{vm.item.created_at}}</td>
+            <!--<td><input ng-model="vm.item.created_at"></td>-->
+        </tr>
+        <tr>
+            <td>更新时间</td>
+            <td>{{vm.item.updated_at}}</td>
+            <!--<td><input ng-model="vm.item.updated_at"></td>-->
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.save()">提交</a>
+        <a class="btn btn-default" ng-href="#/app/notice/list">返回</a>
+    </div>
+</div>
+
+

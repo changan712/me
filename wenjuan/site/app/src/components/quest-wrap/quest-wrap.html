@@ -1,0 +1,24 @@
+<!-- Generated template for the QuestWrapComponent component -->
+<div [formGroup]="wrapForm"  >
+    <df-control formControlName="info" [model]="model"></df-control>
+
+    <div class="btn-voice-modal-warp" *ngIf="ids.length">
+        <a ion-button  (tap)="toggleVoiceList()" class="btn-voice-modal" clear small>
+            <ion-badge [color]="visibleVoiceList?'gray':'primary'"><ion-icon name="ios-wifi"></ion-icon> {{ids.length}}</ion-badge>
+        </a>
+
+    </div>
+
+    <voice-list (afterRemove)="afterVoiceListRemove($event)" [list]="ids" *ngIf="visibleVoiceList"></voice-list>
+
+    <div *ngIf="model.type=='text'">
+        <div no-border="" class="record-list">
+            <recorder (onChange)="onRecorderChange($event)"></recorder>
+        </div>
+        <div formGroupName="info_option">
+            <input type="hidden" formcontrolname="serverIds">
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+<div class="padding">
+    <div>
+        <a class="btn btn-primary" ng-click="vm.new()"> <img class="icon" src="images/ic-plus.png" alt=""> 新建</a>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>类型</th>
+            <th>AppID</th>
+            <th>其他</th>
+            <th>操作</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.app_id}}</td>
+            <td><pre>{{item.info | json:4}}</pre></td>
+            <td>
+                <a class="btn btn-default" ng-click="vm.edit(item.id)">编辑</a>
+                <a class="btn  btn-default" ng-click="vm.delete(item.id)">删除</a>
+                <!--这个图标太tm难看,暂时注释掉-->
+                <!--  <a class="btn  " ng-click="vm.delete(item.id)"><img class="icon" src="images/ic-trash.png" alt="删除" alt=""></a>-->
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,39 @@
+<div class="padding">
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th class="w200">预览</th>
+            <th>指向url</th>
+            <th>顺序</th>
+            <th>是否可见</th>
+            <th>created_at</th>
+            <th></th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td><img ng-src="{{item.image}}" class="w200"></td>
+            <td ng-if="!item.$edit">{{item.url}}</td>
+            <td ng-if="item.$edit"><input ng-model="item.$req.url" ng-value="item.url"></td>
+            <td ng-if="!item.$edit">{{item.sort}}</td>
+            <td ng-if="item.$edit"><input ng-model="item.$req.sort" ng-value="item.sort" type="number"></td>
+            <td ng-if="!item.$edit">{{item.visible}}</td>
+            <td ng-if="item.$edit"><input ng-model="item.$req.visible" ng-value="item.visible" type="number"></td>
+            <td>{{item.created_at | limitTo:10}}</td>
+            <td>
+                <span class="btn-group btn-group-sm">
+                    <a class="btn btn-info" ng-if="!item.$edit" ng-click="item.$edit=1;">编辑</a>
+                    <a class="btn btn-info" ng-if="item.$edit" ng-click="vm.saveItem(item);item.$edit=0">保存</a>
+                    <a class="btn btn-default" ng-if="item.$edit" ng-click="item.$edit=0">取消</a>
+                    <a class="btn btn-warning" ng-click="vm.deleteItem(item)">删除</a>
+                </span></td>
+        </tr>
+    </table>
+
+    <div>
+        <sim-uploader exports="opt.uploaderExports"></sim-uploader>
+        <a class="btn btn-default" ng-click="opt.uploadAttachment()">新建条目</a>
+    </div>
+</div>
+

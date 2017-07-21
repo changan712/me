@@ -1,0 +1,184 @@
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/user-info">用户信息</a></li>
+    <li role="presentation" class="active"><a href="#/setting">企业宣传信息</a></li>
+    <li role="presentation"><a href="#/about" ng-if="company.custom.company_introduce">公司简介</a></li>
+    <li role="presentation" ><a href="#/identify" ng-if="company.custom.identify">员工认证信息</a></li>
+</ul>
+<div class="tab-con mt20 setting">
+
+    <div class="well"> 上传的企业logo及Banner将仅用于对企业的专属微信招聘平台的搭建、美化。</div>
+
+    <form class="form " novalidate name="form_config" ng-submit="vm.submit();">
+        <ul class="setting-list">
+            <li class="item logo clearfix ">
+                <div class="bded pull-left">
+                    <div class="preview  ">
+                        <div class="uploaded btn-upload">
+                            <img ng-if="vm.images.logo_data" ng-src="{{vm.images.logo_data}}"/>
+
+                            <div class="no-data " ng-if="!vm.images.logo_data"><span
+                                    class="glyphicon glyphicon-upload"></span> 点击选择图片预览
+                            </div>
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.logo_data" filetype="vm.images.logo_type"
+                                   class="file"/>
+                        </div>
+                        <img src="images/app-nav.jpg" alt=""/>
+                    </div>
+                </div>
+                <div class="rt">
+                    <h4>APP左侧导航logo</h4>
+
+                    <div class="ins ">
+                        建议png-24图片，不超过50k。
+                    </div>
+                    <div class="sbm">
+                        <span class="btn-group">
+                        <span class="btn btn-default btn-upload">选择文件
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.logo_data" filetype="vm.images.logo_type"
+                                   class="file"/>
+                        </span>
+                        <a class=" btn btn-success "
+                           ng-click="vm.setLogo('logo_1', vm.images.logo_data, vm.images.logo_type)">
+                            <span class="glyphicon glyphicon-ok-circle"></span> 上传
+                        </a>
+                            </span>
+                    </div>
+                </div>
+            </li>
+            <li class="item logo2 clearfix ">
+                <div class="bded pull-left">
+                    <div class="preview ">
+                        <div class="uploaded btn-upload">
+                            <img ng-if="vm.images.logo2_data" ng-src="{{vm.images.logo2_data}}"/>
+
+                            <div class="no-data " ng-if="!vm.images.logo2_data"><span
+                                    class="glyphicon glyphicon-upload"></span> 点击选择图片预览
+                            </div>
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.logo2_data" filetype="vm.images.logo2_type"
+                                   class="file"/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="rt">
+                    <h4>微信分享图片</h4>
+
+                    <div class="ins ">
+                        建议200px*200px正方形图片，不超过50k。
+                    </div>
+                    <div class="sbm">
+                          <span class="btn-group">
+                        <span class="btn btn-default btn-upload">选择文件
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.logo2_data"
+                                   filetype="vm.images.logo2_type"
+                                   class="file"/></span>
+                        <a class=" btn btn-success "
+                           ng-click="vm.setLogo('logo_2', vm.images.logo2_data, vm.images.logo2_type)">
+                            <span class="glyphicon glyphicon-ok-circle"></span> 上传
+                        </a>
+                              </span>
+                    </div>
+                </div>
+            </li>
+
+            <li class="item banner clearfix ">
+                <div class="bded pull-left">
+                    <div class="preview  ">
+                        <img src="images/app-filter.jpg" alt=""/>
+
+                        <div class="uploaded  btn-upload">
+
+                            <img class="banner-img" ng-if="vm.images.banner_data"
+                                 ng-src="{{vm.images.banner_data}}"/>
+
+                            <div class="no-data " ng-if="!vm.images.banner_data"><span
+                                    class="glyphicon glyphicon-upload"></span> 点击选择图片预览
+                            </div>
+
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.banner_data" filetype="vm.images.banner_type"
+                                   class="file"/>
+                        </div>
+                        <img src="images/app-list.jpg" alt=""/>
+                    </div>
+
+                </div>
+                <div class="rt">
+                    <h4>APP banner</h4>
+
+                    <div class="ins ">
+                        建议600px*200px，不超过200k。
+                    </div>
+                    <div class="sbm">
+                          <span class="btn-group">
+                        <span class="btn btn-default btn-upload">选择文件
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.banner_data" filetype="vm.images.banner_type"
+                                   class="file"/>
+                        </span>
+                        <a class=" btn btn-success "
+                           ng-click="vm.setLogo('banner', vm.images.banner_data, vm.images.banner_type)">
+                            <span class="glyphicon glyphicon-ok-circle"></span> 上传
+                        </a>
+                              </span>
+                    </div>
+                </div>
+            </li>
+            <li class="item qrcode clearfix ">
+                <div class="bded pull-left">
+                    <div class="preview  ">
+                        <div class="uploaded btn-upload">
+                            <img ng-if="vm.images.qrcode_data" ng-src="{{vm.images.qrcode_data}}"/>
+
+                            <div class="no-data " ng-if="!vm.images.qrcode_data"><span
+                                    class="glyphicon glyphicon-upload"></span> 点击选择图片预览
+                            </div>
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.qrcode_data" filetype="vm.images.qrcode_type"
+                                   class="file"/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="rt">
+                    <h4>APP左侧导航二维码</h4>
+
+                    <div class="ins ">
+                        建议200px * 200px正方形图片，不超过50k。
+                    </div>
+                    <div class="sbm">
+                          <span class="btn-group">
+                        <span class="btn btn-default btn-upload">选择文件
+                            <input type="file" file-info="vm.fileInfo"
+                                   reader-error="vm.readerError(msg)"
+                                   fileread="vm.images.qrcode_data" filetype="vm.images.qrcode_type"
+                                   class="file"/>
+                        </span>
+
+
+                        <a class=" btn btn-success "
+                           ng-click="vm.setLogo('qrcode', vm.images.qrcode_data, vm.images.qrcode_type)">
+                            <span class="glyphicon glyphicon-ok-circle"></span> 上传
+                        </a>
+                            </span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </form>
+
+
+</div>
+
+

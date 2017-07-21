@@ -1,0 +1,25 @@
+<div class="padding">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>用户</th>
+            <th>时间</th>
+            <th>内容</th>
+            <th>操作</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td><span class="avatar avatar-sm mr5"><img ng-if="item.user.avatar" ng-src="{{item.user.avatar}}" alt=""></span>
+                <span>
+                    {{item.user.name}}
+                    [{{item.user.qy_name}}]
+                </span></td>
+            <td>{{item.created_at | limitTo:10}}</td>
+            <td style="max-width: 300px">{{item.info}}</td>
+            <td><a class="btn btn-danger" ng-click="vm.delete(item)">删除</a></td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-info" ng-click="vm.close()">关闭</a>
+    </div>
+</div>

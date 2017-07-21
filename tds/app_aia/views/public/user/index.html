@@ -1,0 +1,42 @@
+<ion-view class="view-user-index">
+    <ion-header-bar class="bar-light ">
+        <div class="buttons">
+            <a class="button" back back-default-state="app.index"> <i
+                    class="icon ion-android-arrow-back"></i></a>
+        </div>
+        <h4 class="title">{{vm.detail.name}}</h4>
+
+    </ion-header-bar>
+    <ion-content>
+        <div class="text-center padding"><span class="avatar avatar-big"><img ng-src="{{vm.detail.avatar}}"
+                                                                              alt=""></span>
+        </div>
+        <div class="list sm-bd list-sm">
+            <div class="item">姓名 <span class="item-note">{{vm.detail.name}}</span></div>
+            <div class="item">性别 <span class="item-note">{{vm.detail.gender|sex}}</span></div>
+            <div class="item">分公司 <span class="item-note">{{vm.detail.location}}</span></div>
+            <div class="item">积分 <span class="item-note">{{vm.detail.point}}</span></div>
+        </div>
+        <div class="list sm-bd list-sm">
+            <a ui-sref="app.feed.home({id:vm.detail.id})" class="item item-icon-right">发布的分享<i class="icon ion-ios-arrow-right"></i></a>
+            <a ui-sref="app.feed.home({id:vm.detail.id,type:2})" class="item item-icon-right">收到的分享 <i class="icon ion-ios-arrow-right"></i></a>
+
+        </div>
+
+
+       <!-- <div class="list sm-bd list-sm">
+            <div class="item item-divider">所属项目</div>
+            <div class="item gray small text-center" ng-if="!vm.projects.length" >
+                暂无项目
+            </div>
+            <div class="item item-icon-right" ng-repeat="item in vm.projects">
+                {{item.name}}
+            </div>
+
+        </div>-->
+    </ion-content>
+</ion-view>
+
+
+
+

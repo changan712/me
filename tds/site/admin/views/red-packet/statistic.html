@@ -1,0 +1,89 @@
+<ul class="nav nav-tabs" ng-if="!vm.hideRpNav">
+    <li role="presentation" ng-class="{'active':vm.stateIs('redPacket.rule')}"><a href="#/red-packet/rule">红包规则</a></li>
+    <li role="presentation" ng-class="{'active':vm.stateIs('redPacket.statistic')}"><a href="#/red-packet/statistic">红包统计</a>
+    </li>
+</ul>
+<div class="panel mt10 mb10  panel-default">
+    <div class="panel-heading">
+        <strong>转发量红包统计</strong> <a ui-sref="redPacket.statDetail({view:'share'})"
+                                    class="btn btn-default btn-xs pull-right">详情</a></div>
+    <div class="panel-body">
+        <div>已发放红包共： <strong class="orange">{{vm.sm.forward_count}}</strong> 个，共计<strong class="orange">{{vm.sm.forward_money}}</strong>元
+        </div>
+        <div class="gray">
+            每日首次转发红包共：<span class="orange">{{vm.sm.ff_redpack_count}}</span> 个，共计<span class="orange">{{vm.sm.ff_total_money}}</span>元
+        </div>
+        <div class="gray">
+            二次转发红包共：<span class="orange">{{vm.sm.reforward_redpack_count}}</span> 个，共计<span class="orange">{{vm.sm.reforward_total_money}}</span>元;
+        </div>
+        <!--  <div class="gray">
+              转发量累计满50次红包共：<span class="orange">2</span> 个，共计<span class="orange">40</span>元
+          </div>-->
+    </div>
+</div>
+<div class="panel mt10 mb10  panel-default">
+    <div class="panel-heading">
+        <strong>访问量红包统计</strong> <a ui-sref="redPacket.statDetail({view:'share-view'})"
+                                    class="btn btn-default btn-xs pull-right">详情</a></div>
+    <div class="panel-body">
+        <div>已发放红包共： <strong class="orange">{{vm.sm.fv_redpack_count}}</strong> 个，共计<strong class="orange">{{vm.sm.fv_total_money}}</strong>元
+        </div>
+        <!--   <div class="gray">
+               访问量累计每满<span class="orange">30</span>次可获得红包1个
+           </div>-->
+    </div>
+</div>
+
+
+<div class="panel mt10 mb10  panel-default">
+    <div class="panel-heading">
+        <strong> 申请量红包统计</strong> <a ui-sref="redPacket.statDetail({view:'share-apply'})"
+                                     class="btn btn-default btn-xs pull-right">详情</a></div>
+    <div class="panel-body">
+        <div>已发放红包共： <strong class="orange">{{vm.sm.fa_redpack_count}}</strong> 个，共计<strong class="orange">{{vm.sm.fa_total_money}}</strong>元
+        </div>
+        <!--    <div class="gray">
+                员工转发职位每被申请一次可获得红包1个
+            </div>-->
+
+    </div>
+</div>
+<div ng-if="company.custom.redpack.ref">
+    <div class="line mt20 mb20"></div>
+
+    <div class="panel mt10 mb10  panel-default">
+        <div class="panel-heading">
+            <strong>内推进入面试红包统计</strong><a ui-sref="redPacket.statDetail({view:'ref-interview'})"
+                                          class="btn btn-default btn-xs pull-right">详情</a></div>
+        <div class="panel-body">
+            <div>已发放红包共： <strong class="orange">{{vm.sm.ref_interview_redpack_count}}</strong> 个，共计<strong
+                    class="orange">{{vm.sm.ref_interview_redpack_money}}</strong>元
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel mt10 mb10  panel-default">
+        <div class="panel-heading">
+            <strong>内推入职红包统计</strong><a ui-sref="redPacket.statDetail({view:'ref-onboard'})"
+                                        class="btn btn-default btn-xs pull-right">详情</a></div>
+        <div class="panel-body">
+            <div>已发放红包共： <strong class="orange">{{vm.sm.ref_onboard_redpack_count}}</strong> 个，共计<strong class="orange">{{vm.sm.ref_onboard_redpack_money}}</strong>元
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel mt10 mb10  panel-default">
+        <div class="panel-heading">
+            <strong>内推通过试用期红包统计</strong><a ui-sref="redPacket.statDetail({view:'ref-passprobation'})"
+                                           class="btn btn-default btn-xs pull-right">详情</a></div>
+        <div class="panel-body">
+            <div>已发放红包共： <strong class="orange">{{vm.sm.ref_passprobation_redpack_count}}</strong> 个，共计<strong
+                    class="orange">{{vm.sm.ref_passprobation_redpack_money}}</strong>元
+            </div>
+
+        </div>
+    </div>
+</div>
+

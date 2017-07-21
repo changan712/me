@@ -1,0 +1,34 @@
+<!--<div class="debug">{{vm.companyList}}</div>-->
+<div class="company-list">
+
+    <div class="text-right clearfix mb10">
+        <a ng-href="#/company/new" class="btn btn-success pull-left"><span class="glyphicon glyphicon-download-alt"></span> 创建 </a>
+    </div>
+    <table class="table table-hover table-striped ">
+        <thead>
+        <tr>
+            <th width="20%"> 公司名称 </th>
+            <th> URL </th>
+            <th> 联系人 </th>
+            <th> 电话 </th>
+            <th> 邮件 </th>
+            <th> 创建时间 </th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-class="{'pos-closed':item.status == 0}"  ng-repeat="item in vm.list" ng-class="{'closed':!item.status}">
+            <td><a class="blue" ng-href="#/company/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.url_name}}</td>
+            <td>{{item.contact}}</td>
+            <td>{{item.mobile}}</td>
+            <td>{{item.mail}}</td>
+            <td> {{item.created_at | limitTo:10}}</td>
+            <td><span class="btn-group btn-group-sm">
+                <a class="btn btn-sm btn-default" ng-href="#/company/edit/{{item.id}}">编辑</a>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

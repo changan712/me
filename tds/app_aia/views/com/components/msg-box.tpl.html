@@ -1,0 +1,7 @@
+<div class="msg-box">
+
+    <div  ng-if="vm.list.length">
+        <i class="ion-android-close pull-right icon " on-tap="close($event)"></i>
+        <a ui-sref="public.message({from:currentStateName,feed_type:feedType})" ng-click="hide()"> 您有{{vm.list.length}}条新消息</a>
+    </div>
+</div>

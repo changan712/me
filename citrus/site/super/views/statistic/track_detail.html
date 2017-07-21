@@ -1,0 +1,42 @@
+
+<style>
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 2px 10px;
+        margin-bottom: -1px;
+        background-color: #f1f2f3;
+        border: 0px solid #dddddd;
+    }
+</style>
+<div class="pos-new container">
+    <h2 class="page-tit"> {{sub_title}} </h2>
+
+    <span><strong>对于转发数据追踪的详情统计，规则如下：</strong></span>
+    <ul class="list-group">
+        <li class="list-group-item">1. “二层转发用户”栏记录某职位链接被转发第二次时，对其执行转发操作的用户；</li>
+        <li class="list-group-item">2. “三层转发用户”栏记录某职位链接被转发第三次时，对其执行转发操作的用户；</li>
+        <li class="list-group-item">3. 转发用户均以用户微信昵称标识，当用户昵称更改后，后台仍然沿用其原昵称做显示和统计。</li>
+    </ul>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <!--<th>被转发职位</th>-->
+                <th>二层转发用户</th>
+                <th>三层转发用户</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 12px">
+        <tr ng-repeat="item in vm.track_data['level1'] track by $index">
+            <!--<td class="col-sm-3">Position</td>-->
+            <td class="col-sm-2" style="border-right: solid;border-right-width: thin;border-right-color: #ddd">{{item.to_nickname}}</td>
+            <td class="col-sm-5">
+                <span ng-repeat="item2 in vm.track_data['level2'][item.to_open_id]" style="margin: 0 10px 10px 0; width:23%;color: #555" class="col-sm-3">
+                    {{item2.to_nickname}}
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

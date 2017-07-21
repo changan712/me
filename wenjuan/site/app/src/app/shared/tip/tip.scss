@@ -1,0 +1,15 @@
+tip{
+  position:absolute;
+  left:50%;
+  top:45%;
+  transform:translate3d(-50%,-50%,0);
+  .con{
+    border-radius:.5rem;
+    background:rgba(map_get($colors, dark),.9);
+    position:relative;
+    top:10%;
+    color:color-contrast($colors, map_get($colors, dark));
+    padding:15px;
+    font-size:1.6rem;
+  }
+}

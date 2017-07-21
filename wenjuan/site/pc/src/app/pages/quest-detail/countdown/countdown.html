@@ -1,0 +1,11 @@
+<!-- Generated template for the CountdownComponent component -->
+<span *ngIf="data" [ngClass]="{warn: warningFlag||completeFlag}">
+   <!-- <ion-icon class="icon" name="ios-alarm-outline"></ion-icon>-->
+    <i class="fa fa-clock-o" aria-hidden="true"></i>
+<!--
+    <md-icon fontIcon="fa-clock-o"></md-icon>-->
+  <span *ngIf="!completeFlag"> <span *ngIf="data.days">{{data.days}}天</span> {{data.hours|fixNumber:'2'}} : {{data.minutes|fixNumber:'2'}} : {{data.seconds|fixNumber:'2'}}</span>
+
+    <span *ngIf="completeFlag">{{completedText}}</span>
+
+</span>

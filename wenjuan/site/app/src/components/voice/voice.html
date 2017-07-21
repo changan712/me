@@ -1,0 +1,20 @@
+<div class="wrap">
+    <a ion-button="" small clear (tap)="remove()">
+        <ion-icon color="dark" name="md-close"></ion-icon>
+    </a>
+    <span class="text"><ng-content></ng-content><ion-spinner
+            name="dots" *ngIf="status==2"></ion-spinner></span>
+
+    <!--  <span class="translate" ><a ion-button clear small (tap)="translate()" color="dark">识别</a></span>-->
+    <!--<ion-icon  color="dark" name="ios-paper-outline"></ion-icon>-->
+
+    <span class="controls">
+
+          <a ion-button clear small *ngIf="status!=2" (tap)="play()"><ion-icon color="dark" name="ios-play"></ion-icon></a>
+          <a ion-button clear small *ngIf="status==2" (tap)="pause()"><ion-icon color="dark"
+                                                                                name="ios-pause"></ion-icon></a>
+          <a ion-button clear small *ngIf="status==2" (tap)="stop()"><ion-icon color="dark"
+                                                                               name="ios-square"></ion-icon></a>
+    </span>
+
+</div>

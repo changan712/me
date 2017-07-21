@@ -1,0 +1,79 @@
+<form name="form" novalidate>
+    <ion-view class="view-feed-publish"  >
+        <ion-nav-title><h4>发布feed</h4></ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-small" ng-click="vm.submit(form)">发布</button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="left">
+            <a class="button" nav-direction="swap" ng-click="vm.goBack()"><i class="icon ion-android-close" ></i></a>
+        </ion-nav-buttons>
+        <ion-content
+            <div class="list list-sm">
+                <div class="item  item-divider">situation</div>
+                <div class="item item-textarea">
+                    <textarea rows="2" required ng-model="vm.data.situation"></textarea>
+                </div>
+
+                <div class="item mt10  item-divider">task</div>
+                <div class="item item-textarea">
+                    <textarea rows="2" required ng-model="vm.data.task"></textarea>
+                </div>
+
+                <div class="item mt10  item-divider">action</div>
+                <div class="item item-textarea">
+                    <textarea rows="2" required ng-model="vm.data.action"></textarea>
+                </div>
+                <div class="item mt10  item-divider">result</div>
+                <div class="item item-textarea">
+                    <textarea rows="2" required ng-model="vm.data.result"></textarea>
+                </div>
+                <a class="item mt10 item-icon-right item-icon-left" ng-if="vm.perf.goals.length"
+                   ng-click="vm.modalGoal.show()">
+                    <i class="icon ion-ios-color-filter"></i>
+                    goal
+                    <span class="gray sm result-item" ng-if="vm.data.goals.length"
+                          ng-style="{'maxWidth':(100-50)/vm.data.goals.length+'%'}"
+                          ng-repeat="goal in vm.data.goals">
+                        <span>{{goal|findWhere:vm.perf.goals:'id':'info'}}</span>
+                    </span>
+                    <i class="icon ion-ios-arrow-right "></i>
+                </a>
+
+                <a class="item  item-icon-right item-icon-left" ng-if="vm.perf.values.length"> <i
+                        class="icon ion-ios-flame"></i> value <i
+                        class="icon ion-ios-arrow-right"></i></a>
+
+
+            </div>
+
+        </ion-content>
+    </ion-view>
+</form>
+<script type="text/ng-template" id="goal.html">
+    <ion-modal-view>
+        <ion-header-bar class="bar-dark">
+            <h4 class="title">选择goal</h4>
+            <div class="buttons">
+                <button class="button" ng-click="vm.modalGoal.cancel()">取消</button>
+                <button class="button" ng-click="vm.modalGoal.ok()">确定</button>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+
+            <ion-list class="item-text-wrap">
+                <ion-checkbox ng-change="vm.modalGoal.change()"
+                              ng-disabled="!item.checked&&vm.modalGoal.itemSelectedLength>=vm.modalGoal.maxLength"
+                              ng-repeat="item in vm.modalGoal.views" ng-model="item.checked"
+                >{{item.info}}
+                </ion-checkbox>
+
+            </ion-list>
+        </ion-content>
+    </ion-modal-view>
+
+
+</script>
+
+
+
+

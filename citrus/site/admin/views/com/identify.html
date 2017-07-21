@@ -1,0 +1,60 @@
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/user-info">用户信息</a></li>
+    <li role="presentation"><a href="#/setting">企业宣传信息</a></li>
+    <li role="presentation" ng-if="company.custom.company_introduce"><a href="#/about">公司简介</a></li>
+    <li role="presentation" class="active" ng-if="company.custom.identify"><a href="#/identify">员工认证信息</a></li>
+</ul>
+<div class="position-list ng-scope">
+    <div class="panel mt10 panel-default">
+        <form name="form" ng-submit="vm.filterSbm()">
+            <div class="panel-body form-inline ">
+
+                <a class="btn btn-default pull-right" ng-href="/resources/{{vm.company}}/Staff_Template.xlsx">下载员工表模板</a>
+                <a ng-click="vm.identify.importEmployeeData()" class="btn btn-default pull-right">导入员工数据</a>
+                <ui-select ng-model="vm.filter.type" theme="select2" required search-enabled="false">
+                    <ui-select-match placeholder="请选择筛选条件">{{$select.selected.label}}</ui-select-match>
+                    <ui-select-choices repeat="item.code as item in vm.view.staffCondition | filter: $select.search ">
+                        <div ng-bind-html="item.label|highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                <input type="text"  name="keyword" class="form-control ml10" ng-model="vm.filter.keyword" placeholder="请输入相应的员工信息" style="width: 230px;">
+                <button class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                <div class="mt20">
+                    认证状态：<label class="radio-inline radio "><input type="radio" name="authentication" value="ALL"
+                                                                     ng-model="vm.filter.authentication"> 所有</label>
+                    <label class="radio-inline radio "><input type="radio" name="authentication" value="YES"
+                                                              ng-model="vm.filter.authentication"> 已认证</label>
+                    <label class="radio-inline radio "><input type="radio" name="authentication" value="NO"
+                                                              ng-model="vm.filter.authentication"> 未认证</label>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <table class="table table-hover table-striped ">
+
+        <tr>
+            <th>序号</th>
+            <th>员工姓名</th>
+            <th>员工工号</th>
+            <th>微信昵称</th>
+            <th>认证状态</th>
+        </tr>
+        <tr ng-repeat="item in vm.list track by $index">
+            <td>{{vm._meta.perPage*(vm._meta.currentPage-1)+$index+1}}</td>
+            <td><span ng-if="!item.ref_id">{{item.cn_name}}</span><a ng-if="item.ref_id" class="font-link" title="{{item.cn_name}}" ng-href="#/rec/{{item.ref_id}}">{{item.cn_name}}</a></td>
+            <td>{{item.empno}}</td>
+            <td>{{item.wx_nickname}}</td>
+            <td>{{item.authentication}}</td>
+        </tr>
+    </table>
+    <div class="pull-right">
+        <pagination ng-if="vm._meta.totalCount>1" max-size="5" items-per-page="vm._meta.perPage" boundary-links="true"
+                    total-items="vm._meta.totalCount"
+                    ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                    last-text="&raquo;"></pagination>
+    </div>
+</div>
+

@@ -1,0 +1,18 @@
+<ion-modal-view class="modal-select bg-ey modal-filter">
+    <ion-content class="list">
+        <div class="filter-title">
+            <div class="ey-hd"><span class="tit">{{vm.filter.city.label}}</span></div>
+            <!--<button class="button small my-close button-clear " ng-click="vm.modals.city.hide()"><i
+                    class="icon black small ion-android-close "></i></button>-->
+        </div>
+        <ion-list on-tap="vm.cityChange()">
+            <label class="item item-radio" ng-repeat="item in vm.view.cities"
+                   ng-class="{'checked':vm.filter.city == item}">
+                <input type="radio" ng-model="vm.filter.city" ng-value="item" name="city_group">
+                <div class="item-content font">
+                    {{item.label}}
+                </div>
+            </label>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

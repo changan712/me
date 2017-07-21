@@ -1,0 +1,31 @@
+<div class="rec-list ">
+    <table class="table table-striped">
+        <tr>
+            <th>员工姓名</th>
+            <th>微信昵称</th>
+            <th>联系方式</th>
+            <th ng-if="corp.custom.ref_info.show_id">工号</th>
+            <th>推荐次数</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.list">
+            <td><a href="#/rec/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.weixin_nickname}}</td>
+            <td>{{item.mobile}}</td>
+            <td ng-if="corp.custom.ref_info.show_id">{{item.email}}</td>
+            <td><a href="#/rec/{{item.id}}">{{item.ref_times}}</a></td>
+        </tr>
+
+    </table>
+    <div class="ft">
+        <div class="pull-right">
+            <pagination ng-if="vm.totalItems>20" items-per-page="20" max-size="5" boundary-links="true"
+                        total-items="vm.totalItems"
+                        ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                        last-text="&raquo;"></pagination>
+        </div>
+
+
+    </div>
+</div>

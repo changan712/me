@@ -1,0 +1,28 @@
+<ion-view view-title="Garena2016年校园招聘职位-{{vm.pos.name}}">
+    <ion-content delegate-handle="posDetail" class="padding pos-detail-content">
+        <div class="pos-detail">
+            <div class="tp">
+                <h2 class="text-overflow">{{vm.pos.name}}</h2>
+
+                <div class="labels"><span class="label" ng-repeat="city in vm.pos.city_list"> <img src="image/label.png" alt=""/> {{city.label}}</span>
+                    <span class="label"><img src="image/label.png" alt=""/>  全职</span></div>
+
+                <div class="jd" ng-bind-html="vm.html">
+
+
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="footer row">
+        <div class="button-bar ">
+            <a ng-click="vm.apply()" class="button button-assertive"><i class=" big ion-ios-paperplane"></i> <span
+                    ng-if="vm.hasSend">重新</span>申请</a>
+            <a class="button     button-assertive"
+               ng-href="#/resume/rec?position_id={{vm.pos.id}}&position_name={{vm.pos.name}}"> <i class="ion-leaf"></i> 推荐</a>
+        </div>
+    </div>
+
+
+</ion-view>
+

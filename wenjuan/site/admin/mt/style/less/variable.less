@@ -1,0 +1,89 @@
+@import "../../bower_components/bootstrap/less/variables.less";
+
+@theme-color:#4a90e2;
+
+@brand-primary:#4a90e2;
+
+@primary:#4a90e2;
+
+@error: #bb200f;
+
+@green: green;
+
+@green2: #77bf6e;
+
+@gray: #a5a5a5;
+
+@white: #fff;
+
+@blue : #1562a9;
+
+@blue2: #56a0d8;
+
+@blue3: #2395ff;
+
+@black: #000;
+
+@orange: orange;
+
+@red: red;
+
+@darkred: darkred;
+
+@brick-red: #d9524e;
+
+@color-txt: #333;
+
+@color-content:#777;
+
+@border-color: #ddd;
+
+@border-color-new: #eaeaea;
+
+@margin-width: 10px;
+
+@hover-bg: #f5f5f5;
+
+@bg-gray-darken: #f0f0f0;
+
+@bg-gray: #f5f5f5;
+
+@bg-gray-lighten: #fcfcfc;
+
+@main-background:#ebebeb;
+
+@font-dark-gray:#777;
+
+@font-light-gray:#9b9b9b;
+
+@font-title:Tahoma,'Microsoft Yahei','微软雅黑',Arial, STHeiti,Helvetica;
+
+.arrow-down(@color:@black) {
+  color: @color;
+  font-size: 12px;
+  transform: scale(.8);
+}
+
+.border-radius(@deg:50%) {
+  border-radius: @deg;
+}
+
+.box-shadow(@x:0,@y:0,@blur:4px,@offSet:0,@color:rgba(0,0,0,.1)) {
+  -webkit-box-shadow: @x @y @blur @offSet @color;
+  -moz-box-shadow: @x @y @blur @offSet @color;
+  -o-box-shadow: @x @y @blur @offSet @color;
+  -ms-box-shadow: @x @y @blur @offSet @color;
+  box-shadow: @x @y @blur @offSet @color;
+}
+
+.border(@width:1px,@color:#dcdcdc) {
+  border: @width solid @color
+}
+
+.scale(@scale) {
+  -webkit-transform: scale(@scale);
+  -moz-transform: scale(@scale);
+  -o-transform: scale(@scale);
+  -ms-transform: scale(@scale);
+  transform: scale(@scale);
+}

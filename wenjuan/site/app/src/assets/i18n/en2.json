@@ -1,0 +1,71 @@
+{
+  "PAGES": {
+    "CHECK_MOBILE": {
+      "TITLE": "Login",
+      "VICE_TITLE": "请用您收到测试邀请的手机号登陆en",
+      "PLACEHOLDER_TEL": "请输入手机号en",
+      "PLACEHOLDER_CODE": "请输入验证码em",
+      "BTN_CODE": "发送验证码en",
+      "BTN_CODE1": "验证码已发送en",
+      "SUBMIT": "Login"
+    },
+    "TUTORIAL": {
+      "CONTENT": "welcome <strong>{{company_name}}</strong> our system <br>please before <span class=\"primary f24\">{{time_end}}</span> to answer ",
+      "CONTENT1": "本次测试时间为 <strong class=\"f24 primary\">{{time_limit}}minuts</strong><br>请<strong>提前5分钟提交</strong> 避免超时提交失败",
+      "CONTENT2": " <strong class=\"f24 primary\">语音识别</strong> 功能辅助输入<br>您可以 <strong>保留语音记录</strong> 让HR听到你的voice",
+      "BTN_CONTINUE": "entrance"
+    },
+    "INDEX": {
+      "CONTENT": "sorry，您暂时无可参加的测试：）",
+      "CONTENT1": "每位候选人仅 <strong class=\"primary f24\">1</strong> 次测试机会，<br>开始后 <strong>请勿中途离开问卷或退出wx</strong>",
+      "CONTENT2": "对不起，您的问卷已经过期或超时，感谢参与en！",
+      "BTN_START": "Start",
+      "BTN_RETRY": "retry",
+      "BTN_HELP": "help",
+      "UA": {
+        "TITLE_REDO_CONFIRM": "确认",
+        "BTN_REDO_CONFIRM_OK": "申请重新测评",
+        "TIP_REDO": "重新申请成功，请等待通知！"
+      }
+    },
+    "QUEST_DETAIL": {
+      "BTN_SUBMIT": "Submit",
+      "BTN_PREV": "Prev",
+      "BTN_NEXT": "Next",
+      "UA": {
+        "TITLE_CONFIRM_CHOICE": "To Choice",
+        "TIP_CD_WARNING": "该测评即将超时，请及时提交en!",
+        "TIP_SUCCESS": "提交成功en！",
+        "TIP_INVALID": "请确认填写正确en"
+      }
+    },
+    "SUCCESS": {
+      "CONTENT": "<strong>本次测试得分</strong> <span class=\"primary f30\">{{score}}</span>en",
+      "CONTENT2": "<strong>恭喜，您已进入下一轮面试环节</strong>，请注意查收邮件和短信，我们将尽快与您取得联系en"
+    }
+  },
+  "COMPONENT": {
+    "DF_CONTROL": {
+      "PLACEHOLDER": "请输入en",
+      "INS_LENGTH": "（请输入{{min}} - {{max}}字）en",
+      "INS_BT": "已输入{{length}}字en",
+      "INS_BT1": "还可以输入{{remain}}字en",
+      "INS_BT2": "已超出{{exceed}}字en"
+    },
+    "RECORDER": {
+      "BTN_VOICE": "点击后说话en",
+      "BTN_VOICE1": "点击停止录音en"
+    },
+    "VOICE_LIST": {
+      "UA": {
+        "TITLE_REMOVE_ALL_CONFIRM": "删除全部?",
+        "TITLE_REMOVE_CONFIRM": "删除此项?"
+      }
+    }
+  },
+  "UA": {
+    "BTN_CONFIRM_OK": "Ok",
+    "BTN_CONFIRM_CANCEL": "Cancel",
+    "SERVER_ERROR_DEFAULT": "服务器错误请稍后再试！"
+  }
+}

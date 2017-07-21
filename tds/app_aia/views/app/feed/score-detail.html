@@ -1,0 +1,21 @@
+<ion-view class="view-score-view">
+    <ion-nav-buttons side="left">
+        <button class="button" back back-default-state="^.list"><i class="icon ion-android-close"></i></button>
+    </ion-nav-buttons>
+    <ion-nav-title><h4>打分详情</h4></ion-nav-title>
+    <ion-content>
+        <div class="list list-sm sm-bd">
+            <div class="item " ng-repeat="item in vm.list">
+             <span class="pull-left mt5" >   <span class="avatar avatar-sm icon "> <img ng-src="{{item.user.avatar}}" alt=""></span>
+                {{item.user.name}}</span>
+                <div class="r">
+                    <score ng-model="item.score" disabled="true"></score>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+
+

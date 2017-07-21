@@ -1,0 +1,239 @@
+<form name="form" novalidate>
+    <ion-view class="view-feed-new">
+        <ion-nav-title><h4>创建新项目分享</h4></ion-nav-title>
+        <ion-nav-buttons side="left">
+            <button class="button" back back-default-state="^.list"><i class="icon ion-android-arrow-back"></i></button>
+        </ion-nav-buttons>
+        <ion-content class="has-footer">
+            <!--starr-->
+            <div class="list   sm-bd sm-bd-ml list-sm">
+                <div>
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.project.$error.required}"
+                       ng-click="vm.showModalProject()">
+
+                        <i class="icon ion-ios-navigate-outline color-theme"></i>
+                        <input type="hidden" name="project" required ng-model="vm.data.aia_project.project_id"><span
+                            ng-if="!vm.currentProject">请选择项目组 <i
+                            class="ion-ios-medical  icon-required"></i></span>
+                        <i class="icon ion-ios-arrow-right " ng-if="!vm.isEdit"></i>
+                        {{vm.currentProject.name}}
+                    </a>
+                    <div ng-if="vm.currentProject">
+                        <div class=" item-data item item-text-wrap item-icon-left ">
+                            <span class="label label-dark label-round">关键用户</span> {{vm.currentProject.extra.key_user}}
+                        </div>
+                        <div class=" item-data item item-text-wrap item-icon-left project-goal">
+                            <span class="label label-dark label-round">目标</span>
+                            <div class="r">
+                                <div ng-repeat="goal in vm.currentProject.extra.goal|splitByN">{{goal}}</div>
+
+                            </div>
+                        </div>
+                        <div class=" item-data item item-text-wrap item-icon-left ">
+                            <span class="label label-theme" ng-click=" vm.modalProjectUser.show(vm.currentProject.id)">查看项目成员
+                                <i class=" ion-ios-arrow-forward "></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="vm.currentProject">
+                    <input type="hidden" name="percent" ng-model="vm.data.aia_project.percent" required>
+                    <a ng-click="vm.showModalPercent()"
+                       class="item  item-icon-left  item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.percent.$invalid}">
+                        <i class="icon ion-ios-timer-outline  color-theme"></i>
+
+                        进度 <i class="ion-ios-medical  icon-required"></i>
+                        <span class="label" ng-if="vm.data.aia_project.percent"
+                        >{{vm.data.aia_project.percent}}% | {{vm.data.aia_project.percent|aiaPercent}}</span>
+                        <i class="icon ion-ios-arrow-right "></i>
+
+                    </a>
+                    <div class="item-data item item-text-wrap item-icon-left  sm-bd-bottom-clear "
+                         ng-if="vm.data.aia_project.has_milestone">
+                        <div>
+                            <div class="milestone-others mt5" ng-if="vm.data.aia_project.milestone.others">
+                                <span class="label label-dark">里程碑</span>
+                            <span
+                                    class="gray">{{vm.data.aia_project.milestone.others}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="list   sm-bd sm-bd-ml list-sm">
+
+                <div class="">
+
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.action.$error.required}"
+                       ng-click="vm.showModalStarr('action',{title:'行动',required:true},vm.data.action)">
+                        <i class="icon ion-ios-paw-outline color-theme"></i>
+                        <input type="hidden" name="action" required ng-model="vm.data.action">
+
+                        行动 <i class="ion-ios-medical  icon-required"></i>
+                        <i class="icon ion-ios-arrow-right "></i>
+
+                    </a>
+                    <div class=" item-data item item-text-wrap item-icon-left  sm-bd-bottom-clear "
+                         ng-if="vm.data.action">
+                        {{vm.data.action}}
+                    </div>
+
+                </div>
+                <div class="">
+                    <input type="hidden" name="result" required ng-model="vm.data.result">
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.result.$invalid}"
+                       ng-click="vm.showModalStarr('result',{title:'影响',required:true},vm.data.result)">
+                        <i class="icon ion-ios-flame-outline color-theme"></i> 影响 <i
+                            class="ion-ios-medical  icon-required"></i>
+                        <i class="icon ion-ios-arrow-right "></i>
+
+                    </a>
+                    <div class="item-data item item-text-wrap item-icon-left  sm-bd-bottom-clear "
+                         ng-if="vm.data.result">
+                        {{vm.data.result}}
+
+
+                    </div>
+
+                </div>
+                <div class="item  item-icon-left  item-icon-right" ng-click="vm.showModalDuration()"
+                     ng-class="{'error':form.$submitted&&form.duration.$invalid}">
+                    <i class="icon ion-ios-clock-outline color-theme "></i>
+                    <input type="hidden" name="duration" ng-model="vm.data.duration" required>
+                    用时<i class="ion-ios-medical  icon-required"></i> <span class="label" ng-if="vm.data.duration">{{vm.data.duration}} {{vm.data.duration_type|durationType}}</span>
+
+                    <i class="icon ion-ios-arrow-right "></i>
+
+                </div>
+                <div class="">
+                    <input type="hidden" name="reflection" ng-model="vm.data.reflection">
+                    <a class="item item-icon-left item-icon-right"
+                       ng-class="{'error':form.$submitted&&form.reflection.$error.required}"
+                       ng-click="vm.showModalStarr('reflection',{title:'反思'},vm.data.reflection)">
+                        <i class="icon ion-ios-lightbulb-outline color-theme"></i> 反思
+                        <i class="icon ion-ios-arrow-right "></i>
+                    </a>
+                    <div class=" item-data item item-text-wrap item-icon-left  sm-bd-bottom-clear  "
+                         ng-if="vm.data.reflection">
+                        {{vm.data.reflection}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-collection" ng-if="!vm.isEdit">
+                <ul class="  clearfix" wx-preview-img ng-class="{'no-img':!vm.imgChosenAll.length}">
+                    <li ng-repeat="item in vm.imgChosenAll">
+                        <button class="button button-clear button-small" ng-click="vm.deleteChosenImg($event,item)"><i
+                                class=" icon ion-ios-close"></i></button>
+                        <img ng-src="{{item}}" alt=""></li>
+                    <li ng-if="vm.imgChosenAll.length<9" class="btn-add" wx-choose-img
+                        wx-choose-img-max-length="{{9-vm.imgChosenAll.length}}"
+                        ng-model="vm.imgChosen"><i class="icon ion-camera"></i></li>
+                </ul>
+            </div>
+
+        </ion-content>
+        <ion-footer-bar>
+            <div class="row ">
+
+                <div class="col"><a class="button button-block button-outline button-assertive" back
+                                    back-default-state="^.list">取消</a></div>
+                <div class="col">
+
+                    <button class="button button-block button-assertive bg-theme" style="font-size: 14px;"
+                            ng-click="vm.submit(form)"><span
+                            ng-if="!vm.isEdit">发布</span><span ng-if="vm.isEdit">更新</span></button>
+                </div>
+            </div>
+        </ion-footer-bar>
+    </ion-view>
+</form>
+
+<script type="text/ng-template" id="modal-duration.tpl">
+    <div class="list list-sm">
+        <div class="item item-input   item-select"
+             ng-class="{'error':form.$submitted&&form.duration.$invalid}">
+                    <span class="input-label">
+                        用时
+                    </span>
+            <input type="number" ng-model="vm.data.duration"  ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }" required name="duration" placeholder="请输入数字">
+            <select ng-model="vm.data.duration_type">
+                <option value="1">小时</option>
+                <option value="2">天</option>
+            </select>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/ng-template" id="modal-project-percent.tpl">
+
+    <ion-list class="list-sm sm-bd">
+
+        <div class="item item-input  item-icon-right "
+             ng-class="{'error':form.$submitted&&form.percent.$invalid}">
+                    <span class="input-label">
+                        进度
+                    </span>
+            <input type="number" ng-model="vm.data.percent"  ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }" min="0" max="100" required name="percent"
+                   placeholder="请输入0-100之间的数字">
+            <span class="icon font14">%</span>
+
+        </div>
+        <div class="item item-track" ng-if="vm.data.percent">
+            <div class="track"
+                 ng-class="{'low':vm.data.percent<20,'high':vm.data.percent>80}">
+                <div class="track-content" ng-style="{width:(vm.data.percent||0)+'%'}"><span class="track-label">{{vm.data.percent}}% | {{vm.data.percent|aiaPercent}} </span>
+                </div>
+            </div>
+
+        </div>
+
+    </ion-list>
+    <div class="list-sm list sm-bd mt5">
+        <ion-toggle class="item-divider "
+                    ng-model="vm.data.has_milestone"
+                    ng-true-value="1"
+                    ng-false-value="0"
+                    toggle-class="toggle-assertive">
+            里程碑
+        </ion-toggle>
+        <div ng-if="vm.data.has_milestone">
+            <div class="item item-textarea" ng-class="{'error':form.$submitted&&form.others.$invalid}">
+            <textarea rows="2"  ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }" placeholder="请输入" name="others" required
+                      ng-model="vm.data.milestone.others"></textarea>
+            </div>
+        </div>
+    </div>
+
+
+</script>
+
+<script type="text/ng-template" id="modal-project-select.tpl">
+    <ion-list class="list-sm sm-bd">
+        <ion-radio class="checkbox-theme" ng-model="vm.data" ng-value="item.id" ng-repeat="item in vm.view">
+            {{item.name}}
+        </ion-radio>
+    </ion-list>
+</script>
+
+
+<script type="text/ng-template" id="modal-starr.tpl">
+    <ion-list class="list-sm sm-bd">
+        <div class="item item-textarea" ng-class="{'error':form.$submitted&&form.content.$invalid}">
+            <textarea rows="3" name="content"  ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }" placeholder="请输入"  ng-required="vm.required" maxlength="{{vm.maxLength}}"
+                      ng-model="vm.data.content"></textarea>
+        </div>
+        <div class="padding text-right small" ng-if="!isAndroid">还可以输入{{vm.maxLength-vm.data.content.length}} 字</div>
+    </ion-list>
+</script>
+
+
+
+
+

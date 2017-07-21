@@ -1,0 +1,137 @@
+<!--<div class="debug">{{vm.positionList}}</div>-->
+<div class="position-list">
+    <div class="panel panel-default">
+
+    <form ng-submit="vm.filterSbm()">
+            <div class="panel-body form-inline ">
+                地区:
+                <ui-select ng-model="vm.filter.city" theme="select2"
+                           style="width: 60px;"
+                           class="mr10"
+                           search-enabled="false">
+                    <ui-select-match allow-clear="true" placeholder="--所有地区--">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="item in vm.view.city | filter: $select.search ">
+                        <div ng-bind-html="item|highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                部门:
+                <ui-select ng-model="vm.filter.department" theme="select2"
+                           style="width: 60px;"
+                           class="mr10"
+                           search-enabled="false">
+                    <ui-select-match allow-clear="true" placeholder="--所有部门--">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in vm.view.department | filter: $select.search ">
+                        <div ng-bind-html="item.name|highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                <!--所有类别:
+                <ui-select ng-model="vm.filter.category" theme="select2"
+                           style="width: 60px;"
+                           class="mr10"
+                           search-enabled="false">
+                    <ui-select-match placeholder="--类别--">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in vm.view.category | filter: $select.search ">
+                        <div ng-bind-html="item.name|highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>-->
+
+                发布时间:
+                <ui-select ng-model="vm.filter.date" theme="select2"
+                           style="width: 80px;"
+                           class="mr10"
+                           search-enabled="false">
+                    <ui-select-match allow-clear="true" placeholder="--不限时间--">{{$select.selected
+                        |positionReleaseTime}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in vm.view.date | filter: $select.search ">
+                        <div ng-bind-html="item| positionReleaseTime |highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                <input type="text" class="form-control" ng-model="vm.filter.keyword" placeholder="请输入关键字"
+                       style="width: 230px;"/>
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
+    </div>
+    <table class="table table-hover table-striped ">
+        <thead>
+        <tr>
+            <th><a href="javascript:" ng-click="vm.setOrder('name')">职位名称
+                <span ng-if="vm.cond.order_by=='name' && vm.cond.order=='asc'"
+                      class="glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="vm.cond.order_by=='name' && vm.cond.order=='desc'"
+                      class="glyphicon glyphicon-chevron-down"></span>
+            </a></th>
+            <th><a href="javascript:" ng-click="vm.setOrder('department_name')">所属部门
+                <span ng-if="vm.cond.order_by=='department_name' && vm.cond.order=='asc'"
+                      class="glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="vm.cond.order_by=='department_name' && vm.cond.order=='desc'"
+                      class="glyphicon glyphicon-chevron-down"></span>
+            </a></th>
+            <th><a href="javascript:" ng-click="vm.setOrder('city')">地区
+                <span ng-if="vm.cond.order_by=='city' && vm.cond.order=='asc'"
+                      class="glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="vm.cond.order_by=='city' && vm.cond.order=='desc'"
+                      class="glyphicon glyphicon-chevron-down"></span>
+            </a></th>
+            <th><a href="javascript:" ng-click="vm.setOrder('created_at')">发布时间
+                <span ng-if="vm.cond.order_by=='created_at' && vm.cond.order=='asc'"
+                      class="glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="vm.cond.order_by=='created_at' && vm.cond.order=='desc'"
+                      class="glyphicon glyphicon-chevron-down"></span>
+            </a></th>
+            <th><a href="javascript:" ng-click="vm.setOrder('created_by_user')">招聘HR
+                <span ng-if="vm.cond.order_by=='created_by_user' && vm.cond.order=='asc'"
+                      class="glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="vm.cond.order_by=='created_by_user' && vm.cond.order=='desc'"
+                      class="glyphicon glyphicon-chevron-down"></span>
+            </a></th>
+            <th><a href="javascript:" ng-click="vm.setOrder('apply_count')">投递/浏览
+                <span ng-if="vm.cond.order_by=='apply_count' && vm.cond.order=='asc'"
+                      class="glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="vm.cond.order_by=='apply_count' && vm.cond.order=='desc'"
+                      class="glyphicon glyphicon-chevron-down"></span>
+            </a></th>
+            <th width="200">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-class="{'pos-closed':item.status == 'CLOSED'}" ng-repeat="item in vm.list"
+            ng-class="{'closed':item.status != 'CLOSED'}">
+            <td><a class="blue" ng-href="#/position/{{item.id}}">{{item.name}}</a>
+                <span class="pos-tags"><span ng-repeat="tag in item.tag" class=" pos-label"
+                                             ng-class="{'hot':'label-hot','urgent':'label-urgent'}[tag]">{{tag|posTag}}</span></span>
+            </td>
+            <td>{{item.department.name}}</td>
+            <td><span ng-repeat="c in item.city_list"> {{c.label}} </span></td>
+            <td> {{item.created_at*1000|date:'yyyy-MM-dd'}}</td>
+            <td> {{item.created_by_user}}</td>
+            <td> {{item.apply_count}} / {{item.view_count}}</td>
+            <td><span class="btn-group btn-group-sm">
+
+                <a class="btn btn-sm btn-default" ng-href="#/position/edit/{{item.id}}">编辑职位</a>
+                <a class="btn btn-sm btn-default" ng-if="item.status=='OPEN'" ng-click="vm.setStatus('CLOSED',item.id)">关闭职位</a>
+                <a class="btn btn-sm btn-default" ng-if="item.status=='CLOSED'"
+                   ng-click="vm.setStatus('OPEN',item.id)">开启职位</a></span></td>
+        </tr>
+        </tbody>
+
+    </table>
+    <div class="ft">
+        <div class="pull-right">
+            <pagination ng-if="vm.total>20" items-per-page="20" boundary-links="true"
+                        total-items="vm.total"
+                        ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                        last-text="&raquo;"></pagination>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,45 @@
+<div  class="con">
+    <md-card>
+        <md-card-header><span class="f20">候选人登录</span></md-card-header>
+
+        <md-card-content>
+
+            <div class="main ">
+                <form novalidate [formGroup]="formModel" *ngIf="formModel">
+                    <ul>
+                        <li>
+                            <md-input-container>
+
+                                <input type="tel" formControlName="mobile" placeholder="手机号" maxlength="11" mdInput>
+                            </md-input-container>
+                        </li>
+                        <li class="flex">
+                            <md-input-container>
+
+                                <input type="tel" formControlName="code" maxlength="4" placeholder="验证码" mdInput>
+                            </md-input-container>
+                            <div>
+                                <button type="button" md-button color="primary"
+                                        (click)="sendMsg()"
+                                        [disabled]="formModel.get('mobile').invalid||beCd"
+                                        small>
+                                    <span *ngIf="!beCd">发送验证码</span>
+                                    <span *ngIf="beCd">验证码已发送({{cd}})</span>
+                                </button>
+                            </div>
+
+                        </li>
+                    </ul>
+                    <div class="p-v">
+                        <button md-button md-raised-button color="primary" (click)="onSubmit() "
+                                [disabled]="formModel.invalid">登录
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </md-card-content>
+
+    </md-card>
+</div>

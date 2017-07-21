@@ -1,0 +1,36 @@
+<ion-modal-view cache-view="false" class="modal-project-user">
+    <ion-header-bar class="bar-light">
+        <h4 class="title">项目成员</h4>
+        <div class="buttons">
+            <a class="button" ng-click="vm.goBack()"><i class="icon ion-android-close"></i></a>
+
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div>
+
+            <div class="tp">
+                <div class="gray ml10">组长 </div>
+                <ul class="con">
+                    <li class="members" ng-repeat="item in vm.users.leader">
+                        <img ng-src="{{item.user_info.avatar}}" class="avatar" alt="">
+                        <div class="mt5"> {{item.user_info.name}}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub">
+                <div class="gray ml10">组员</div>
+                <ul class="con">
+                    <li class="members" ng-repeat="item in vm.users.member">
+                        <img ng-src="{{item.user_info.avatar}}" class="avatar" alt="">
+                        <div  class="mt5"> {{item.user_info.name}}</div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-modal-view>

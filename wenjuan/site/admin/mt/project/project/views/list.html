@@ -1,0 +1,39 @@
+<div class="padding">
+    <div>
+        <a class="btn btn-default" href="#/app/project/new">新建项目</a>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>percent</th>
+            <th>start_time</th>
+            <th>end_time</th>
+            <th>用户数量</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td><a ng-href="#/app/project/info/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.percent}}</td>
+            <td>{{item.start_time}}</td>
+            <td>{{item.end_time}}</td>
+            <td>{{item.user_count}}</td>
+        </tr>
+    </table>
+
+    <div class="text-right mt10">
+        <uib-pagination
+                items-per-page="vm._meta.perPage"
+                boundary-links="true"
+                max-size="5"
+                ng-change="vm.pageChanged()"
+                total-items="vm._meta.totalCount"
+                ng-model="vm._meta.currentPage"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></uib-pagination>
+
+    </div>
+</div>
+

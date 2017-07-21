@@ -1,0 +1,45 @@
+<ion-view class="feed-list" hide-tabs="false">
+
+    <ion-nav-title><h4>项目分享</h4></ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a class="button button-small" ng-click="vm.pageList.refresh(true)"> <i class=" ion-ios-refresh-empty icon"></i></a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+        <a class="button " ui-sref="^.home({id:currentUser.id})">我</a>
+    </ion-nav-buttons>
+    <msg-box feed-type="aia_project" class="mt44 msg-box-project"></msg-box>
+    <ion-content>
+        <ion-refresher
+                ng-if="vm.pageList.isFirstSection()"
+                pulling-text="<span class='small gray'>向下滑动刷新</span>"
+                spinner="spiral"
+                on-refresh="vm.pageList.refresh()">
+        </ion-refresher>
+        <div class="padding small text-center" ng-if="vm.pageList.section>1"
+             ng-click="vm.pageList.sectionTo(vm.pageList.section-1)">加载前一页
+        </div>
+        <div class="list no-margin-bottom">
+
+            <!-- ui-sref="^.detail({id:item.id})"-->
+            <div class="item-feed" id="feed_{{::item.id}}" ng-click="feedCtrl.setHash('feed_'+item.id)"
+                 ng-repeat="item in  vm.pageList.list">
+                <feed-schema view="item" template-url="views/app/feedProject/feed-schema.tpl.html"></feed-schema>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="vm.pageList.hasMore&&!vm.pageList.isSectionBd()" immediate-check="false"
+                             spinner="dots"
+                             on-infinite="vm.pageList.loadMore()"
+                             distance="10%">
+        </ion-infinite-scroll>
+        <div class="padding small text-center mb10 mt-10"
+             ng-if="vm.pageList.section<vm.pageList._meta.sectionCount&&vm.pageList.isSectionBd()"
+             ng-click="vm.pageList.sectionTo(vm.pageList.section+1)">加载下一页
+        </div>
+
+        <div class="small padding text-center gray" ng-if="!vm.pageList.hasMore">暂无更多</div>
+    </ion-content>
+</ion-view>
+
+
+
+

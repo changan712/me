@@ -1,0 +1,18 @@
+<div class="dialog dialog-prompt">
+    <div class="modal-header" ng-if="title">
+        <a class="close" data-dismiss="modal" ng-click="cancel()"><span aria-hidden="true">&times;</span></a>
+        <h5 class="modal-title">{{title}}</h5>
+    </div>
+    <div class="modal-body">
+        {{msg}}
+        <div>
+            <input type="text" ng-model="text" class="form-control mt5"/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm" ng-class="setting.btnOk.style" ng-click="ok()">{{setting.btnOk.label}}</button>
+        <button class="btn  btn-sm" ng-class="setting.btnCancel.style" ng-click="cancel()">{{setting.btnCancel.label}}
+        </button>
+    </div>
+
+</div>

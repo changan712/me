@@ -1,0 +1,18 @@
+countdown{
+  margin-left:5px;
+  $warningColor:darken(map_get($colors, danger), 20%);
+  font-weight:bold;
+  font-size:16px;
+  .warningColor{
+    color:$warningColor;
+    .icon{
+      color:$warningColor;
+
+    }
+  }
+  .icon{
+    font-weight:bold;
+    color:rgb(155, 155, 155);
+    margin-right:3px;
+  }
+}

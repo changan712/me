@@ -1,0 +1,42 @@
+<ion-view class="view-verify">
+    <ion-content>
+
+
+        <div class="content">
+            <div class="top" ng-class="{'verified':vm.hasVeriyfied}">
+                <img ng-src="..{{corp.logo_1}}" alt=""/>
+
+            </div>
+            <div ng-if="vm.hasVeriyfied">
+                <div class="alert-body" id="alert-body">
+                    <div class="alert">
+                        <div class="message" id="success">
+                            <img class="picture mb10" src="images/verify-success.png">
+
+                            <p class="content">您已通过员工认证!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="form-verify" name="form" novalidate ng-submit="vm.infoSubmit(form)">
+                <div class="padding">
+                    <div class="list ">
+                        <div class="item item-input">
+                            <input type="text" ng-model="vm.mod.name" required placeholder="请填写中文姓名">
+                        </div>
+                        <div class="item item-input">
+                            <input type="text" ng-model="vm.mod.empno" required placeholder="{{vm.placeholder}}">
+                        </div>
+
+                    </div>
+                    <button ng-if="!vm.hasVeriyfied" class="button button-block button-theme">提交员工认证</button>
+                    <a ng-if="vm.hasVeriyfied" class="button button-block button-theme" ng-click="vm.closeWindow()">关闭</a>
+                </div>
+            </form>
+        </div>
+
+
+    </ion-content>
+
+</ion-view>
+

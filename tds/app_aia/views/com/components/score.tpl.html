@@ -1,0 +1,6 @@
+<div class="score">
+    <i class="score-icon" ng-class="{true:'ion-ios-star active',false:'ion-ios-star-outline '}[!!star]"
+       ng-repeat="star in  vm.views track by $index"
+       ng-click="vm.handleClick($index)">
+    </i>
+</div>

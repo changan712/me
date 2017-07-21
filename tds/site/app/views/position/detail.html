@@ -1,0 +1,48 @@
+<ion-view class="view-pos-detail" view-title="招聘职位">
+    <ion-content delegate-handle="posContent" class="padding pos-detail">
+        <div class="tp">
+            <h2>{{vm.pos.name}}<span class="pos-tags"><span ng-repeat="tag in vm.pos.tag" class=" pos-label"
+                                                            ng-class="{'hot':'label-danger','urgent':'label-warning'}[tag]">{{tag|posTag}}</span></span>
+            </h2>
+            <div class="info">
+                <div class="row">
+                    <div class="col"><i class="icon ion-navigate big detIcon-position"></i>
+                        工作地区：<span ng-repeat="item in vm.pos.city_list"> {{item.label}} </span>
+                    </div>
+                    <div class="col" ng-if="!vm.corp.custom.app_position_detail.hide_count"><i
+                            class="icon ion-person big detIcon-position"></i>
+                        招聘人数：{{vm.pos.hiring_count}}
+                    </div>
+                </div>
+                    <div class="row">
+                    <div class="col reward">
+                        <div ng-if="vm.pos.interviewed_reward"><i class="icon ion-trophy"></i> Interviewed红包：<strong>{{vm.pos.interviewed_reward}}</strong> 元
+                        </div>
+                        <div ng-if="vm.pos.onboarding_reward" class="ml15"><i class="icon ion-trophy"></i> On-Boarding红包：<strong>{{vm.pos.onboarding_reward}}</strong> 元
+                        </div>
+                        <div ng-if="vm.pos.pass_probation_reward" class="ml15"><i class="icon ion-trophy"></i> Pass
+                            Probation红包：<strong>{{vm.pos.pass_probation_reward}}</strong> 元
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="jd" ng-bind-html="vm.html"></div>
+        </div>
+    </ion-content>
+    <div class="footer row">
+        <div class="button-bar ">
+            <a ng-click="vm.apply()" class="button button-theme btn-center"><i
+                    class=" big ion-ios-paperplane"></i> <span
+                    ng-if="vm.hasApplied">重新</span>申请</a>
+            <a class="button    button-theme btn-center"
+               ng-if="!corp.custom.redpack.ref"
+               ng-href="#/resume/rec?position_id={{vm.pos.id}}&position_name={{vm.pos.name}}"> <i class="ion-leaf"></i>
+                推荐</a>
+            <a class="button    button-theme btn-center"
+               ng-if="corp.custom.redpack.ref"
+               ng-href="#/resume/rec?position_id={{vm.pos.id}}&position_name={{vm.pos.name}}"> <i class="ion-leaf"></i>
+                推荐赢奖</a>
+        </div>
+    </div>
+
+</ion-view>

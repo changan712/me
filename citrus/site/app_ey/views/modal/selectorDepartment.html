@@ -1,0 +1,20 @@
+<ion-modal-view class="modal-select bg-ey modal-filter">
+    <ion-content class="list">
+        <div class="filter-title">
+            <div class="ey-hd"><span class="tit">{{vm.filter.department.name}}</span></div>
+            <!--<button class="button small my-close button-clear " ng-click="vm.modals.department.hide()"><i
+                    class="icon black small ion-android-close "></i></button>-->
+        </div>
+        <ion-list on-tap="vm.departmentChange()">
+            <label class="item item-radio " ng-class="{'checked':vm.filter.department.id == item.id} "
+                   ng-repeat="item in vm.view.departments">
+                <input type="radio" ng-model="vm.filter.department"
+                       ng-value="item" name="dpt_group">
+
+                <div class="item-content font">
+                    {{item.name}}
+                </div>
+            </label>
+
+        </ion-list>
+    </ion-content>

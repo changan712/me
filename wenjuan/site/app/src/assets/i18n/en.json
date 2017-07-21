@@ -1,0 +1,78 @@
+﻿{
+  "TITLE":"Assessment Center",
+  "PAGES": {
+    "CHECK_MOBILE": {
+      "TITLE": "Login",
+      "VICE_TITLE": "Please login with the cellphone number which received the invitation message",
+      "PLACEHOLDER_TEL": "Cellphone Number",
+      "PLACEHOLDER_CODE": "Password",
+      "BTN_CODE": "Send verification code",
+      "BTN_CODE1": "verification code sent",
+      "SUBMIT": "Login"
+    },
+    "TUTORIAL": {
+      "CONTENT": "Welcome to <strong>{{company_name}}</strong> online assessment system",
+      "CONTENT3": "Please start test before<span class=\"primary f24\">{{time_end}}</span> ",
+      "CONTENT1": "This test duration is <strong class=\"f24 primary\">{{time_limit}}minutes</strong><br>You'd better<strong> submit your answers 5 minutes before ending</strong> to prevent submission failures",
+      "CONTENT2": " <strong class=\"f24 primary\">Speech Recognition</strong> Speech recognition input. You’d better <strong>keep speech record</strong> so that HR can hear your voice",
+      "BTN_CONTINUE": "Continue"
+    },
+    "INDEX": {
+      "CONTENT": "Sorry, you don’t have any test :)",
+      "CONTENT1": "Each participant only has <strong class=\"primary f24\">1</strong> chance to enter the assessment center，when test begins, <strong>don’t leave the test or quit your WeChat</strong>",
+      "CONTENT2": "Sorry，your test is expired or overdue.Thanks for your participation!",
+      "BTN_START": "Start Test",
+      "BTN_RETRY": "Reapply",
+      "BTN_HELP": "Help",
+      "UA": {
+        "TITLE_REDO_CONFIRM": "Confirm",
+        "BTN_REDO_CONFIRM_OK": "Reapply for test",
+        "TIP_REDO": "Reapply successfully！Please wait for our message"
+      }
+    },
+    "QUEST_DETAIL": {
+      "BTN_SUBMIT": "Submit",
+      "BTN_PREV": "Previous",
+      "BTN_NEXT": "Next",
+      "UA": {
+        "TIP_CD_WARNING": "The test is about to overdue, please submit immediately",
+        "TIP_SUCCESS": "Submit successfully！",
+        "TIP_INVALID": "Please confirm the input"
+      }
+    },
+    "SUCCESS": {
+      "CONTENT": "<strong>Test Completion!</strong>，",
+      "CONTENT2": " We will contact you as soon as possible. Please check your email and SMS."
+    }
+  },
+  "COMPONENT": {
+    "DF_CONTROL": {
+      "PLACEHOLDER": "Input words",
+      "INS_LENGTH": "（Input {{min}} - {{max}} words）",
+      "INS_BT": "{{length}} words entered",
+      "INS_BT1": "{{remain}} words available",
+      "INS_BT2": "{{exceed}} words exceeded",
+      "INS_SELECT": "Please select {{min}} - {{max}} items",
+      "INS_SELECT2": "Please select {{min}} items at least",
+      "INS_SELECT1": "Please select {{min}} item"
+    },
+    "RECORDER": {
+      "BTN_VOICE": "Speak after click",
+      "BTN_VOICE1": "Click to stop recording"
+    },
+    "VOICE_LIST": {
+      "TITLE": "Voice Recording",
+      "BTN_REMOVE": "Delete all",
+      "TIP": "Just now",
+      "UA": {
+        "TITLE_REMOVE_ALL_CONFIRM": "Remove all?",
+        "TITLE_REMOVE_CONFIRM": "Remove this part?"
+      }
+    }
+  },
+  "UA": {
+    "BTN_CONFIRM_OK": "OK",
+    "BTN_CONFIRM_CANCEL": "Cancel",
+    "SERVER_ERROR_DEFAULT": "Server error. Please try again later!"
+  }
+}

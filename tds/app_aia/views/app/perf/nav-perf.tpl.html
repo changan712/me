@@ -1,0 +1,17 @@
+<div class="bar sm-bd-bottom nav-perf bar-header  bar-light">
+    <ion-scroll direction="x" scrollbar-x="false" ng-if="vm.detail" scroll-to="scrollToValue"  scroll-to-name="scrollNavPerf" delegate-handle="scrollNavPerf">
+        <a ng-class="{'active':vm.stateIs('app.perf.goalSetting')}"
+           ui-sref="app.perf.goalSetting({id:vm.detail.id})">目标设定</a>
+        <a ng-class="{'active':vm.stateIs('app.perf.selfReview')}"
+           ui-sref="app.perf.selfReview({id:vm.detail.id})">自我评估</a>
+        <a ng-class="{'active':vm.stateIs('app.perf.svReview')}"
+           ui-sref="app.perf.svReview({id:vm.detail.id})">上级评估</a>
+        <a ng-class="{'active':vm.stateIs('app.perf.summary')}"
+           ui-sref="app.perf.summary({id:vm.detail.id})">汇总</a>
+        <a ng-class="{'active':vm.stateIs('app.perf.signOff')}"
+           ui-sref="app.perf.signOff({id:vm.detail.id})">承知</a>
+        <a ng-class="{'active':vm.stateIs('app.perf.devPlan')}"
+           ui-sref="app.perf.devPlan({id:vm.detail.id})">个人发展计划</a>
+    </ion-scroll>
+
+</div>

@@ -1,0 +1,55 @@
+<ion-view class="view-feedback">
+    <ion-header-bar class=" ">
+        <div class="buttons">
+            <a class="button button-light" ui-sref="app.index"> <i
+                    class="icon ion-android-arrow-back"></i></a>
+        </div>
+        <h4 class="title">反馈</h4>
+    </ion-header-bar>
+    <ion-content>
+        <form novalidate ng-submit="vm.submit(form)" name="form">
+            <div class="list sm-bd  no-margin" required-at-least="1"
+                 ng-class="{'error':form.feedback.$invalid&&form.$submitted}"
+                 ng-model="vm.data" name="feedback">
+
+                <div class="item item-divider">意见反馈</div>
+                <div class="item item-textarea"><textarea
+                        ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }"
+                        name="content" ng-model="vm.data.content" rows="5"
+                        placeholder="我的反馈"></textarea></div>
+
+                <div class="item item-divider">联系电话</div>
+                <div class="item item-input" ng-class="{'error':form.mobile.$invalid&&form.$submitted}">
+                    <input type="text" name="mobile" placeholder="请输入您的手机联系电话"
+                           ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default'}"
+                           ng-model="vm.data.mobile">
+
+                </div>
+
+
+            </div>
+            <div class="padding pl16 gray">如有问题，请来电咨询： <a class=" gray" href="tel:186-2186-5078">186-2186-5078</a></div>
+            <div class="padding">
+                <button class="button no-margin button-block bg-theme white">提交</button>
+            </div>
+
+            <div class="padding no-pd-top">
+
+            </div>
+
+        </form>
+    </ion-content>
+</ion-view>
+
+<!-- <div class="item item-textarea"><textarea ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }"
+                                                          name="content" ng-model="vm.data.content" rows="3"
+                                                          placeholder="我的反馈"></textarea></div>
+                <label class="item item-input" ng-class="{'error':form.mobile.$invalid&&form.$submitted}">
+                    <span class="input-label">手机</span>
+                    <input type="text" name="mobile" ng-model-options="{ updateOn:  isAndroid?'click blur submit':'default' }" ng-pattern="/\d{11}/" ng-model="vm.data.mobile" maxlength="11"
+                           minlength="11">
+                </label>-->
+
+
+
+

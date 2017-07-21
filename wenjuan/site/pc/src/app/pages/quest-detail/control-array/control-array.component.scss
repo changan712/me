@@ -1,0 +1,7 @@
+:host{
+&.ng-invalid{
+  /deep/.mat-radio-label-content{
+    color:#b7191c;
+  }
+}
+}

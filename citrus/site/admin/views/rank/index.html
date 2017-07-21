@@ -1,0 +1,53 @@
+<style>
+    div.panel-title{
+        padding:10px 0;font-size: larger;font-weight: bolder
+    }
+    div.panel-title > a > button{
+        position:absolute;left:10px;
+    }
+    div.statistic-panel {
+        font-size: 12px;
+    }
+</style>
+
+
+<div class="pos-new container">
+    <h2 class="page-tit"> {{sub_title}} </h2>
+    <div class="panel panel-default">
+        <form ng-submit="vm.filterSbm()">
+            <div class="panel-body form-inline ">
+                月份:
+                <ui-select ng-model="vm.currenyMonth" theme="select2"
+                           class="mr10"
+                           on-select="vm.query()"
+                           search-enabled="false">
+                    <ui-select-match allow-clear="true" placeholder="--全部月份--">{{$select.selected.key}}</ui-select-match>
+                    <ui-select-choices repeat="item.value as item in vm.month_map | filter: $select.search ">
+                        <div ng-bind-html="item.key |highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                    <a href="#/rank/index"><button type="button" class="btn btn-default btn-sm">返回</button></a>
+            </div>
+        </form>
+    </div>
+    <div class="panel panel-default">
+        <div>
+            <div class="col-sm-12 panel panel-default statistic-panel">
+                <div class="panel-title" align="center" style="line-height: 10px">
+                </div>
+                <div class="row" ng-repeat="rank in vm.rank_data track by $index">
+                    <div class="col-sm-1">第{{$index + 1}}名</div>
+                    <div class="col-sm-2">{{rank.nickname}}</div>
+                    <div class="col-sm-7">
+                        <div class="progress">
+                            <div class="progress-bar" ng-style="{'width':rank.width, 'background-color':vm.rank_color}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">{{rank.cnt}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

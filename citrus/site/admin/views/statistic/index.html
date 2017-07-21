@@ -1,0 +1,110 @@
+<div style="margin-bottom: 10px">
+    <a href="javascript:history.back(-1)"><button type="button" class="btn btn-default btn-sm">返回</button></a>
+</div>
+<div class="pos-new container">
+    <h2 class="page-tit"> {{sub_title}} </h2>
+    <div class="panel panel-default">
+        <form ng-submit="vm.filterSbm()">
+            <div class="panel-body form-inline ">
+                <a class="btn btn-default mr10" ng-click="vm.posSelectorShow = true">选择职位</a>
+                <selector-position style="position: absolute" ng-model="vm.cond.pos_info" is-show="vm.posSelectorShow"
+                                   view="vm.options.pos_info" group-by="type_name"></selector-position>
+                <!-- <ui-select ng-model="vm.cond.pos_info" theme="select2"
+                            style="width:200px;"
+                            class="mr10"
+                            on-select="vm.query()"
+                            search-enabled="false">
+                     <ui-select-match>{{$select.selected.name}}
+                     </ui-select-match>
+                     <ui-select-choices group-by="'type_name'"  repeat="item in (vm.options.pos_info | filter: $select.search)  track by item.id ">
+                         <div ng-bind-html="item.name|highlight: $select.search">
+                         </div>
+                     </ui-select-choices>
+                 </ui-select>-->
+                部门:
+                <ui-select ng-model="vm.cond.department" theme="select2"
+                           class="mr10"
+                           on-select="vm.query()"
+                           search-enabled="false">
+                    <ui-select-match>{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices
+                            repeat="item in (vm.options.department | filter: $select.search)  track by item.id ">
+                        <div ng-bind-html="item.name|highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                所有类别:
+                <ui-select ng-model="vm.cond.category" theme="select2"
+                           class="mr10"
+                           on-select="vm.query()"
+                           search-enabled="false">
+                    <ui-select-match>{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices
+                            repeat="item in (vm.options.category | filter: $select.search)  track by item.id ">
+                        <div ng-bind-html="item.name|highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                <hr>
+                区间：
+                <span class="input-group has-datepicker">
+                    <input  type="text" class="form-control" ng-click="vm.openStartCalendar($event)"
+                           ng-model="vm.cond.startCalendar"
+                           is-open="vm.calendarStartOpened " show-weeks="false" show-button-bar="false"
+                           custom-class="datepicker" datepicker-popup/>
+                     <span class="input-group-addon" ng-click="vm.openStartCalendar($event)"><span><span
+                             class="glyphicon glyphicon-calendar"></span></span></span>
+                </span>
+                <label>---</label>
+                <span class="input-group has-datepicker">
+                    <input  type="text" class="form-control" ng-click="vm.openEndCalendar($event)"
+                           ng-model="vm.cond.endCalendar"
+                           is-open="vm.calendarEndOpened " show-weeks="false" show-button-bar="false"
+                           custom-class="datepicker" datepicker-popup/>
+                     <span class="input-group-addon" ng-click="vm.openEndCalendar($event)"><span><span
+                             class="glyphicon glyphicon-calendar"></span></span></span>
+                </span>
+                <button type="button" class="btn btn-primary" ng-click="vm.query()">确定</button>
+                <!--<ui-select ng-model="vm.cond.date" theme="select2"
+                           class="mr10"
+                           on-select="vm.query()"
+                           search-enabled="false">
+                    <ui-select-match>{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="item in vm.options.date | filter: $select.search ">
+                        <div ng-bind-html="item.name |highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>-->
+                <span ng-if ="isShare" class="mr10" style="float:right;"><a href="#/statistic/track"><button type="button" class="btn btn-default" style="border:1px dashed #0066cc; font-weight: bolder; color:#0c006d">转发数据追踪</button></a></span>
+            </div>
+        </form>
+    </div>
+    <div class="panel panel-default sta-filter-result  padding">
+        <ul class="clearfix">
+            <li class="pos" ng-class="{'pull-left':vm.cond.pos_info.length<=1}">
+                <div class="tit">选中的职位：</div>
+                <div class="con">
+                    <span class="item " ng-repeat="pos in vm.cond.pos_info">{{pos.name}}</span>
+                </div>
+            </li>
+            <li class="others">
+                <!--<span class="mr10"><span class="department">部门：</span><span
+                        class="item">{{vm.cond.department.name}}</span></span>
+                <span class="mr10">类别：<span class="item">{{vm.cond.category.name}}</span></span>
+                <span class="mr10">统计时长：<span class="item">{{vm.cond.date.name}}</span></span>-->
+            </li>
+        </ul>
+
+    </div>
+    <div class="panel panel-default">
+        <div class="row">
+            <div class="span9">
+                <div class="row">
+                    <highchart id="chart1" config="chart_conf" class="span9"></highchart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

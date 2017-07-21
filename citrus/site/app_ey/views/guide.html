@@ -1,0 +1,46 @@
+<ion-view cache-view="false" class="guide ">
+    <img src="images/ey-logo.png" class="ey-logo">
+    <ion-content overflow-scroll='{{isIOS?false:true}}'>
+        <div></div>
+        <div class="banner">
+            <img src="images/banner-guide.jpg" alt=""></div>
+        <div class="ey-hd"><span class="tit">SLP终极挑战场次选择</span></div>
+        <div class="tips  ">终极挑战场次一经选择，不可修改，<br>
+            请谨慎操作哟～！
+        </div>
+        <div class="meeting-list">
+
+            <a ng-repeat="item in vm.meetings" class="button button-block button-ey text-nowrap button-guide"
+                    on-tap="  vm.showGdModal(item);">
+                {{item.location}}场<span class="time">{{item.date}}</span>
+            </a>
+        </div>
+
+
+    </ion-content>
+</ion-view>
+<script id="guide-modal.html" type="text/ng-template">
+    <div class="gd-modal-bg">
+        <div class="gd-modal">
+            <div class="content bg-ey">
+                <button class="button small my-close button-clear " on-tap="vm.hideModal()"><i
+                        class="icon black small ion-android-close bar-import"></i></button>
+                <div class="location-selected"> {{ vm.meetingSelected.location}}场<br>
+
+                    {{ vm.meetingSelected.date}}
+                </div>
+                <div class="btn-con">
+                    <a class="button button-block button-ey btn-margin" on-tap="vm.ok()">确认场次</a>
+                    <a class="button button-block  button-ey" on-tap="vm.cancel()">重新选择</a>
+                </div>
+                <div class="tips">
+                    终极挑战场次一经选择，不可修改，
+                    请谨慎操作哟～！
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</script>
+

@@ -1,0 +1,65 @@
+<div class="padding">
+    <table class="table table-bordered">
+        <tr>
+            <td>用户名：<input ng-model="vm.query.search_user"></td>
+        </tr>
+        <tr>
+            <td><button ng-click="vm.doQuery()">查询</button></td>
+        </tr>
+    </table>
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>用户</th>
+            <th>时间</th>
+            <th>situation</th>
+            <th>task</th>
+            <th>action</th>
+            <th>result</th>
+            <th>reflection</th>
+            <th>duration</th>
+            <th>address</th>
+            <th></th>
+            <th>操作</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td><span class="avatar avatar-sm mr5"><img ng-if="item.user.avatar" ng-src="{{item.user.avatar}}" alt=""></span>
+                <span>
+                    {{item.user.name}}
+                    [{{item.user.qy_name}}]
+                </span></td>
+            <td style="max-width: 90px">{{item.created_at | limitTo:10}}</td>
+            <td style="max-width: 230px">{{item.situation}}</td>
+            <td style="max-width: 230px">{{item.task}}</td>
+            <td style="max-width: 230px">{{item.action}}</td>
+            <td style="max-width: 230px">{{item.result}}</td>
+            <td style="max-width: 230px">{{item.reflection}}</td>
+            <td>{{item.duration}}
+                <span ng-if="item.duration_type==1">小时</span>
+                <span ng-if="item.duration_type==2">天</span>
+            </td>
+            <td style="max-width: 230px">{{item.address}}</td>
+            <td style="min-width: 90px">赞（{{item.likes.length}}）
+                <br><a href="javascript:" ng-click="vm.openComment(item)">评论（{{item.comments_count}}）</a>
+            </td>
+            <td><a class="btn btn-danger" ng-click="vm.delete(item)">删除</a></td>
+        </tr>
+    </table>
+
+    <div class="text-right mt10">
+        <uib-pagination
+                items-per-page="vm._meta.perPage"
+                boundary-links="true"
+                max-size="5"
+                ng-change="vm.pageChanged()"
+                total-items="vm._meta.totalCount"
+                ng-model="vm._meta.currentPage"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></uib-pagination>
+
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+:host{
+  position:absolute;
+  z-index:9999;
+  left:50%;
+  top:45%;
+  transform:translate3d(-50%,-50%,0);
+  .con{
+    border-radius:.5rem;
+    background:rgba(#000,.8);
+    position:relative;
+
+    top:10%;
+    color:#fff;
+    padding:15px;
+    font-size:16px;
+  }
+}

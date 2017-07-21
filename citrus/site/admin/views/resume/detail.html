@@ -1,0 +1,133 @@
+<div style="margin-bottom: 10px">
+    <a href="javascript:history.back(-1)"><button type="button" class="btn btn-default btn-sm">返回</button></a>
+</div>
+<div class="resume-detail">
+    <div class="row detail-top">
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">姓名：</div>
+                        <div class="col-sm-8">
+                            <span ng-if="!vm.edit">{{vm.resume.name}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.name"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">性别：</div>
+                        <div class="col-sm-8">
+                            <span ng-if="!vm.edit">{{vm.resume.gender == 'MALE' ? '男' : '女'}}</span>
+                            <span ng-if="vm.edit">
+                                <select ng-model="vm.resume.gender">
+                                    <option value='MALE'>男</option>
+                                    <option value='FEMALE'>女</option>
+                                </select>
+                            </span>
+                            <span ng-if="vm.edit">
+                                <select ng-model="vm.resume.degree">
+                                    <option value='MALE'>男</option>
+                                    <option value='FEMALE'>女</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">年龄:</div>
+                        <div class="col-sm-8">
+                            <span ng-if="!vm.edit&&vm.resume.age">{{vm.resume.age}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.age"></span>
+                            <span ng-if="!vm.edit" class="mr1-">{{vm.resume.degree}}</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">工作经验：</div>
+                        <div class="col-sm-8">
+                            <span ng-if="!vm.edit">{{vm.resume.work_exp}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.work_exp"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">毕业院校：</div>
+                        <div class="col-sm-8">
+                            <div ng-if="!vm.edit">
+                                {{vm.resume.edu[0].school}}
+                            </div>
+                            <div ng-if="vm.edit"><input ng-model="vm.resume.edu[0].school"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">联系电话：</div>
+                        <div class="col-sm-8">
+                            <span ng-if="!vm.edit">{{vm.resume.mobile}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.mobile"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Email：</div>
+                        <div class="col-sm-8"><span ng-if="!vm.edit">{{vm.resume.email}}</span>
+                            <span ng-if="vm.edit"><input ng-model="vm.resume.email"></span></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-sm-7">
+            <div class="panel  panel-default">
+                <div class="panel-body">
+                    <!--  <a class="btn edit btn-sm btn-default pull-right" ng-click="vm.edit=1"><span
+                              class="glyphicon glyphicon-edit"></span></a>-->
+                    <ul>
+                        <li>应聘职位：<a ng-href="#/position/{{vm.resume.position_id}}">{{vm.resume.position_name}}</a><span ng-if="vm.resume.position_status=='CLOSED'" class="red">（已关闭）</span></li>
+                        <li>投递时间：{{vm.resume.created_at}}</li>
+                        <li>简历来源：{{vm.resume.cv_source|cv_source}}</li>
+                        <li>推荐类型：<span ng-if="vm.resume.ref_type">{{vm.resume.ref_type}}</span><span ng-if="!vm.resume.ref_type">无</span></li>
+                        <li ng-if="vm.resume.ref_name">推荐人：<a ng-href="#/rec/{{vm.resume.ref_id}}">{{vm.resume.ref_name}}</a></li>
+                    </ul>
+                </div>
+                <div class="panel-footer text-right">
+                    <div class="btn-group">
+                        <a class="btn btn-default" ng-if="vm.talent" ng-click="vm.talentsPopup()">编辑人才标签</a>
+                        <a class="btn btn-default"><span ng-click="vm.talentsPopup()" ng-if="!vm.talent">加入人才库</span><span ng-click="vm.deleteTalent()" ng-if="vm.talent">移出人才库</span></a>
+                        <a class="btn btn-default " ng-if="vm.resume.file.length" ng-href="{{vm.getDlUrl()}}"> <span
+                                class="glyphicon glyphicon-download"></span> 下载简历</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-if="vm.talentInfo">
+        <div class="panel-body">
+            <div class="talents-info">
+                <span class="mr10 talents-item" ng-if="vm.talentInfo.level">
+                    <span class="hd">能力层次</span>:
+                    <span>{{vm.talentInfo.level}}</span>
+                </span>
+
+                <span class="mr10 talents-item" ng-if="vm.talentInfo.func">
+                    <span class="hd">职能类型</span>:
+                    <span>{{vm.talentInfo.func}}</span>
+                </span>
+
+                <span class="mr10 talents-item" ng-if="vm.talentInfo.remark">
+                    <span class="hd">备注</span>:
+                    <span>{{vm.talentInfo.remark}}</span>
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <ul class="preview">
+        <li ng-repeat="item in vm.files">
+            <!--  <div class="url"><a ng-href="{{item.url}}">{{item.url}}</a></div>-->
+            <div class="no-file " ng-if="!item.isAcceptType"><span class="glyphicon glyphicon-eye-close"></span>暂无预览
+            </div>
+            <div class="img" ng-if="item.isImg"><img ng-src="{{vm.getTrustedUrl(item.url)}}" alt=""/></div>
+            <iframe ng-if="item.type=='pdf'||item.type =='html'" ng-src="{{vm.getTrustedUrl(item.url).toString()}}"
+                    frameborder="0"></iframe>
+        </li>
+
+
+    </ul>
+
+</div>

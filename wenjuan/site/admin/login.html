@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录 - 问卷管理后台</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <link href="style/css/auth.css" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+
+    <img class="logo" src="images/logo.jpg" alt="">
+<div class="main">
+    <div class="panel">
+        <div class="con">
+            <p><span id="corp_name"></span> 问卷管理后台</p>
+            <p><span id="app_name"></span></p>
+            <a id="login">
+                <img src="https://res.wx.qq.com/mmocbiz/zh_CN/tmt/home/dist/img/logo_blue_b_c97f8734.png" alt="企业号登录"/>
+            </a>
+        </div>
+    </div>
+
+</div>
+</div>
+
+</body>
+<script>
+    $(function(){
+        var getJsonFromUrl = function () {
+            var query = location.search.substr(1);
+            var result = {};
+            query.split("&").forEach(function (part) {
+                var item = part.split("=");
+                result[item[0]] = decodeURIComponent(item[1]);
+            });
+            return result;
+        };
+        var _get = getJsonFromUrl();
+        if(!_get['custom']){
+
+        }
+        $.get("/api/app/common/corp?corp_id="+_get['corp_id'], function(ret){
+            $("#corp_name").text(ret['company_name']);
+            $("#app_name").text(ret['name']);
+            var callback_url, url;
+            if(ret['type'] == 2){
+                callback_url = 'http://' + location.hostname + '/api/app/user/pc-login-local?corp_id='+_get['corp_id']+'&custom='+_get['custom'];
+                url = "https://qy.weixin.qq.com/cgi-bin/loginpage?"
+                + "corp_id=" + ret['local_corpid']
+                + "&redirect_uri="
+                + callback_url
+                + "&usertype=all"
+                $('#login').attr('href', url);
+            }
+            else if(ret['type'] == 1){
+                callback_url = 'http://' + location.hostname + '/api/app/user/pc-login-remote';
+                url = "https://qy.weixin.qq.com/cgi-bin/loginpage?"
+                + "corp_id=" + ret['suite_info']['corp_id']
+                + "&redirect_uri="
+                + callback_url
+                + "&usertype=all"
+                $('#login').attr('href', url);
+            }
+        })
+    });
+</script>
+</html>

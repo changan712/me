@@ -1,0 +1,24 @@
+<div class="padding">
+    <div>
+        <a class="btn btn-info" href="#/app/valuetype/new">新建</a>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>子条目数量</th>
+            <th>最少</th>
+            <th>最多</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td><a ng-href="#/app/valuetype/info/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.values.length}}</td>
+            <td>{{item.min_length}}</td>
+            <td>{{item.max_length}}</td>
+        </tr>
+    </table>
+</div>
+

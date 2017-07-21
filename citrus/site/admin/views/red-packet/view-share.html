@@ -1,0 +1,40 @@
+<div class="stat-bar pull-right mt10 ">已发红包： <span class="orange">{{vm.data.ff_redpack_count}}</span>个，共计 <span
+        class="orange">{{vm.data.ff_total_money}}</span> 元 <a
+        ui-sref="redPacket.statistic" class="btn btn-success btn-xs ml10">返回</a></div>
+<ul class="nav nav-tabs">
+    <li role="presentation" ng-class="{'active':vm.view=='share'}"><a ui-sref="redPacket.statDetail({view:'share'})">首次转发量红包统计</a>
+    </li>
+    <li role="presentation" ng-class="{'active':vm.view=='share2'}"><a ui-sref="redPacket.statDetail({view:'share2'})">二次转发量红包统计</a>
+    </li>
+</ul>
+
+<div class="mt10">
+    <table class="table table-bordered table-striped">
+
+        <tr sorter-container>
+            <th>微信昵称</th>
+            <th sorter="redpack_count">每日首次转发红包个数</th>
+            <th sorter="money">每日首次转发红包金额</th>
+            <th sorter="created_at">每日首次转发红包获得日期</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.data.items">
+            <td>{{item.nickname}}</td>
+            <td>{{item.redpack_count}}</td>
+            <td>{{item.money}}</td>
+            <td>{{item.created_at}}</td>
+        </tr>
+
+    </table>
+    <div class="mt10 text-right">
+        <pagination ng-if="vm._meta.pageCount>1"
+                    items-per-page="vm._meta.perPage"
+                    boundary-links="true"
+                    max-size="5"
+                    ng-change="vm.pageChanged()"
+                    total-items="vm._meta.totalCount" ng-model="vm.currentPage"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                    last-text="&raquo;"></pagination>
+
+    </div>
+</div>

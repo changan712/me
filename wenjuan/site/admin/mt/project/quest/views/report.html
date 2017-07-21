@@ -1,0 +1,58 @@
+<div class="padding">
+    <h2>
+        {{vm.quest.name}}<span class="orange">【报告】</span>
+        <a class="btn btn-default" href="javascript:history.back(-1)">返回</a>
+    </h2>
+    <div>
+        <input placeholder="手机号或姓名" ng-model="vm.query.keyword" ng-keypress="vm.pressKeyword($event)">
+        <a class="btn btn-sm btn-info" ng-click="vm.loadUqList()">查询</a>
+    </div>
+    <br>
+
+    <table class="table table-bordered table-hover table-striped w1000">
+        <tr>
+            <!--<th>ID</th>-->
+            <th ng-repeat="field in vm.fields">
+                {{field.name}}
+                <span ng-if="field.sort_name">
+                <a ng-click="vm.setSort(field.sort_name,'asc')" ng-if="vm.query.sort_by!=field.sort_name" class="glyphicon glyphicon-retweet" style="color: #1fa67a" href="javascript:"></a>
+                <a ng-click="vm.setSort(field.sort_name,'desc')"  ng-if="vm.query.sort_by==field.sort_name&&vm.query.order_by=='asc'" class="glyphicon glyphicon-chevron-up" style="color: #1fa67a" href="javascript:"></a>
+                <a ng-click="vm.setSort(field.sort_name,'asc')"  ng-if="vm.query.sort_by==field.sort_name&&vm.query.order_by=='desc'" class="glyphicon glyphicon-chevron-down" style="color: #1fa67a" href="javascript:"></a>
+                </span>
+            </th>
+        </tr>
+
+        <tr ng-repeat="item in vm.uq_list">
+            <!--<td width="30">{{item.mobile_id}}</td>-->
+            <td>{{item.mobile.mobile}}</td>
+            <td>{{item.mobile.name}}</td>
+            <td>
+                <ul>
+                    <li ng-repeat="(k, v) in item.mobile.info">【{{k}}】{{v}}</li>
+                </ul>
+            </td>
+            <td>
+                <span ng-if="item.status=='init'" class="pink">未开始</span>
+                <span ng-if="item.status=='draft'" class="blue">答题中</span>
+                <span ng-if="item.status=='finish'" class="green">完成</span>
+            </td>
+            <td><span ng-class="{'red':item.score < 10}" ng-if="item.score !== null">{{item.score | number:2}}</span></td>
+            <td><span ng-if="item.cost_time">{{ Math.ceil(item.cost_time / 60) }}'</span></td>
+            <td style="max-width: 230px">{{item.start_time | limitTo: 10}}</td>
+            <td><a class="btn btn-sm btn-info" ng-click="vm.viewAnswer(item.id)">查看</a></td>
+        </tr>
+    </table>
+
+    <div class="mt10">
+        <uib-pagination
+                items-per-page="vm._meta.perPage"
+                boundary-links="true"
+                max-size="5"
+                ng-change="vm.pageChanged()"
+                total-items="vm._meta.totalCount"
+                ng-model="vm._meta.currentPage"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></uib-pagination>
+
+    </div>
+</div>

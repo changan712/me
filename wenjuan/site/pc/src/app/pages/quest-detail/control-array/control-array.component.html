@@ -1,0 +1,8 @@
+<div>
+    <md-radio-group [(ngModel)]="model">
+        <md-radio-button class="block m-v"  (change)="onRadioChange(radio)" *ngFor="let radio of  view?.options"
+                         [value]="radio.key">
+            {{radio.label}}
+        </md-radio-button>
+    </md-radio-group>
+</div>

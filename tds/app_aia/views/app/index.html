@@ -1,0 +1,77 @@
+<ion-view class="view-index" hide-nav-bar="true">
+    <ion-nav-title><h4>首页</h4></ion-nav-title>
+    <ion-nav-buttons side="right">
+
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="index-slider-box">
+            <ion-slide-box delegate-handle="slideBoxIndex" ng-if="vm.banners.length" auto-play="true"
+                           on-slide-changed="vm.slideBoxChange($index)"
+                           does-continue="true" show-pager="false">
+                <ion-slide ng-repeat="banner in vm.banners">
+                    <div class="banner"><img ng-src="{{banner.image}}" alt=""></div>
+                </ion-slide>
+            </ion-slide-box>
+            <!-- todo 解决ion-slide-box show-page bug 出此下策-->
+            <div class="slider-box-page" ng-if="vm.banners.length>1"><i ng-repeat="item in vm.banners"
+                                                                        ng-class="{'active':item.active}"></i></div>
+        </div>
+        <div class="user-top list list-sm">
+            <a class="item item-icon-right" ui-sref="public.user.index"><span
+                    class="avatar avatar-sm">  <img ng-src="{{::currentUser.avatar}}" alt=""></span>
+                <div class="main">
+                    <b> {{currentUser.name}}</b>
+                    <!--   <i class=" icon-gender {{::currentUser.gender|sex:'icon'}}"></i>-->
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </a>
+        </div>
+        <div class="mt10 sm-bd-bottom sm-bd-top relative">
+            <div class="nav">
+
+                <a ng-if="currentUser.corp.admin_id" ui-sref="app.feed.home({id:currentUser.corp.admin_id})">
+                    <img src="images/nav1.png" alt="">
+                    管理者分享
+                </a>
+                <a ui-sref="public.rank.index">
+                    <img src="images/nav2.png" alt="">
+                    排行榜
+                </a>
+
+<!--
+                <a class="nav-notice" ui-sref="public.notice.list">
+                    <img src="images/nav3.png" alt="">
+                    公告
+                    <span class="badge" ng-if="vm.noticeUnreadCount>0">{{vm.noticeUnreadCount}}</span>
+
+                </a>-->
+                <a ui-sref="public.feedback.new">
+                    <img src="images/nav4.png" alt="">
+                    反馈
+                </a>
+                <a ui-sref="public.contacts">
+                    <img src="images/nav5.png" alt="">
+                    通讯录
+                </a>
+            <!--    <a ui-sref="public.statistic.index">
+                    <img src="images/nav5.png" alt="">
+                    统计
+                </a>-->
+
+                <a class="gray">
+                    <img src="images/nav0.png" alt="">
+                    敬请期待
+                </a>
+
+            </div>
+        </div>
+        <!--   <div class="list notice list-sm sm-bd">
+               <a class="item item-icon-right" ui-sref="public.notice.detail({id:item.id})" ng-repeat="item in vm.notices">
+                   {{item.title}}
+                   <div class="gray font10">{{item.updated_at|myDate}}</div>
+                   <i class="icon ion-ios-arrow-right"></i>
+               </a>
+           </div>-->
+
+    </ion-content>
+</ion-view>

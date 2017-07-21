@@ -1,0 +1,21 @@
+<!--nav-->
+<div class="sidebar">
+    <div class="logo-con">
+        <img src="images/logo.png" alt=""/>
+    </div>
+    <ul  class="side-nav">
+        <li ng-repeat="item in vm.list" ng-class="{'active':item.active}" >
+            <a ui-sref="{{item.stateLink}}">
+                <span class="iconfont big {{item.icon}}" ></span><span translate> {{item.label}}</span>
+            </a>
+        </li>
+    </ul>
+    <div>
+        <a ng-href="#/calendar/detail">
+            <div>
+                <datepicker class="datepicker" ng-model="dt" min-date="minDate" show-weeks="false"
+                            custom-class="getDayClass(date, mode)"></datepicker>
+            </div>
+        </a>
+    </div>
+</div>

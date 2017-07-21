@@ -1,0 +1,196 @@
+<ion-view view-title="简历编辑" cache-view="false">
+    <ion-content delegate-handle="posContent" class="resume-new" overflow-scroll='{{isIOS?false:true}}'>
+        <div class="filter-title">
+            <div class="ey-hd"><span class="tit">基本信息</span></div>
+        </div>
+        <form name="formInfo" novalidate ng-submit="vm.submit(formInfo)">
+            <div class="list-info">
+                <!--info---------------------------------------------->
+                <label class="item item-input">
+                    <span class="input-label text-right">简历名称<sup
+                            class="red">*</sup>：</span>
+                    <input type="text" class="input" error-label="简历名称" required name="resumeName" maxlength="10"
+                           ng-model="vm.modInfo.cv_name"
+                           ng-class="{'error':(formInfo.$submitted&&formInfo.resumeName.$error.required)}">
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label text-right">姓名<sup
+                            class="red">*</sup>：</span>
+                    <input type="text" class="input" error-label="姓名" placeholder="请输入中文名" required name="name" maxlength="10"
+                           ng-pattern="/[\u4e00-\u9fa5]/" ng-model="vm.modInfo.name"
+                           ng-class="{'error':((formInfo.$submitted&&formInfo.name.$error.required)||formInfo.name.$error.maxlength||formInfo.name.$error.pattern)}">
+                </label>
+                <label class="item radio">
+                    <span class=" radio-label">性别<sup
+                            class="red">*</sup>：</span>
+                    <span class="r">
+                    <label class="gender-radio"><input type="radio"  error-label="性别" error-label-type="selector" value="MALE" ng-model="vm.modInfo.gender"
+                                                       name="gender"> 男</label>
+                    <label><input ng-model="vm.modInfo.gender"  error-label="性别" error-label-type="selector" value="FEMALE" type="radio"
+                                  name="gender">
+                        女</label>
+                        </span>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label text-right">电话<sup
+                            class="red">*</sup>：</span>
+                    <input type="text" class="input" required ng-pattern="/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/"  error-label="电话" name="mobile" ng-model="vm.modInfo.mobile"
+                           ng-class="{'error':(formInfo.$submitted&&formInfo.mobile.$error.required)||formInfo.mobile.$error.pattern}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label text-right">邮箱<sup
+                            class="red">*</sup>：</span>
+                    <input type="email" class="input"  error-label="邮箱" required name="email"
+                           ng-pattern="/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/" ng-model="vm.modInfo.email"
+                           ng-class="{'error':formInfo.email.$error.pattern||(formInfo.$submitted&&formInfo.email.$error.required)}">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label text-right">证件类型<sup class="red">*</sup>：</span>
+                        <div style="display:block;flex: 1 220px;-webkit-box-flex: 1;" ng-init="vm.modInfo.cType =1">
+                            <select ng-model="vm.modInfo.cType" name="cType" required error-label="证件类型" error-label-type="selector"
+                                    ng-class="{'error':formInfo.$submitted&&formInfo.cType.$error.required}"
+                                    ng-options=" item.code as item.label for item in vm.view.cType"
+                                    class="input select-width"
+                                    style="width:100%;height:34px;">
+                            </select></div>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label text-right">证件号<sup
+                            class="red">*</sup>：</span>
+                    <input type="text" class="input"  error-label="身份证号" ng-if="vm.modInfo.cType == 1" name="idCard"
+                           ng-pattern="vm.idCardReg"
+                           placeholder="请输入身份证号"
+                           ng-model="vm.modInfo.identification" required
+                           ng-class="{'error':formInfo.idCard.$error.pattern||(formInfo.$submitted&&formInfo.idCard.$error.required)}">
+                    <input type="text" class="input"  error-label="证件号" ng-if="vm.modInfo.cType != 1" name="idCard"
+
+                           ng-model="vm.modInfo.identification" required
+                           ng-class="{'error':formInfo.idCard.$error.pattern||(formInfo.$submitted&&formInfo.idCard.$error.required)}">
+                </label>
+
+                <!--edu---------------------------------------------->
+                <div class="filter-title">
+                    <div class="ey-hd"><span class="tit">教育经历</span></div>
+                </div>
+
+                <div class="list-edu">
+                    <!--<label class="item item-input">
+                        <span class="input-label text-right">学校<sup class="red">*</sup>：</span>
+                        <input type="text" class="input" name="school" ng-model="vm.modEdu.school" required
+                               ng-class="{'error':formInfo.$submitted&&formInfo.school.$error.required}">
+                    </label>-->
+                    <label class="item item-input">
+                        <span class="input-label text-right">学校<sup class="red">*</sup>：</span>
+                        <span style="display:block;flex: 1 220px;-webkit-box-flex: 1;">
+                            <select ng-model="vm.modEdu.schoolArray" error-label="学校"  error-label-type="selector"
+                                    name="school" required
+                                    ng-class="{'error':formInfo.$submitted&&formInfo.school.$error.required,'ios':isIOS}"
+                                    ng-options="s.name group by s.province  for s in vm.view.schools|orderBy:['en_name']"
+                                    class="input select-width"
+                                    ng-change="vm.isShow()"
+                                    style="width:100%;height:34px;">
+                            </select></span>
+
+                    </label>
+                    <label class="item item-input" ng-if="vm.isShowInput">
+                        <span class="input-label text-right">其它学校<sup
+                                class="red">*</sup>：</span> <!--ng-pattern="/[\u4e00-\u9fa5]/"-->
+                        <input type="text" class="input" placeholder="海外院校请写英文完整校名"  error-label="其它学校"
+                               name="inputSchool" ng-model="vm.modEdu.schoolInput" required
+                               ng-model="vm.modEdu.major"
+                               ng-class="{'error':(formInfo.$submitted&&formInfo.inputSchool.$error.required)||formInfo.inputSchool.$error.pattern}">
+
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label text-right">专业<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" class="input" name="major"  error-label="专业"  required ng-model="vm.modEdu.major"
+                               ng-class="{'error':formInfo.$submitted&&formInfo.major.$error.required}">
+
+                    </label>
+
+                    <label class="item item-input">
+                        <span class="input-label text-right">毕业时间<sup class="red">*</sup>：</span>
+                        <input ng-if="isIOS" type="date" class="date input" name="graduationTime"
+                               error-label="毕业时间" error-label-type="selector"
+                               ng-model="vm.modEdu.graduationTime"
+                               required
+                               placeholder="点击选择时间" style="background:white;padding-left:5px;">
+                        <!-- <ionic-datepicker ng-if="!isIOS" ng-click="vm.setLoc('edu','graduationTime')"
+                                           input-obj="vm.datepickerObjectPopup">
+                             <input type="text" readonly  class="date input" ng-model="vm.modEdu.graduationTime |date:'yyyy-MM-dd'">
+                         </ionic-datepicker>-->
+
+                        <input type="text" ng-if="!isIOS" ionic-datepicker input-obj="vm.datepickerObjectPopup"
+                               ng-click="vm.setLoc('edu','graduationTime')" readonly class="date input"
+                               error-label="毕业时间" error-label-type="selector"
+                               ng-model="vm.modEdu.graduationTime |date:'yyyy-MM-dd'">
+
+                    </label>
+
+                    <label class="item item-input">
+                        <span class="input-label text-right">学历<sup class="red">*</sup>：</span>
+                        <span style="display:block;flex: 1 220px;-webkit-box-flex: 1;">
+                            <select ng-model="vm.modEdu.degree" name="degree" required   error-label="学历" error-label-type="selector"
+                                    ng-class="{'error':formInfo.$submitted&&formInfo.degree.$error.required}"
+                                    ng-options=" s for s in vm.view.edu"
+                                    class="input select-width"
+                                    style="width:100%;height:34px;">
+                            </select></span>
+                    </label>
+                    <!-- <label class="item item-input">
+                     <span class="input-label text-right">学历<sup class="red">*</sup>：
+                     </span>
+                         <input type="text" class="input" placeholder="如硕士、本科、专科"
+                                ng-class="{'error':formInfo.$submitted&&formInfo.degree.$error.required}" required
+                                name="degree"
+                                ng-model="vm.modEdu.degree">
+                     </label>-->
+
+                    <label class="item item-input">
+                    <span class="input-label text-right">GPA<sup
+                            class="red">*</sup>：</span>
+                        <input type="text" class="input" required name="gpa"
+                               ng-model="vm.modEdu.gpa" ng-pattern="vm.verifyGpa"
+                               ng-class="{'error':formInfo.$submitted&&formInfo.gpa.$error.required||formInfo.gpa.$error.pattern}"
+                               placeholder="如3.12/4.0 ">
+                    </label>
+                </div>
+            </div>
+            <!--attachment---------------------------------------------->
+            <div class="accessory" ng-if="vm.modFile.length">
+                <dl style="margin-bottom:0;">
+                    <dd ng-repeat="item in vm.modFile" style="margin-bottom:10px;">
+                        <i class="icon ion-close-circled pull-right bigger yellow-ey"
+                           on-tap="vm.fileDelete($index)"></i>
+                        <span>已传附件：{{item.name||item.info.name}}</span>
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <label class="item" ng-class="{'error':(formFile.$submitted&&!vm.modFile.data)}"
+                       style="padding:22px 58px;">
+                            <span class="btn btn-upload button-ey">上传简历附件
+                                <input type="file" id="file" file-info="vm.modFile.info"
+                                       reader-error="vm.readerError(msg)"
+
+                                       reader-success="vm.readerSuccess(fileData)"
+                                       fileread="vm.modFile.data" file-type="vm.modFile.type"
+                                       class="file"/>
+                            </span>
+                </label>
+            </div>
+            <p class="yellow-ey text-center padding">请上传小于5MB的pdf、jpg'、gif、png、jpeg、doc、docx文件</p>
+            <div class="footer">
+                <button class="button button-block button-ey">提交</button>
+                <a class="button button-block button-ey" ng-click="vm.cancel()">取消</a>
+            </div>
+            <div ng-if="isAndroid">
+                <!--todo 太恶心的写法 暂时兼容 android-->
+                <br> <br> <br> <br>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
+

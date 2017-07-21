@@ -1,0 +1,12 @@
+<div class="top-bar"  id="top-bar">
+    <div class="wel">
+        <img class="avatar ng-scope" ng-if="vm.user.avatar" ng-src="{{vm.user.avatar}}">
+         {{vm.user.name}}
+        <a class="btn btn-default btn-logout" ng-click="vm.logout()">退出</a>
+        <div class="pull-right form-inline">
+            当前客户：
+            <select ng-model="root.default_agent_id" class="form-control inline" ng-change="vm.setDefaultAgentId()" ng-options="c.id as c.name for c in root.agent_list">
+            </select>
+        </div>
+    </div>
+</div>

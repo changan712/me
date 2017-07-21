@@ -1,0 +1,207 @@
+<ion-view class="questionnaire ">
+    <ion-content overflow-scroll='{{isIOS?false:true}}'>
+        <div class="filter-title">
+            <div class="ey-hd"><span class="tit">甄选补充信息</span></div>
+        </div>
+        <form novalidate name="form" ng-submit="vm.submit(form)">
+            <ul class="list">
+                <!--   <li class="item">
+                       <div class="text-center white question">请选择你希望工作的城市：</div>
+                       <div>
+
+                           <div class="ey-selector" ng-class="{'border-select':form.city.focus}"> {{vm.mod.city.city}}
+                               <select ng-model="vm.mod.city" name="city" ng-change="vm.cityChange(vm.mod.city)"
+                                       ng-focus="form.city.focus= true" ng-blur="form.city.focus= false"
+                                       ng-options="c.city for c in vm.view.cities">
+                               </select>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="item">
+                       <div class="text-center white question">请选择你希望工作的部门：</div>
+                       <div>
+                           <div class="ey-selector" ng-class="{'border-select':form.department.focus}">
+                               {{vm.mod.department}}
+                               <select ng-model="vm.mod.department" name="department"
+                                       ng-options="d for d in vm.view.departments" ng-focus="form.department.focus= true"
+                                       ng-blur="form.department.focus= false">
+                               </select>
+                           </div>
+                       </div>
+                   </li>-->
+<!--                <li class="item">
+                    <div class="text-center white question">对工作城市，你的第二选择是:</div>
+                    <div>
+
+                        <div class="ey-selector" ng-class="{'border-select':form.city2.focus}"> {{vm.mod.city2.city}}
+                            <select ng-model="vm.mod.city2" name="city2" ng-change="vm.cityChange2(vm.mod.city2)"
+                                    ng-focus="form.city2.focus= true" ng-blur="form.city2.focus= false"
+                                    ng-options="c.city for c in vm.view.cities">
+                            </select>
+                        </div>
+                    </div>
+                </li>-->
+                <!--<li class="item">
+
+                    <div class="text-center white question">对工作部门，你的第二选择是：</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.department2.focus}">
+                            {{vm.mod.department2}}
+                            <select ng-model="vm.mod.department2" name="department2"
+                                    ng-options="d for d in vm.view.departments2" ng-focus="form.department2.focus= true"
+                                    ng-blur="form.department2. focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>-->
+                <li class="item">
+                    <div class="text-center white question">你曾经获得过最高级别的奖学金？？</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.scholarship.focus}">
+                            {{vm.mod.scholarship}}
+                            <select ng-model="vm.mod.scholarship" name="scholarship"
+                                    ng-options="city for city in vm.view.scholarship"
+                                    ng-focus="form.scholarship.focus= true" ng-blur="form.scholarship.focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="text-center white question">请问你的英语水平？</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.english.focus}"> {{vm.mod.english}}
+                            <select ng-model="vm.mod.english" name="english"
+                                    ng-options="city for city in vm.view.english" ng-focus="form.english.focus= true"
+                                    ng-blur="form.english.focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="text-center white question">你参加过其它类型的英语考试吗？</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.other.focus}"> {{vm.mod.otherEnglish}}
+                            <select ng-model="vm.mod.otherEnglish" name="other"
+                                    ng-options="city for city in vm.view.otherEnglish" ng-focus="form.other.focus= true"
+                                    ng-blur="form.other.focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="text-center white question">在大学期间你有担任过一下职务吗？（请选择担任过的最高职务）</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.duty.focus}"> {{vm.mod.duty}}
+                            <select ng-model="vm.mod.duty" name="duty" ng-options="city for city in vm.view.duty"
+                                    ng-focus="form.duty.focus= true" ng-blur="form.duty.focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>
+                <li class="item " ng-if="vm.mod.duty == '其它'">
+                    <div>
+                        <input type="text" ng-model="vm.mod.other_duty" name="other_duty" error-label="其它职务" required
+                               placeholder="请填写其它职务" class="form-control "
+                               ng-class="{'error':form.$submitted&&form.other_duty.$error.required}">
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="text-center white question">请问你曾在什么类型的公司有过实习经历？</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.practice.focus}"> {{vm.mod.practice}}
+                            <select ng-model="vm.mod.practice" name="practice"
+                                    ng-options="city for city in vm.view.practice" ng-focus="form.practice.focus= true"
+                                    ng-blur="form.practice.focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="text-center white question">你是否参加过中国注册会计师考试？ 如果是，目前通过了多少门？（用0 - 7表示）</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.cicpa.focus}"> {{vm.mod.CICPA}}
+                            <select ng-model="vm.mod.CICPA" name="cicpa" ng-options="item for item in vm.view.CICPA"
+                                    ng-focus="form.cicpa.focus= true" ng-blur="form.cicpa.focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="text-center white question">你是否参加过ACCA考试？ 如果是，目前通过了多少门？（用0 - 14表示）</div>
+                    <div>
+                        <div class="ey-selector" ng-class="{'border-select':form.acca.focus}"> {{vm.mod.ACCA}}
+                            <select ng-model="vm.mod.ACCA" name="acca" ng-options="item for item in vm.view.ACCA"
+                                    ng-focus="form.acca.focus= true" ng-blur="form.acca.focus= false">
+                            </select>
+                        </div>
+                    </div>
+                </li>
+                <!--<li class="item">-->
+                <!--<div class="text-center white question">请问你来自下列哪所学校？</div>-->
+                <!--<div>-->
+                <!--<div class="ey-selector" ng-class="{'border-select':form.school.focus}"> {{vm.mod.schools.name}}-->
+                <!--<select ng-model="vm.mod.schools" name="school"-->
+                <!--ng-options="s.name group by s.province  for s in vm.view.schools"-->
+                <!--ng-focus="form.school.focus= true" ng-blur="form.school.focus= false">-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</li>-->
+                <li class="item item-textarea">
+                    <div class="text-center white question">请列举你获得的其他资格证书？（例如CTA, CFA等）</div>
+                    <div>
+                        <textarea row="8" name="certificate" ng-model="vm.mod.certificate" class="question-textarea">
+                        </textarea>
+                    </div>
+                </li>
+                <li class="item item-textarea">
+                    <div class="text-center white question">在上述资格考试中，你通过了多少门？（请用数字表示）</div>
+                    <div>
+                        <input type="number" min="1" ng-model="vm.mod.q_num" name="q_num" error-label="资格考试通过数量"
+                               placeholder="请填写数字" class="form-control "
+                               ng-class="{'error':(form.$submitted&&form.q_num.$error.required)||form.q_num.$error.number}">
+                    </div>
+                </li>
+
+
+                <li class="item">
+                    <div class="text-center white question">SLP终极挑战场次选择</div>
+                    <div class="gray mb5">终极挑战场次一经选择，不可修改，请谨慎操作哟～！</div>
+                    <div ng-if="vm.isEdit" class="ey-selector"  ng-click="vm.meetingsClick()">
+                        {{vm.mod.meeting.location}} {{vm.mod.meeting.date}}
+                    </div>
+                    <div ng-if="!vm.isEdit">
+
+                        <div class="ey-selector"
+                             ng-class="{'border-select':form.meeting.focus,'error':form.$submitted&&form.meeting.$error.required}">
+                            {{vm.mod.meeting.location}} {{vm.mod.meeting.date}}
+                            <select ng-model="vm.mod.meeting" error-label="SLP终极挑战场次" error-label-type="selector"
+                                    required name="meeting"
+                                    ng-focus="form.meeting.focus= true" ng-blur="form.meeting.focus= false">
+
+                                <option value="{{item.id}}" ng-repeat="item in vm.view.meetings">
+                                    {{item.location}}
+                                    {{item.date}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+                <li class="item">
+                    <button class="button button-ey button-block">提交</button>
+                </li>
+            </ul>
+            <br>
+            <br>
+            <br>
+
+        </form>
+
+    </ion-content>
+</ion-view>
+

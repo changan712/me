@@ -1,0 +1,20 @@
+<div class="padding">
+    <div>
+        <a href="https://www.jasondavies.com/wordcloud/" target="_blank">词云</a>
+    </div>
+    <div class="well">
+        {{vm.text}}
+    </div>
+    <table class="table">
+        <tr>
+            <th>高频词</th>
+            <th>次数</th>
+            <th>比例</th>
+        </tr>
+        <tr ng-repeat="item in vm.items | limitTo: 20">
+            <td>{{item.word}}</td>
+            <td>{{item.count}}</td>
+            <td>{{item.ratio}}</td>
+        </tr>
+    </table>
+</div>

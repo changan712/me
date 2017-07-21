@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title ng-bind="title"></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel='icon' href='images/favicon.png' type='image/png'/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/um/themes/default/css/umeditor.min.css">
+    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">-->
+    <link rel="stylesheet" href="bower_components/ui-select/dist/select.css">
+    <link rel="stylesheet" href="style/main.css">
+
+</head>
+<body ng-controller="appCtrl">
+<!--[if lte IE 8]>
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+    </button>
+   您的ie浏览器版本过低,请升级ie浏览器,或使用chrome、firefox、safari、opera浏览此网页。
+</div>
+<![endif]-->
+
+<div class="alert-wrap " ng-if="vm.alerts.length" ng-class="{' show':vm.alerts.length}" style="display: none;">
+    <alert ng-repeat="alert in vm.alerts" type="{{alert.type}}" close="alert.close()"><span
+            class="glyphicon glyphicon-info-sign"> </span> {{alert.msg}}
+    </alert>
+</div>
+<div class="wrap" ng-if="user" ng-show="user">
+    <ng-include src="'views/com/nav.html'"></ng-include>
+    <div class="main">
+        <ng-include src="'views/com/top-bar.html'"></ng-include>
+        <search-more on-submit="vm.onSearchMoreSubmit()" is-show="vm.searchMoreShow"></search-more>
+        <!--ui-view-->
+        <div class="view {{page}} clearfix" ui-view></div>
+        <ng-include src="'views/com/footer.html'"></ng-include>
+    </div>
+</div>
+
+<script src="bower_components/requirejs/require.js" data-main="scripts/main"></script>
+
+</body>
+</html>

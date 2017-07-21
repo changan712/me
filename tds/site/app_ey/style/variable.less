@@ -1,0 +1,143 @@
+@error: #bb200f;
+
+@green: green;
+
+@green2: #77bf6e;
+
+@gray: #a5a5a5;
+
+@white: #fff;
+
+@blue : #1562a9;
+
+@blue2: #56a0d8;
+
+@blue3: #2395ff;
+
+@black: #000;
+
+@black-ey:#333;
+
+@orange: #ff7e00;
+
+@yellow: yellow;
+
+@yellow-ey: #fee533;
+
+@red: red;
+
+@darkred: darkred;
+
+@brick-red: #d9524e;
+
+@color-txt: #3d5361;
+
+.bg-ey{
+  background-image:linear-gradient(#808080,#333);
+  background: -webkit-linear-gradient(#808080, #333);
+}
+
+
+
+.arrow-down(@color:@black) {
+
+  color: @color;
+  font-size: 12px;
+  transform: scale(.8);
+}
+
+.border-radius(@deg:50%) {
+  border-radius: @deg;
+}
+
+.box-shadow(@x:0,@y:0,@blur:4px,@offSet:0,@color:rgba(0,0,0,.1)) {
+
+  -webkit-box-shadow: @x @y @blur @offSet @color;
+  -moz-box-shadow: @x @y @blur @offSet @color;
+  -o-box-shadow: @x @y @blur @offSet @color;
+  -ms-box-shadow: @x @y @blur @offSet @color;
+  box-shadow: @x @y @blur @offSet @color;
+}
+
+.scale(@x,@y,@z:1){
+  -webkit-transform: scale3d(@x,@x,@z);
+  transform: scale3d(@x,@x,@z);
+}
+
+.border(@width:1px,@color:#dcdcdc) {
+  border: @width solid @color
+}
+
+
+.font-song {
+  font-family: tahoma, arial, sans-serif;
+}
+
+.font-yahei {
+  font-family: "microsoft yahei", arial, Helvetica, sans-serif;
+}
+
+.blue {
+  color: @blue;
+}
+
+.blue2 {
+  color: @blue2;
+}
+
+.blue3 {
+  color: @blue3;
+}
+
+.gray {
+  color: @gray;
+}
+
+.white {
+  color: @white;
+}
+
+.black {
+  color: @black;
+}
+
+.orange {
+  color: @orange;
+}
+
+.yellow {
+  color: @yellow;
+}
+
+.yellow-ey {
+  color: @yellow-ey;
+}
+
+.red {
+  color: @red;
+}
+
+.darkred {
+  color: @darkred;
+}
+
+.brick-red {
+  color: @brick-red;
+}
+
+.color-txt {
+  color: @color-txt;
+}
+
+.blue2 {
+  color: @blue2;
+}
+
+.green {
+  color: @green;
+}
+
+.green2 {
+  color: @green2;
+
+}

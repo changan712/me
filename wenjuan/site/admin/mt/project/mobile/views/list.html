@@ -1,0 +1,43 @@
+<div class="padding">
+    <div>
+        <a class="btn btn-info" ng-click="vm.newQuest()">新问卷</a>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>问卷名</th>
+            <th>描述</th>
+            <th>类型</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td style="max-width: 200px">{{item.info}}</td>
+            <td style="max-width: 230px">{{item.type}}</td>
+            <td style="max-width: 230px">{{item.created_at | limitTo:10}}</td>
+            <td style="max-width: 60px">
+                <a class="btn btn-sm btn-info" ng-click="vm.editQuest(item)">编辑</a>
+                <a class="btn btn-sm btn-info">详情</a>
+                <a class="btn btn-sm btn-danger" ng-click="vm.deleteQuest(item)">删除</a>
+            </td>
+        </tr>
+    </table>
+
+    <div class="text-right mt10">
+        <uib-pagination
+                items-per-page="vm._meta.perPage"
+                boundary-links="true"
+                max-size="5"
+                ng-change="vm.pageChanged()"
+                total-items="vm._meta.totalCount"
+                ng-model="vm._meta.currentPage"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                last-text="&raquo;"></uib-pagination>
+
+    </div>
+</div>
+

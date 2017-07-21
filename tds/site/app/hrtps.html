@@ -1,0 +1,39 @@
+<html>
+<head>
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script type="text/javascript" src="../app/company/js"></script>
+    <script>
+        $.get('/HRTPS/app/wx/info?url=' + encodeURIComponent(location.href), function(data){
+//            console.log(data);
+            var conf_data = data;
+            var state = encodeURIComponent(location.hash.replace(/#/, ''));
+            var redirectUrl = encodeURIComponent(location.origin + '/' + global_company.url_name + '/app/wx/hrtps');
+            var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?' +
+                    'appid=' + conf_data.appid +
+                    '&redirect_uri=' + redirectUrl +
+                    '&response_type=code' +
+                    '&scope=snsapi_userinfo' +
+                    '&state=' + state +
+                    '#wechat_redirect';
+            if(conf_data.component_appid){
+                url = 'https://open.weixin.qq.com/connect/oauth2/authorize?' +
+                'appid=' + conf_data.appid +
+                '&redirect_uri=' + redirectUrl +
+                '&response_type=code' +
+                '&scope=snsapi_userinfo' +
+                '&state=' + state +
+                '&component_appid=' + conf_data.component_appid +
+                '#wechat_redirect';
+            }
+//            console.log(url);
+            location.href = url;
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

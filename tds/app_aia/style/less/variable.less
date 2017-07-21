@@ -1,0 +1,262 @@
+@error: #bb200f;
+
+@theme: #d21045;
+
+@theme2: #9b9b9b;
+
+@green: green;
+
+@green2: #77bf6e;
+
+@gray: #a5a5a5;
+
+@white: #fff;
+
+@blue: #1562a9;
+
+@blue2: #56a0d8;
+
+@blue3: #2395ff;
+
+@black: #000;
+
+@black-ey: #333;
+
+@orange: #ff7e00;
+
+@yellow: yellow;
+
+@yellow-ey: #fee533;
+
+@red: red;
+
+@darkred: darkred;
+
+@brick-red: #d9524e;
+
+@color-txt: #333;
+
+@border-color: #ddd;
+
+@app-positive: #10307d;
+@app-calm: #11a5fb;
+@app-balanced: #1fa67a;
+@app-theme: @theme;
+@app-theme2: @theme2;
+
+.arrow-down(@color:@black) {
+
+  color: @color;
+  font-size: 12px;
+  transform: scale(.8);
+}
+
+.border-radius(@deg:50%) {
+  border-radius: @deg;
+}
+
+.box-shadow(@x:0,@y:0,@blur:4px,@offSet:0,@color:rgba(0,0,0,.1)) {
+
+  -webkit-box-shadow: @x @y @blur @offSet @color;
+  -moz-box-shadow: @x @y @blur @offSet @color;
+  -o-box-shadow: @x @y @blur @offSet @color;
+  -ms-box-shadow: @x @y @blur @offSet @color;
+  box-shadow: @x @y @blur @offSet @color;
+}
+
+.scale(@x:1,@y:1,@z:1) {
+  -webkit-transform: scale(@x, @y);
+  transform: scale(@x, @y);
+}
+
+.border(@width:1px,@color:#dcdcdc) {
+  border: @width solid @color
+}
+
+.color-text {
+  color: @color-txt !important;
+}
+
+.font-song {
+  font-family: tahoma, arial, sans-serif;
+}
+
+.font-yahei {
+  font-family: "microsoft yahei", arial, Helvetica, sans-serif;
+}
+
+.font12 {
+  font-size: 12px !important;
+  * {
+    font-size: 12px !important;
+  }
+}
+
+.font14 {
+  font-size: 14px !important;
+  * {
+    font-size: 14px !important;
+  }
+}
+
+.blue {
+  color: @blue;
+}
+.bg-blue {
+  background-color: @blue;
+}
+
+.blue2 {
+  color: dodgerblue;
+}
+
+.blue3 {
+  color: @blue3;
+}
+
+.gray {
+  color: @gray;
+}
+
+.white {
+  color: @white;
+}
+
+.black {
+  color: @black;
+}
+
+.orange {
+  color: @orange;
+}
+
+.yellow {
+  color: @yellow;
+}
+
+.yellow-ey {
+  color: @yellow-ey;
+}
+
+.red {
+  color: @red;
+}
+
+.darkred {
+  color: @darkred;
+}
+
+.brick-red {
+  color: @brick-red;
+}
+
+.color-txt {
+  color: @color-txt!important;
+}
+
+.pink {
+  color: #ff5dcd;
+}
+.bg-pink {
+  background-color: #ff5dcd;
+}
+
+.blue2 {
+  color: @blue2;
+}
+
+.green {
+  color: @green;
+}
+
+.green2 {
+  color: @green2;
+
+}
+
+.color-positive {
+  color: @app-positive !important;
+}
+
+.color-calm {
+  color: @app-calm !important;
+}
+
+.color-balanced {
+  color: @app-balanced !important;
+}
+
+.color-theme {
+  color: @theme !important;
+}
+
+.color-theme2 {
+  color: @theme2 !important;
+}
+
+.bg-positive {
+  background: @app-positive !important;
+  &.activated {
+    background: darken(@app-positive, 5%) !important;
+  }
+}
+
+.bg-calm {
+  background: @app-calm !important;
+  &.activated {
+    background: darken(@app-calm, 5%) !important;
+  }
+}
+
+.bg-balanced {
+  background: @app-balanced !important;
+  &.activated {
+    background: darken(@app-balanced, 5%) !important;
+  }
+}
+
+.bg-theme {
+  background: @app-theme !important;
+  &.activated {
+    background: darken(@app-theme, 5%) !important;
+  }
+}
+
+.bg-theme2 {
+  background: @app-theme2 !important;
+  &.activated {
+    background: darken(@app-theme2, 5%) !important;
+  }
+}
+
+.checkbox-theme {
+  .checkbox-icon:before {
+    border-color: darken(@theme, 5%);
+  }
+  input:checked +
+  .checkbox-icon {
+    &:before {
+      .bg-theme;
+      border-color: darken(@theme, 5%);
+    }
+  }
+}
+
+.item-checkbox-wrap {
+  &.has-right-icon {
+    .button-right-icon {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      z-index: 2;
+      .icon {
+
+        font-size: 24px;
+      }
+    }
+
+    label {
+
+    }
+  }
+}

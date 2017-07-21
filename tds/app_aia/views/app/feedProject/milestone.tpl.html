@@ -1,0 +1,21 @@
+<!--ng-if="item.content" -->
+<div class="list list-sm sm-bd">
+    <div class="item  item-text-wrap" ng-if="item.content" ng-class="{'item-stable':!vm.data.has_scored}" ng-repeat-start="item in vm.data.values">
+        {{item.name|milestone}}
+        <span class="gray">
+            {{item.content}}
+             <span ng-if="item.name!='time'&&item.name!='other'"> %</span>
+            <span ng-switch="item.type">
+                <span ng-switch-when="0">小时</span>
+                <span ng-switch-when="1">天</span>
+            </span>
+         </span>
+
+
+        <span class="label"><i class="ion-ios-star"></i> {{item.score_average}}</span>
+    </div>
+    <div ng-if="!vm.data.has_scored&&item.content" class="item  mb5" ng-repeat-end="" ng-class="{'error':form.$submitted&&form[item.name].$invalid}">
+        <score ng-model="item.score" name="{{item.name}}" disabled="vm.data.has_scored" required=""></score>
+    </div>
+
+</div>

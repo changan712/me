@@ -1,0 +1,31 @@
+<ion-view class="view-message">
+    <ion-header-bar class=" ">
+
+        <h4 class="title"></h4>
+        <div class="buttons">
+            <a class="button " back back-default-state="app.feed.list"> <i
+                    class="icon ion-android-close"></i></a>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="type-select">
+            <h4>请选择分享内容</h4>
+            <div class="type-items-con">
+                <span class="type-items" ng-click="vm.choose('feed')">
+                    <i class="ion-ios-person-outline"></i>
+                    <span class="text">个人</span>
+                </span>
+
+
+                <span class="type-items" ng-click="vm.choose('feedProject')"><i
+                        class="ion-ios-navigate-outline"></i>
+                  <span class="text">项目</span>
+                </span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+
+

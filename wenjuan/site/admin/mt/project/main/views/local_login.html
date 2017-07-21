@@ -1,0 +1,78 @@
+<div class="alert-wrap " ng-if="vm.alerts.length" ng-class="{' show':vm.alerts.length}" style="display: none;">
+    <uib-alert ng-repeat="alert in vm.alerts" type="{{alert.type}}" close="alert.close()"><span
+            class="glyphicon glyphicon-info-sign"> </span> {{alert.msg}}
+    </uib-alert>
+</div>
+<style>
+    .container-fluid{
+        height:100%;
+        background-image:-moz-linear-gradient(#d0dff5,#fefefe);
+        background-image:-webkit-linear-gradient(#d0dff5,#fefefe);
+        background-image:-o-linear-gradient(#d0dff5,#fefefe);
+        background-image:-ms-linear-gradient(#d0dff5,#fefefe);
+        background-image:linear-gradient(#d0dff5,#fefefe);
+
+    }
+
+    .form-wrap{
+        background:url(images/banner-login.png) no-repeat center 60px ;
+        padding:285px 0 0 ;
+
+    }
+
+    .form-signin{
+        max-width:500px;
+        padding:30px 25px;
+        margin:0 auto;
+        background:#fff;
+        border-radius:5px;
+    }
+
+    .form-signin-heading{
+        text-align:center;
+        margin:0 0 30px;
+        font-size:25px;
+    }
+
+    .form-signin .checkbox{
+        font-weight:normal;
+    }
+
+    .form-signin .form-control{
+        position:relative;
+        height:auto;
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+        padding:12px 10px;
+        box-shadow:none;
+        border-radius:3px;
+        background:#f9f9f9;
+        border-color:#ddd;
+        font-size:16px;
+        margin-bottom:15px;
+
+    }
+
+    .btn-submit{
+        margin-top:30px;
+        border-radius:23px;
+        background:#4a90e2;
+    }
+
+
+</style>
+<div class=" container-fluid ">
+   <div class="form-wrap">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">面试系统-管理员后台</h2>
+        <label class="sr-only">用户名</label>
+        <input type="text" ng-model="vm.req.name" class="form-control" placeholder="用户名" required autofocus>
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" id="inputPassword" ng-model="vm.req.password" class="form-control" placeholder="密码"
+               required>
+        <button class="btn btn-lg btn-submit btn-primary btn-block" ng-click="vm.login()">登录</button>
+    </form>
+   </div>
+
+</div> <!-- /container -->

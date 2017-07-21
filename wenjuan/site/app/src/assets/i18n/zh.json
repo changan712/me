@@ -1,0 +1,80 @@
+{
+  "TITLE":"测评中心",
+  "PAGES": {
+    "CHECK_MOBILE": {
+      "TITLE": "候选人登录",
+      "VICE_TITLE": "请用您收到测试邀请的手机号登陆",
+      "PLACEHOLDER_TEL": "请输入手机号",
+      "PLACEHOLDER_CODE": "请输入验证码",
+      "BTN_CODE": "发送验证码",
+      "BTN_CODE1": "验证码已发送",
+      "SUBMIT": "登录"
+    },
+    "TUTORIAL": {
+      "CONTENT": "欢迎进入 <strong>{{company_name}}</strong> 在线测试系统",
+      "CONTENT3": "请在<span class=\"primary f24\">{{time_end}}</span> 前开始答题",
+      "CONTENT1": "本次测试时间为 <strong class=\"f24 primary\">{{time_limit}}分钟</strong><br>请<strong>提前5分钟提交</strong> 避免超时提交失败",
+      "CONTENT2": " <strong class=\"f24 primary\">语音识别</strong> 功能辅助输入<br>您可以 <strong>保留语音记录</strong> 让HR听到你的声音",
+      "BTN_CONTINUE": "继续"
+    },
+    "INDEX": {
+      "CONTENT": "对不起，您暂时无可参加的测试：）",
+      "CONTENT1": "每位候选人仅 <strong class=\"primary f24\">1</strong> 次测试机会，<br>开始后 <strong>请勿中途离开问卷或退出微信</strong>",
+      "CONTENT2": "对不起，您的问卷已经过期或超时，感谢参与！",
+      "BTN_START": "开始测试",
+      "BTN_RETRY": "重新申请",
+      "BTN_HELP": "帮助",
+      "UA": {
+        "TITLE_REDO_CONFIRM": "确认",
+        "BTN_REDO_CONFIRM_OK": "申请重新测评",
+        "TIP_REDO": "重新申请成功，请等待通知！"
+      }
+    },
+    "QUEST_DETAIL": {
+      "BTN_SUBMIT": "提交",
+      "BTN_PREV": "上一题",
+      "BTN_NEXT": "下一题",
+      "UA": {
+        "TITLE_CONFIRM_CHOICE":"选择问题",
+        "TIP_CD_WARNING": "该测评即将超时，请及时提交!",
+        "TIP_SUCCESS": "提交成功！",
+        "TIP_INVALID": "请确认填写正确"
+      }
+    },
+    "SUCCESS": {
+      "CONTENT": "<strong>恭喜您完成测试！</span>",
+      "CONTENT2": "请注意查收邮件和短信，我们将尽快与您取得联系"
+    }
+  },
+  "COMPONENT": {
+    "DF_CONTROL": {
+      "PLACEHOLDER": "请输入",
+      "INS_LENGTH": "（请输入{{min}} - {{max}}字）",
+      "INS_BT": "已输入{{length}}字",
+      "INS_BT1": "还可以输入{{remain}}字",
+      "INS_BT2": "已超出{{exceed}}字",
+      "INS_SELECT":"请选择 <span>{{min}} - {{max}}</span> 项",
+      "INS_SELECT2":"请至少选择 <span>{{min}} </span> 项",
+      "INS_SELECT1":"请选择 <span>{{min}} </span> 项"
+    },
+    "RECORDER": {
+      "BTN_VOICE": "点击后说话",
+      "BTN_VOICE1": "点击停止录音"
+    },
+
+    "VOICE_LIST": {
+      "TITLE":"语音记录",
+      "BTN_REMOVE":"全部删除",
+      "TIP": "刚刚",
+      "UA": {
+        "TITLE_REMOVE_ALL_CONFIRM": "删除全部?",
+        "TITLE_REMOVE_CONFIRM": "删除此项?"
+      }
+    }
+  },
+  "UA": {
+    "BTN_CONFIRM_OK": "确定",
+    "BTN_CONFIRM_CANCEL": "取消",
+    "SERVER_ERROR_DEFAULT": "服务器错误请稍后再试！"
+  }
+}

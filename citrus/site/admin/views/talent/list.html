@@ -1,0 +1,199 @@
+<div class="talent-list">
+    <h2 class="title">人才列表</h2>
+
+    <div class="panel panel-default">
+
+        <form name="form" novalidate>
+            <div class="panel-body form-inline ">
+                <div>
+                    <span class="mr30">性别:</span>
+                    <ui-select ng-model="vm.filter.gender"
+                               theme="select2"
+                               style="width: 160px;"
+                               class="mr10"
+                               search-enabled="false">
+                        <ui-select-match allow-clear="true" placeholder="--所有性别--">{{$select.selected.label}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.code as item in vm.view.gender | filter: $select.search ">
+                            <div ng-bind-html="item.label|highlight: $select.search">
+                            </div>
+                        </ui-select-choices>
+                    </ui-select>
+
+                    工作经验:
+                    <ui-select ng-model="vm.filter.work_exp" theme="select2"
+                               style="width: 160px;"
+                               class="mr10"
+                               search-enabled="false">
+                        <ui-select-match allow-clear="true" placeholder="--不限经验--">{{$select.selected.label }}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.code as item in vm.view.exp | filter: $select.search ">
+                            <div ng-bind-html="item.label |highlight: $select.search">
+                            </div>
+                        </ui-select-choices>
+                    </ui-select>
+                    学历:
+                    <ui-select ng-model="vm.filter.degree" theme="select2"
+                               style="width: 160px"
+                               class="mr20"
+                               search-enabled="false">
+                        <ui-select-match allow-clear="true" placeholder="--所有学历--">{{$select.selected.label}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.code as item in vm.view.edu | filter: $select.search ">
+                            <div ng-bind-html="item.label|highlight: $select.search">
+                            </div>
+                        </ui-select-choices>
+                    </ui-select>
+
+                    <button class="btn btn-primary pull-right" ng-click="vm.filterSbm()"><span
+                            class="glyphicon glyphicon-search"></span></button>
+                </div>
+                <div class="mt20">
+                    能力层次:
+                    <ui-select ng-model="vm.filter.level" theme="select2"
+                               style="width: 160px;"
+                               class="mr10"
+                               search-enabled="false">
+                        <ui-select-match allow-clear="true" placeholder="--所有层次--">{{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.id as item in vm.view.level | filter: $select.search ">
+                            <div ng-bind-html="item.name |highlight: $select.search">
+                            </div>
+                        </ui-select-choices>
+                    </ui-select>
+                    职能类型:
+                    <ui-select ng-model="vm.filter.func" theme="select2"
+                               style="width: 160px;"
+                               class="mr10"
+                               search-enabled="false">
+                        <ui-select-match allow-clear="true" placeholder="--所有来源--">{{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.id as item in vm.view.func | filter: $select.search ">
+                            <div ng-bind-html="item.name |highlight: $select.search">
+                            </div>
+                        </ui-select-choices>
+                    </ui-select>
+                    姓名：<input type="text"  name="keyword" class="form-control mr10" style="width: 155px" ng-model="vm.filter.name" placeholder="请输入姓名" >
+                </div>
+                <div class="mt20">
+                    是否有推荐人：<label class="radio-inline radio "><input type="radio" name="refer" ng-value="0"
+                                                                     ng-model="vm.filter.refer"> 所有人</label>
+                    <label class="radio-inline radio "><input type="radio" name="refer" ng-value="1"
+                                                              ng-model="vm.filter.refer"> 有推荐人</label>
+                    <label class="radio-inline radio "><input type="radio" name="refer" ng-value="2"
+                                                              ng-model="vm.filter.refer"> 无推荐人</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="op  mb10">
+        <span class="btn-group">
+        <a ng-href="{{vm.dlCheckedUrl}}" ng-disabled="!vm.dlCheckedUrl"
+           class="btn btn-default">下载选中简历</a>
+        <a ng-href="{{vm.excelCheckedUrl}}" ng-disabled="!vm.excelCheckedUrl"
+           class="btn btn-default">导出选中简历EXCEL</a>
+        <a ng-href="{{vm.exportTotalExcelUrl()}}"
+           class="btn btn-default">导出全部简历EXCEL</a>
+        </span>
+    </div>
+    <div class="list">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th width="30"><input type="checkbox" ng-click="vm.allCheck()" ng-model="vm.checkedAll"/>
+                    </th>
+                    <th width="80"><a href="javascript:" ng-click="vm.setOrder('name')">姓名
+                        <span ng-if="vm.cond.order_by=='name' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='name' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('gender')">性别
+                        <span ng-if="vm.cond.order_by=='gender' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='gender' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('ref_name')">推荐人
+                        <span ng-if="vm.cond.order_by=='ref_name' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='ref_name' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('work_exp')">工作经验
+                        <span ng-if="vm.cond.order_by=='work_exp' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='work_exp' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('edu_degree')">学历
+                        <span ng-if="vm.cond.order_by=='edu_degree' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='edu_degree' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('edu_school')">毕业院校
+                        <span ng-if="vm.cond.order_by=='edu_school' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='edu_school' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('exp_position')">现任职位
+                        <span ng-if="vm.cond.order_by=='exp_position' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='exp_position' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('created_at')">申请时间
+                        <span ng-if="vm.cond.order_by=='created_at' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='created_at' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('level')">能力层次
+                        <span ng-if="vm.cond.order_by=='level' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='level' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                    <th><a href="javascript:" ng-click="vm.setOrder('func')">职能类型
+                        <span ng-if="vm.cond.order_by=='func' && vm.cond.order=='asc'"
+                              class="glyphicon glyphicon-chevron-up"></span>
+                        <span ng-if="vm.cond.order_by=='func' && vm.cond.order=='desc'"
+                              class="glyphicon glyphicon-chevron-down"></span>
+                    </a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in vm.talentList">
+                    <td><input type="checkbox" ng-click="vm.itemCheck(item)" ng-model="item.checked"/></td>
+                    <td><a ng-style="{color:item.read=='YES'?'#9b59b6':''}" ng-href="#/resume/{{item.resume_id}}">
+                        {{item.resume.name}} </a></td>
+                    <td ng-if="item.resume.gender=='MALE'">男</td>
+                    <td ng-if="item.resume.gender=='FEMALE'">女</td>
+                    <td ng-if="item.resume.gender!='FEMALE' && item.resume.gender!='MALE'"></td>
+                    <td><a ng-href="#/rec/{{item.resume.ref_id}}">{{item.resume.ref_name}}</a></td>
+                    <td>{{item.resume.work_exp}}年</td>
+                    <td>{{item.resume.edu_degree}}</td>
+                    <td>{{item.resume.edu_school}}</td>
+                    <td>{{item.resume.exp_position}}</td>
+                    <td>{{item.resume.created_at | limitTo : 10}}</td>
+                    <td>{{item.level}}</td>
+                    <td>{{item.func}}</td>
+                </tbody>
+
+            </table>
+        </div>
+        <div class="ft">
+            <div class="pull-right">
+                <pagination ng-if="vm.totalItems>20" items-per-page="20" max-size="5" boundary-links="true"
+                            total-items="vm.totalItems"
+                            ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                            last-text="&raquo;"></pagination>
+            </div>
+        </div>
+    </div>
+
+</div>

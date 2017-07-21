@@ -1,0 +1,87 @@
+<ion-view class="feed-list feed-home" hide-tabs="true" cache-view="false">
+    <ion-nav-buttons>
+        <a class="button " back back-default-state="^.list"> <i class="icon ion-android-arrow-back"></i></a>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <div class="feed-type-wrap">
+            <div class="button-bar button-bar-feed-type"><!-- -->
+                <a class="button no-theme    button-assertive   button-outline"
+                   on-tap="vm.changeType(1)"
+                   ng-class="{'active white':vm.feedType=='1'}">发布的分享</a>
+                <a class="button   no-theme  button-assertive button-outline"
+                   on-tap="vm.changeType(2)"
+                   ng-class="{'active white':vm.feedType=='2'}">收到的分享</a>
+            </div>
+        </div>
+        <!--  <h4>
+        <span ng-click="vm.popover.show($event)">  <span ng-if="vm.feedType==1">自己</span>
+          <span ng-if="vm.feedType==2">他人</span>
+          <i class="icon ion-ios-arrow-down gray"></i></span>
+          </h4>-->
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a class="button button-small" ng-click="vm.pageList.refresh(true)"> <i
+                class=" ion-ios-refresh-empty icon"></i></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher
+                ng-if="vm.pageList.isFirstSection()"
+                pulling-text="<span class='small gray'>向下滑动刷新</span>"
+                spinner="spiral"
+                on-refresh="vm.pageList.refresh()">
+        </ion-refresher>
+        <div class="padding small text-center" ng-if="vm.pageList.section>1"
+             ng-click="vm.pageList.sectionTo(vm.pageList.section-1)">加载前一页
+        </div>
+        <div class="feed-user-top " ng-if="vm.pageList.isFirstSection()&&vm.feedType==1">
+            <div class="l text-center left">
+                <div class="bg"></div>
+                <div class="con">
+
+                    <div class="feed-avatar-wrap relative mb5"> <span class="avatar avatar-big  round" wx-preview-img>
+                    <img ng-src="{{vm.homeUser.avatar}}" alt="">  </span>
+
+                        <span class="label ">积分 {{vm.homeUser.point||0}}</span>
+                       <!-- <i class="icon icon-gender {{vm.homeUser.gender|sex:'icon'}}"></i>-->
+                    </div>
+                    <div ng-if="vm.homeUser.en_name" class="en-name">{{vm.homeUser.en_name}}</div>
+                    <div>{{vm.homeUser.name|getCName}} <span class="gray" ng-if="vm.homeUser.location">|</span>
+                        {{vm.homeUser.location}}
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="r">
+                <img src="images/f-h-01.png" alt="">
+                <!--  <div ng-repeat="item in vm.homeUser.locations">{{item}}</div>
+                  <div class="mt5">{{vm.homeUser.title}}</div>-->
+            </div>
+        </div>
+        <div class="list no-margin-bottom">
+            <!-- ui-sref="^.detail({id:item.id})"-->
+            <!-- <div class="gray padding text-center" ng-if="!vm.pageList.list.length"><i class="ion-ios-monitor-outline"></i> 这家伙很懒什么也没留下..</div>-->
+            <div class="item-feed" ng-repeat="item in vm.pageList.list">
+
+                <feed-schema view="item" class="schema-home" type="home"></feed-schema>
+
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="vm.pageList.hasMore&&!vm.pageList.isSectionBd()" immediate-check="false"
+                             spinner="dots"
+                             on-infinite="vm.pageList.loadMore()"
+                             distance="10%">
+        </ion-infinite-scroll>
+        <div class="padding small text-center"
+             ng-if="vm.pageList.section<vm.pageList._meta.sectionCount&&vm.pageList.isSectionBd()"
+             ng-click="vm.pageList.sectionTo(vm.pageList.section+1)">加载下一页
+        </div>
+
+        <div class="small padding text-center gray" ng-if="!vm.pageList.hasMore">暂无更多</div>
+    </ion-content>
+
+</ion-view>
+
+
+
+

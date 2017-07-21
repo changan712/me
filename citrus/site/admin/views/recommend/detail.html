@@ -1,0 +1,68 @@
+<div style="margin-bottom: 10px">
+    <a href="javascript:history.back(-1)"><button type="button" class="btn btn-default btn-sm">返回</button></a>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <span>员工姓名：{{vm.refer.name}}</span>
+        <span class="ml30">微信昵称：{{vm.refer.weixin_nickname||"暂无"}}</span>
+        <span class="ml30">电话：{{vm.refer.mobile}}</span>
+        <span class="ml30">邮箱：{{vm.refer.email}}</span>
+        <span class="ml30">工号：{{vm.refer.empno}}</span>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">推荐历史</div>
+    <div class="panel-body">
+        <table class="table stable-border table-striped " ng-if="vm.historyList.length">
+            <tr>
+                <th>被推荐人</th>
+                <th>招聘岗位</th>
+                <th>推荐时间</th>
+                <th>推荐方式</th>
+                <th>状态</th>
+                <th>推荐结果</th>
+            </tr>
+            <tr ng-repeat="item in vm.historyList">
+                <td><a ng-href="#/resume/{{item.id}}">{{item.name}}</a></td>
+                <td><a ng-href="#/position/{{item.position_id}}">{{item.position_name}}</a><span
+                        ng-if="item.position_status=='CLOSED'" class="red">（已关闭）</span></td>
+                <td> {{item.created_at|date:yyyy-MM-dd}}</td>
+                <td>{{item.ref_type}}</td>
+                <td  style="vertical-align: middle">
+                    <span ng-switch="item.ref_status">
+                        <span ng-switch-default class="glyphicon glyphicon-question-sign big" style="color: #fede03"></span>
+                        <span ng-switch-when="ACCEPT" class="glyphicon glyphicon-knight big "></span>
+                        <span ng-switch-when="INTERVIEWED" class="glyphicon glyphicon-knight big " style="color:#ff8400"></span>
+                        <span ng-switch-when="ONBOARDING" class="glyphicon glyphicon-pawn big " style="color:#29ca53"></span>
+                        <span ng-switch-when="PASSPROBATION" class="glyphicon glyphicon-king big " style="color:#45a5f7"></span>
+                        <span ng-switch-when="NOACCEPT" class="glyphicon glyphicon-remove-sign big brick-red"></span>
+                    </span>
+                </td>
+                <td valign="middle">
+                    <span>
+                        <ui-select theme="select2" ng-model="item.ref_status"
+                                   on-select="vm.opRef(item.id,item.ref_status, item.name)"
+                                   search-enabled="false" style="width: 160px;">
+                            <ui-select-match>{{$select.selected.label}}</ui-select-match>
+                            <ui-select-choices repeat="item.code as item in vm.viewRefResult">
+                                <div ng-bind-html="item.label"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </span>
+                </td>
+            </tr>
+        </table>
+        <div class="padding text-center gray" ng-if="!vm.historyList.length">暂无历史</div>
+        <div class="ft">
+            <div class="pull-right">
+                <pagination ng-if="vm.totalItems>20" items-per-page="20" max-size="5" boundary-links="true"
+                            total-items="vm.totalItems"
+                            ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                            last-text="&raquo;"></pagination>
+            </div>
+
+
+        </div>
+    </div>
+</div>

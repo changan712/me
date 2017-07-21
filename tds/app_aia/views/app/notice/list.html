@@ -1,0 +1,48 @@
+<ion-view class="view-notice-list">
+    <ion-nav-title><h4>热点</h4></ion-nav-title>
+    <ion-content>
+        <ion-refresher
+                pulling-text="<span class='small gray'>向下滑动刷新</span>"
+                spinner="spiral"
+                on-refresh=" vm.pageList.refresh()">
+        </ion-refresher>
+       <!-- <ul class="list-sm list sm-bd ">
+            <li class="item item-icon-right"  ui-sref="^.detail({id:item.id})"
+                ng-repeat="item in  vm.pageList.list">
+                <i class="greed dot" ng-if="item.unread"></i> {{item.title}} &lt;!&ndash; <i class="gray sm  ion-pin " ng-if="item.top"></i>&ndash;&gt;
+                <i class="icon ion-ios-arrow-right"></i>
+            </li>
+        </ul>-->
+        <ul class="mt10">
+            <li class="list list-sm   card" ng-repeat="item in vm.pageList.list"  ng-click="vm.itemClicked(item)">
+                <div class="item no-bd  tit">
+
+                    <h2>{{item.title}} <span class="dot" ng-if="item.unread"></span></h2>
+                    <div class="gray small">{{item.created_at|myDate}}<!-- <span class="ml10" ng-if="item.page_views">阅读量 {{item.page_views}}</span>--></div>
+                </div>
+                <div class=" padding ">
+                    <div class="banner"  ng-if="item.cover && item.show_cover >= 1"><img ng-src="{{item.cover}}" alt=""></div>
+                    <div class=" gray mt10 ">{{item.content|limitTo:40}} <span ng-if="item.content.length>40">...</span></div>
+                </div>
+                <a class="item font13  sm-bd-top item-icon-right" >
+                    阅读全文    <i class="icon ion-ios-arrow-right"></i>
+                </a>
+
+            </li>
+        </ul>
+        <ion-infinite-scroll
+                ng-if=" vm.pageList.hasMore"
+                immediate-check="false"
+                spinner="dots"
+                on-infinite=" vm.pageList.loadMore()"
+                distance="10%">
+        </ion-infinite-scroll>
+        <div class="small padding-bottom text-center gray" ng-if="!vm.pageList.hasMore&&!vm.pageList.loading">暂无更多</div>
+
+
+    </ion-content>
+</ion-view>
+
+
+
+

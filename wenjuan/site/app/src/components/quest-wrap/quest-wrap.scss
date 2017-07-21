@@ -1,0 +1,19 @@
+quest-wrap{
+  .btn-voice-modal-warp{
+    position:relative;
+    .btn-voice-modal{
+      position:absolute;
+      right:0;
+      top:-40px;
+      ion-badge {
+        font-weight:normal;
+        ion-icon{
+          transform:rotate(90deg);
+        }
+      }
+
+    }
+
+  }
+
+}

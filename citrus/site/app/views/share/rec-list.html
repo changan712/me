@@ -1,0 +1,17 @@
+<ion-view class="view-rec-list" view-title="推荐详情">
+    <ion-content class=" share-detail">
+        <div class="bar bar-header bar-positive">
+            <h1 class="title">{{vm.label}}详情</h1>
+        </div>
+        <div class="list has-header">
+            <div class="item item-divider" ng-repeat="item in vm.view.list">
+                    {{item.name}}
+                <span class="item-note">
+                    更新时间：
+                    {{item.updated_at*1000|date:'yyyy-MM-dd'}}
+                </span>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

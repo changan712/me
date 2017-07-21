@@ -1,0 +1,19 @@
+<ion-modal-view class="modal-select">
+    <ion-header-bar class="bar-theme ">
+        <h1 class="title">{{vm.filter.city}}</h1>
+        <button class="button small my-close button-clear " ng-click="vm.modals.city.hide()"><i
+                class="icon black small ion-android-close "></i></button>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list on-tap="vm.cityChange()">
+            <label class="item item-radio" ng-repeat="item in vm.view.cities">
+                <input type="radio" ng-model="vm.filter.city" ng-value="item" name="city_group">
+                <div class="item-content font">
+                    {{item}}
+                </div>
+                <i class="radio-icon small green ion-checkmark"></i>
+            </label>
+
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,64 @@
+<ion-view class="view-notice-detail">
+    <ion-nav-buttons side="left">
+        <a class="button " back back-default-state="^.list"> <i class="icon ion-android-arrow-back"></i></a>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <h4>详情</h4>
+    </ion-nav-title>
+    <ion-content overflow-scroll="true" ng-show="vm.detail.url">
+        <iframe id="v" ng-src="{{vm.detail.url}}" frameborder="0" ng-if="vm.detail.url"
+                style="width:100%; overflow-x:hidden; height:auto;min-height:100%"></iframe>
+    </ion-content>
+    <ion-content ng-show="!vm.detail.url">
+        <div class="main" ng-if="!vm.detail.url">
+            <h3 class="padding " ng-if="!vm.detail.hide_title">{{vm.detail.title}}</h3>
+            <div class="mt10" ng-if="vm.detail.cover && vm.detail.show_cover == 1">
+                <div class="banner">
+                    <img ng-src="{{vm.detail.cover}}" alt="">
+                </div>
+            </div>
+            <div   ng-bind-html="vm.detail.content" class="mt10 ">
+            </div>
+            <!--  <div class="gray text-right"><span class="small gray">{{vm.detail.updated_at|myDate}}</span></div>-->
+
+
+        </div>
+        <div class="comment  padding">
+            <div class="op gray">
+
+                <a class="pull-right" ng-click="vm.comment()">写留言 <i class="ion-edit"></i></a>
+                阅读 {{vm.detail.page_views}}
+                <a class="ml10" ng-click="vm.toggleLike()">
+                    <i class="ion-ios-heart color-theme" ng-if="vm.detail.like.self"></i>
+                    <i ng-if="!vm.detail.like.self" class="ion-ios-heart-outline"></i>
+                    {{vm.detail.like.count}} </a>
+            </div>
+
+            <div class="con">
+                <div ng-if="!vm.comments.length" class=" gray">暂无留言</div>
+                <ul>
+                    <li ng-repeat="item in vm.comments">
+                        <div class="l">
+                              <span ng-click="vm.goUserHome(item.user.id)"
+                                    class="avatar avatar-sm "><img ng-src="{{item.user.avatar}}" alt=""></span>
+                        </div>
+
+                        <div class="r">
+                            <span class="pull-right small gray"> {{item.created_at|myDate}}</span>
+                            <a ng-click="vm.goUserHome(item.user.id)"> <span>{{item.user.name}}</span> </a>
+                            <div class="info">
+                                {{item.info}}
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>
+
+
+
+

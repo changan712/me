@@ -1,0 +1,29 @@
+<div class="padding">
+    <div>
+        <a class="btn btn-info" href="#/app/notice/new">新建</a>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>标题</th>
+            <th>内容</th>
+            <th>作者</th>
+            <th>创建时间</th>
+            <th>更新时间</th>
+            <th>删除</th>
+            <th>编辑消息</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items[0]">
+            <td width="30">{{item.id}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.content}}</td>
+            <td><span class="avatar avatar-sm mr5"><img ng-if="item.user.avatar" ng-src="{{item.user.avatar}}" alt=""></span>{{item.user.name}}</td>
+            <td>{{item.created_at}}</td>
+            <td>{{item.updated_at}}</td>
+            <td><a class="btn btn-warning" ng-click="vm.delete(item.id)">删除</a></td>
+            <td><a class="btn btn-info" ng-href="#/app/notice/edit/{{item.id}}">编辑信息</a></td>
+        </tr>
+    </table>
+</div>

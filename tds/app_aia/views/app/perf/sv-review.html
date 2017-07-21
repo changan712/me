@@ -1,0 +1,85 @@
+<ion-view class="goal-setting" hide-tabs="true" hide-nav-bar="true" cache-view="false">
+    <form name="form" novalidate ng-submit="vm.submit(form)">
+        <ion-header-bar class="bar-positive bg-positive">
+            <div class="buttons">
+                <a class="button bg-positive" ui-sref="^.overview"> <i
+                        class="icon ion-android-close"></i></a>
+            </div>
+            <h4 class="title">自我评估</h4>
+            <div class="buttons">
+                <button class="button button-small" ng-if="vm.permission">提交</button>
+            </div>
+        </ion-header-bar>
+        <nav-perf data="vm.detail"></nav-perf>
+        <ion-content style="top: 88px;">
+            <ng-include data-src="'views/app/perf/user-perf.html'"></ng-include>
+
+            <ion-list class="list-goal list list-sm sm-bd"
+                      ng-repeat="goal in vm.detail.goals">
+                <div class="item item-divider-ios item-divider">目标{{$index+1}}</div>
+                <!--goal-->
+                <ion-item class="item   item-text-wrap"
+                          ng-class="{'error':form['svReview'+$index].$invalid&&form.$submitted,'item-icon-right':vm.permission}">
+                    <div class="goal">
+
+
+                        <i class="ion-ios-navigate color-balanced"></i>
+                        {{goal.info}} <span class="label ml5">{{goal.expected_time|date:'yyyy-MM-dd'|limitTo:10}}</span><span
+                            class="label ml5">{{goal.ratio}}%</span>
+                        <i ng-if="vm.permission" ng-click="vm.review(goal)"
+                           class="icon   color-calm ion-ios-more-outline"></i>
+                    </div>
+                </ion-item>
+                <!--self-review-->
+                <div class="self-review item-review   item"
+                     ng-if="goal.assess_review_self">
+
+                    <span class="gray ">自我评价</span>
+                    {{goal.assess_review_self}} <span class="label">{{goal.percent_review_self}}%</span>
+
+                </div>
+                <!--manager-review-->
+                <input type="hidden" name="svReview{{$index}}" required ng-model="goal.assess_review_manager">
+                <div class="manager-review item-review   item"
+                     ng-if="goal.assess_review_manager">
+                    <span class="gray ">上级评价</span>
+                    {{goal.assess_review_manager}} <span class="label">{{goal.percent_review_manager}}%</span>
+                </div>
+            </ion-list>
+            <div class="list list-sm sm-bd">
+                <div class="item item-divider-ios  item-divider">总体评价</div>
+                <div class="item font13 item-text-wrap"><span class="gray">自我总体评价</span>
+                    {{vm.detail.review_self.info}}
+                </div>
+                <div class="item font13 item-text-wrap" ng-if="!vm.permission"><span class="gray">上级总体评价</span>
+                    {{vm.detail.review_supervisor.info}}
+                </div>
+                <div class="item item-textarea" ng-if="vm.permission"  ng-class="{'error':form.info.$invalid&&form.$submitted}">
+                    <textarea rows="3" required name="info" ng-model="vm.detail.review_supervisor.info" placeholder="请输入总体评价"></textarea>
+                </div>
+            </div>
+
+        </ion-content>
+    </form>
+</ion-view>
+<script type="text/ng-template" id="modal-sv-review.tpl">
+    <div class="list sm-bd list-sm"><label ng-init="vm.data.percent_review_manager=vm.data.percent_review_manager||100"
+                                           class="item range range-positive"
+                                           ng-class="{'error':form.$submitted&&form.ratio.$invalid}">
+        达成率：<span class="label">{{vm.data.percent_review_manager}}%</span>
+        <input type="range" name="ratio" required
+               min="1"
+               ng-model="vm.data.percent_review_manager"
+               max="100">
+    </label>
+        <label class="item item-input item-textarea"
+               ng-class="{'error':form.$submitted&&form.assess_review_manager .$invalid}">
+        <textarea rows="3" required ng-model="vm.data.assess_review_manager " name="assess_review_manager "
+                  placeholder="请输入此目标的评价"></textarea>
+        </label></div>
+
+</script>
+
+
+
+

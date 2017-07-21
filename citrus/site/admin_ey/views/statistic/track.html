@@ -1,0 +1,25 @@
+
+<div class="pos-new container">
+    <h2 class="page-tit"> {{sub_title}} </h2>
+    <div style="margin-bottom: 10px">
+        <a href="javascript:history.back(-1)"><button type="button" class="btn btn-default btn-sm">返回</button></a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th align="center">微信昵称</th>
+            <th style="text-align: center">第二层转发用户数</th>
+            <th style="text-align: center">第三层转发用户数</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody style="font-size: 12px">
+        <tr ng-repeat="item in vm.track_data track by $index">
+            <td class="col-sm-2">{{item.from_nickname}}</td>
+            <td class="col-sm-3" align="center">{{item.cnt1}}</td>
+            <td class="col-sm-3" align="center">{{item.cnt2}}</td>
+            <td align="center"><a ng-href="#/statistic/track_detail?open_id={{item.from_open_id}}">详情</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

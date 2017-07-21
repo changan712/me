@@ -1,0 +1,52 @@
+<div class="padding">
+
+    <table class="table table-bordered table-hover table-striped w800">
+        <tr>
+            <td><b>ID</b></td>
+            <td>{{vm.id}}</td>
+            <td><b>项目名称</b></td>
+            <td>{{vm.item.name}}</td>
+        </tr>
+        <tr>
+            <td><b>开始时间</b></td>
+            <td>{{vm.item.start_time | limitTo:10}}</td>
+            <td><b>结束时间</b></td>
+            <td>{{vm.item.end_time | limitTo:10}}</td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-default" ng-href="#/app/project/edit/{{vm.item.id}}">编辑信息</a>
+        <a class="btn btn-default" ng-href="#/app/project/user/{{vm.item.id}}">编辑成员</a>
+        <a class="btn btn-default" href="#/app/project/list">返回</a>
+    </div>
+    <br>
+
+    <table class="table table-bordered table-hover table-striped w1000">
+        <tr>
+            <th><input type="checkbox" ng-change="vm.batchAll()" ng-model="vm.batch_all"/></th>
+            <th>ID</th>
+            <th>账号</th>
+            <th>姓名</th>
+            <th>头像</th>
+            <th>角色</th>
+        </tr>
+        <tr ng-repeat="user in vm.item.users">
+            <td><input type="checkbox" checklist-model="vm.batch_items" checklist-value="user"/></td>
+            <td>{{user.id}}</td>
+            <td>{{user.qy_name}}</td>
+            <td>{{user.name}}</td>
+            <td><span class="avatar avatar-sm mr5"><img ng-if="item.avatar" ng-src="{{item.avatar}}" alt=""></span></td>
+            <td>{{user.role}}</td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <select name="city" ng-model="vm.quest.role"
+                ng-options="role.id as role.name for role in vm.roles ">
+        </select>
+        <a class="btn btn-info" ng-click="vm.batchEdit()">设置角色</a>
+        <a class="btn btn-warning" ng-click="vm.batchDelete()">删除成员</a>
+    </div>
+</div>
+

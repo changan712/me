@@ -1,0 +1,66 @@
+<ion-view class="goal-setting" hide-tabs="true" hide-nav-bar="true" cache-view="false">
+    <ion-header-bar class="bar-positive bg-positive">
+        <div class="buttons">
+            <a class="button bg-positive" ui-sref="^.overview"> <i
+                    class="icon ion-android-close"></i></a>
+        </div>
+        <h4 class="title">目标设定</h4>
+        <div class="buttons">
+        </div>
+    </ion-header-bar>
+    <nav-perf data="vm.detail"></nav-perf>
+    <ion-content style="top: 88px;">
+        <ng-include data-src="'views/app/perf/user-perf.html'"></ng-include>
+        <div class="pading small gray text-center sm-bd-bottom sm-bd-top" ng-if="!vm.detail.goals.length">
+            暂无目标
+        </div>
+        <ion-list class="list-sm sm-bd list list-goal"  ng-repeat="goal in vm.detail.goals">
+            <div class="item item-divider-ios item-divider">目标{{$index+1}}</div>
+            <ion-item class="item  item-icon-right item-text-wrap">
+                <div><i class="ion-ios-navigate color-balanced "></i> {{goal.info}}
+                    <span class="label ml5">{{goal.expected_time|date:'yyyy-MM-dd'|limitTo:10}}</span>
+                    <span class="label ml5">{{goal.ratio}}%</span>
+                    <i ng-if="vm.permission" ng-click="vm.showEdit(goal)"
+                       class="icon   color-calm ion-ios-more-outline"></i>
+                </div>
+
+            </ion-item>
+        </ion-list>
+
+        <div class="padding text-center">
+            <a class="button  white bg-calm button-block"
+                                            ng-if="vm.detail.isEditting && vm.ratioLave ==0&&vm.permission"
+                                            ng-click="vm.submit(vm.detail)">提交</a>
+            <a class="button  white bg-balanced button-block" ng-click="vm.addGoal(vm.detail)"
+               ng-if="vm.ratioLave>0&&vm.permission">添加目标</a>
+
+            <a class="button  white bg-balanced button-block" ng-if="vm.detail.step==1 && vm.detail.opts.hr==1"
+               ng-click="vm.adminAgree()"
+            ><i class="fa fa-check"></i> 审核通过</a>
+            <i class="ion-ios-checkmark-outline  color-balanced bold" ng-if="vm.detail.step>=2"
+               style="font-size: 60px;"></i>
+        </div>
+    </ion-content>
+</ion-view>
+
+<script type="text/ng-template" id="goal-edit.tpl">
+    <div class="list list-sm">
+        <label ng-init="vm.data.ratio=vm.data.ratio||1" class="item range range-positive"
+               ng-class="{'error':form.$submitted&&form.ratio.$invalid}">
+            比例：<span class="label">{{vm.data.ratio}}%</span> <input type="range" name="ratio" required min="1"
+                                                                    ng-model="vm.data.ratio"
+                                                                    ng-max="{{vm.scopeData.ratioLave}}">
+        </label>
+        <label class="item item-input" ng-class="{'error':form.$submitted&&form.expected_time.$invalid}">
+            <span class="input-label">完成时间</span>
+            <input type="date" required name="expected_time" ng-model="vm.data.expected_time">
+        </label>
+        <label class="item item-input item-textarea" ng-class="{'error':form.$submitted&&form.info.$invalid}">
+            <textarea rows="3" required ng-model="vm.data.info" name="info" placeholder="请输入详情"></textarea>
+        </label>
+    </div>
+
+</script>
+
+
+

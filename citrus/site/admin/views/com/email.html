@@ -1,0 +1,68 @@
+<div class="email-dialog  dialog" ng-show="isShow">
+    <form class="form form-horizontal"  ng-submit="submit(this)">
+        <div class="modal-body">
+            <span class="close small glyphicon glyphicon-remove" ng-click="hide()"></span>
+
+
+            <div class="tp">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label">收件人：</label>
+
+                    <div class="col-sm-9">
+                        <input type="email" required="" ng-model="data.sender" class="form-control"/>
+
+                        <div class="mt10 row">
+                            <div class="col-sm-3">
+                                <label class="checkbox ml20"><input ng-model="data.sendMe" type="checkbox"/>抄送自己</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2  control-label">发件人：</label>
+
+                    <div class="col-sm-9">
+                        <input type="email" ng-model="data.addressee" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="m">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2  control-label">信件主题：</label>
+
+                    <div class="col-sm-9">
+                        <input type="email" ng-model="data.topic" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2  control-label">信件内容：</label>
+
+                    <div class="col-sm-9">
+                        <textarea class="form-control" required ng-model="data.content" rows="5"></textarea>
+
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2  control-label">附件：</label>
+
+                    <div class="col-sm-9">
+
+                        <input type="file" fileread="data.file" name="file" class="file mt5"/>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+
+            <button class="btn btn-primary btn-sm">发送</button>
+
+
+        </div>
+    </form>
+</div>

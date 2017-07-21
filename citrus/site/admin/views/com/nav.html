@@ -1,0 +1,28 @@
+<!--nav-->
+<div class="sidebar">
+    <div class="logo-con">
+        <img style="width:120px;text-align: center" ng-src="{{company.logo_1}}" alt=""/>
+    </div>
+    <ul class="side-nav">
+        <li ng-class=" {active:page =='pos_list'}"><a ng-href="#/position/list?page=1"><span
+                class="glyphicon glyphicon-list icon"></span>职位列表</a></li>
+        <li ng-class=" {active:page =='pos_new'}"><a ng-href="#/position/new"><span
+                class="glyphicon glyphicon-open icon"></span>职位发布</a></li>
+        <li ng-class=" {active:page =='resume_new'}"><a ng-href="#/resume/new-list"><span
+                class="glyphicon glyphicon-leaf icon"></span>新收简历</a></li>
+        <li ng-class=" {active:page =='rec'}"><a ng-href="#/rec/list"><span
+                class="glyphicon glyphicon-thumbs-up icon"></span>内部推荐</a></li>
+        <li ng-class=" {active:page =='talent'}"><a ng-href="#/talent/talent-list"><span
+                class="glyphicon glyphicon-hdd icon"></span>人才库</a></li>
+        <li ng-class=" {active:page =='statistic'}"><a ng-href="#/statistic/index"><span
+                class="glyphicon glyphicon-list-alt icon"></span>统计图表</a></li>
+        <li ng-class=" {active:page =='rank'}"><a ng-href="#/rank/index"><span
+                class="glyphicon glyphicon-object-align-bottom icon"></span>排行榜</a></li>
+        <li ng-class=" {active:page =='red_packet'}"  ng-if="company.custom.redpack.enable"><a ng-href="#/red-packet/rule"><span
+                class="glyphicon glyphicon-gift icon"></span>红包管理</a></li>
+    </ul>
+    <div class="text-center padding">
+        <a  class="btn btn-block btn-wx  mt10 btn-success" ng-click="vm.wxback()"><img height="16" src="images/wx.png"  alt=""/> 微信后台</a>
+    </div>
+
+</div>

@@ -1,0 +1,62 @@
+<ion-view view-title="新增简历">
+    <ion-content delegate-handle="posContent"overflow-scroll='{{isIOS?false:true}}' class="resume-add">
+        <div class="filter-title">
+            <div class="ey-hd"><span class="tit">申请职位</span></div>
+        </div>
+        <div class="add-new">
+            <a ng-href="#/resume/new" class="button button-block button-ey">
+                创建新简历
+            </a>
+        </div>
+        <div class="list import list-group">
+            <a class="item list-item " ng-repeat="label in corp.imports" on-tap="vm.modalImport(label)">
+                <img ng-src="{{label|source:true}}" alt=""/>导入{{label|source}}简历
+                <i class="icon pull-right ion-chevron-right"></i></a>
+        </div>
+    </ion-content>
+</ion-view>
+
+<!--modal import-->
+<script id="import.html" type="text/ng-template">
+    <ion-modal-view class="bg-ey auth">
+        <ion-content overflow-scroll='{{isIOS?false:true}}'>
+            <div class="filter-title">
+                <div class="ey-hd"><span class="tit">授权登录</span></div>
+            </div>
+            <div class="logo">
+            <div class="text-center" ng-if="vm.importData.site">
+                <img ng-src="{{vm.importData.site|source:true}}" alt="">
+            </div>
+            </div>
+            <form name="resumeAdd.form" class="account" novalidate ng-submit="vm.importSubmit()">
+                <div class="list list-inset">
+                    <div class="item item-input"
+                         ng-class="{'error':vm.addSubmited&&resumeAdd.form.userName.$error.required}">
+                        <input type="text"
+                               name="userName"
+                               required
+                               ng-model="vm.importData.userName"
+                               placeholder="用户名"/>
+                    </div>
+                </div>
+                <div class="list list-inset list-margin">
+                    <div class="item  item-input"
+                         ng-class="{'error':vm.addSubmited&&resumeAdd.form.password.$error.required}"><input
+                            type="password" required name="password" ng-model="vm.importData.password"
+                            placeholder="密码"/></div>
+
+                </div>
+                <div class="btn-group">
+                    <button class="button button-block button-ey btn-auth">确认授权</button>
+                    <a class="button button-block button-ey" on-tap="vm.hideImPortModal()">取消</a>
+                    <div class="gray">
+                        <p>{{corp.name}}将获得以下资料：</p>
+
+                        <p>完整档案（包括工作经历、教育背景等），账户的邮箱、电话等联系方式，个人基本信息和通讯地址。</p>
+                    </div>
+                </div>
+
+            </form>
+        </ion-content>
+    </ion-modal-view>
+</script>

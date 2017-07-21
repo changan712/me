@@ -1,0 +1,157 @@
+<div style="margin-bottom: 10px">
+    <a href="javascript:history.back(-1)">
+        <button type="button" class="btn btn-default btn-sm">返回</button>
+    </a>
+</div>
+<div class="pos-detail">
+
+    <div class="com-panel pos-info">
+        <div class="hd ">
+            <div class="con  no-bd ">
+                <span class="position-tit">{{vm.position.name}}<span ng-if="vm.position.status=='CLOSED'" class="red">（已关闭）</span></span>
+                <span class="pos-tags"><span ng-repeat="tag in vm.position.tag" class=" pos-label"
+                                             ng-class="{'hot':'label-hot','urgent':'label-urgent'}[tag]">{{tag|posTag}}</span></span>
+            </div>
+        </div>
+        <div class="mn">
+            <div class="con">
+                <!--update-->
+                <div class="btn-group group2 pull-right btn-group-sm">
+                    <a class="btn btn-default" ng-if="vm.position.status=='OPEN'" ng-click="vm.setStatus('CLOSED')">
+                        关闭职位</a>
+                    <a class="btn btn-default" ng-if="vm.position.status=='CLOSED'" ng-click="vm.setStatus('OPEN')">
+                        开启职位</a>
+
+                    <a class="btn btn-default" ng-href="#/position/edit/{{vm.position_id}}"> 编辑职位</a>
+
+                    <a class="btn btn-default" ng-click="vm.addTag('urgent')"
+                       ng-if="vm.position.tag.indexOf('urgent') ==-1"> 设为加急职位</a>
+                    <a class="btn btn-default" ng-click="vm.deleteTag('urgent')"
+                       ng-if="vm.position.tag.indexOf('urgent') >-1"> 取消加急状态</a>
+
+                    <a class="btn btn-default" ng-click="vm.addTag('hot')" ng-if="vm.position.tag.indexOf('hot') ==-1">
+                        设为热招职位</a>
+                    <a class="btn btn-default" ng-click="vm.deleteTag('hot')"
+                       ng-if="vm.position.tag.indexOf('hot') >-1"> 取消热招职位</a>
+                </div>
+                <div class="info-redpacket pull-right" ng-if="company.custom.redpack.enable&&company.custom.redpack.ref">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="120">进入面试红包</th>
+                            <td>{{vm.position.interviewed_reward}}元</td>
+                        </tr>
+                        <tr>
+                            <th width="120">进入面试红包</th>
+                            <td>{{vm.position.onboarding_reward}}元</td>
+                        </tr>
+                        <tr>
+                            <th width="120">进入面试红包</th>
+                            <td>{{vm.position.pass_probation_reward}}元</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="info">
+                    <table class="table table-info">
+                        <tr>
+                            <th width="90">发布日期</th>
+                            <td>{{vm.position.created_at*1000|date:"yyyy-MM-dd"}}</td>
+                            <th width="90">职位类别</th>
+                            <td> {{vm.position.category.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>工作地点</th>
+                            <td>
+                        <span ng-repeat="lc in vm.position.city_list">
+                            {{lc.label}}
+                        </span>
+                            </td>
+                            <th>职位薪资</th>
+                            <td>
+                                {{vm.position.salary_level|salary}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>工作性质</th>
+                            <td>{{vm.position.property|posProp}}</td>
+                            <th>所属部门</th>
+                            <td>{{vm.position.department.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>工作经验</th>
+                            <td>{{vm.position.exp_level|exp}}</td>
+                            <th>最低学历</th>
+                            <td>{{vm.position.edu_level|edu}}</td>
+                        </tr>
+                        <tr>
+
+                            <th>职位状态</th>
+                            <td
+                                    ng-class="{'darkred':vm.position.status == 'CLOSED','green':vm.position.status == 'OPEN'}">
+                                {{vm.position.status|positionStatus}}
+                            </td>
+                            <th>职位访问量</th>
+                            <td>{{vm.position.view_count}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="list">
+            <div ng-if="!vm.resumeList.length" class="empty">暂无投递职位</div>
+            <div ng-if="vm.resumeList.length">
+                <div class="op  mb5">
+                    <span class="btn-group"> <a ng-href="{{vm.dlCheckedUrl}}" ng-disabled="!vm.dlCheckedUrl"
+                                                class="btn btn-default">下载选中简历</a> <a
+                            ng-href="{{vm.dlAllUrl}}" class="btn btn-default">下载所有简历</a></span>
+                    <a ng-href="{{vm.excelCheckedUrl}}" ng-disabled="!vm.excelCheckedUrl" ng-if="company.custom.excel"
+                       class="btn btn-default">导出选中简历EXCEL</a>
+                    <a ng-href="{{vm.exportTotalExcelUrl()}}" ng-if="company.custom.excel"
+                       class="btn btn-default">导出全部简历EXCEL</a>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" ng-click="vm.allCheck()" ng-model="vm.checkedAll"/></th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>推荐人</th>
+                        <th>申请岗位</th>
+                        <th>工作经验</th>
+                        <th>学历</th>
+                        <th>毕业院校</th>
+                        <th>现任职位</th>
+                        <th>简历来源</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.resumeList">
+                        <td><input type="checkbox" ng-click="vm.itemCheck(item)" ng-model="item.checked"/></td>
+                        <td><a ng-href="#/resume/{{item.id}}"> {{item.name}} </a></td>
+                        <td>{{item.gender|sex}}</td>
+                        <td>{{item.ref_name}}</td>
+                        <td>{{item.position_name}}</td>
+                        <td>{{item.work_exp}}年</td>
+                        <td>{{item.edu_degree}}</td>
+                        <td>{{item.edu[0].school}}</td>
+                        <td>{{item.exp[0].position}}</td>
+                        <td>{{item.cv_source|cv_source}}</td>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="ft">
+                <div class="pull-right mt10">
+                    <pagination ng-if="vm.totalItems>20" items-per-page="20" max-size="5" boundary-links="true"
+                                total-items="vm.totalItems"
+                                ng-change="vm.pageChanged()" ng-model="vm.currentPage"
+                                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

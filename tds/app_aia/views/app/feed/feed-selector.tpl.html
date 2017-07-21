@@ -1,0 +1,15 @@
+<div class="item  item-icon-right item-icon-left" ng-click="showModal()">
+    <span ng-transclude></span>
+
+    <span class=" sm label result-item" ng-if="data.length"
+          ng-style="{'maxWidth':(100-50)/data.length+'%'}"
+          ng-repeat="item in data">
+
+        <!--todo 为后期需求 新添加completion_rate，临时这样修改，可是如果有更多的相关后期需求怎么办?？-->
+          <span>
+            <span ng-if="!isObject(item)">  {{item|findWhere:views:'id':labelName}}</span>
+            <span ng-if="isObject(item)">  {{item.id|findWhere:views:'id':labelName}} ({{item.completion_rate}}%)</span></span>
+       
+    </span>
+    <i class="icon ion-ios-arrow-right "></i>
+</div>

@@ -1,0 +1,25 @@
+<div class="padding">
+    <div>
+        <ol class="breadcrumb">
+            <li ng-repeat="p in vm.path">
+                <a href="#/app/category/view/{{p.id}}">{{p.name}}</a>
+            </li>
+        </ol>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td>分类</td>
+            <td><input ng-model="vm.category"></td>
+        </tr>
+        <tr>
+            <td>标题</td>
+            <td><input ng-model="vm.item.title"></td>
+        </tr>
+    </table>
+    <div text-angular ng-model="vm.item.content"></div>
+    <div>
+        <a class="btn btn-default" ng-click="vm.submit()">提交</a>
+    </div>
+</div>
+

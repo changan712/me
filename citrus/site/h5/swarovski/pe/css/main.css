@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* reset */
+
+* {
+
+    -webkit-tap-highlight-color: transparent;
+
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    font-size: 30px;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+
+}
+
+li {
+    list-style-type: none
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%
+}
+
+.delay_100ms {
+    -webkit-animation-delay: 100ms;
+    animation-delay: 100ms;
+}
+
+.delay_200ms {
+    -webkit-animation-delay: 200ms;
+    animation-delay: 200ms;
+}
+
+.delay_300ms {
+    -webkit-animation-delay: 300ms;
+    animation-delay: 300ms;
+}
+
+.delay_500ms {
+    -webkit-animation-delay: 500ms;
+    animation-delay: 500ms;
+}
+
+.delay_700ms {
+    -webkit-animation-delay: 700ms;
+    animation-delay: 700ms;
+}
+
+.delay_900ms {
+    -webkit-animation-delay: 900ms;
+    animation-delay: 900ms;
+}
+
+.delay_1000ms {
+    -webkit-animation-delay: 1000ms;
+    animation-delay: 1000ms;
+}
+
+.delay_1500ms {
+    -webkit-animation-delay: 1500ms;
+    animation-delay: 1500ms;
+}
+
+.delay_2000ms {
+    -webkit-animation-delay: 2000ms;
+    animation-delay: 2000ms;
+}
+
+.delay_2500ms {
+    -webkit-animation-delay: 2500ms;
+    animation-delay: 2500ms;
+}
+
+.delay_3000ms {
+    -webkit-animation-delay: 3000ms;
+    animation-delay: 3000ms;
+}
+
+.delay_3500ms {
+    -webkit-animation-delay: 3500ms;
+    animation-delay: 3500ms;
+}
+
+.delay_4000ms {
+    -webkit-animation-delay: 4000ms;
+    animation-delay: 4000ms;
+}
+
+.delay_4500ms {
+    -webkit-animation-delay: 4500ms;
+    animation-delay: 4500ms;
+}
+
+.delay_5000ms {
+    -webkit-animation-delay: 5000ms;
+    animation-delay: 5000ms;
+}
+
+.delay_5500ms {
+    -webkit-animation-delay: 5500ms;
+    animation-delay: 5500ms;
+}
+
+.delay_6000ms {
+    -webkit-animation-delay: 6000ms;
+    animation-delay: 6000ms;
+}
+
+.delay_6500ms {
+    -webkit-animation-delay: 6500ms;
+    animation-delay: 6500ms;
+}
+
+.delay_7000ms {
+    -webkit-animation-delay: 7000ms;
+    animation-delay: 7000ms;
+}
+
+
+
+

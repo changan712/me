@@ -1,0 +1,28 @@
+<div class="padding">
+    <div>
+        <a class="btn btn-info" ng-click="vm.new()">新建</a>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>类型</th>
+            <th>AppID</th>
+            <th>其他</th>
+            <th>操作</th>
+        </tr>
+
+        <tr ng-repeat="item in vm.items">
+            <td width="30">{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.app_id}}</td>
+            <td><pre>{{item.info | json:4}}</pre></td>
+            <td>
+                <a class="btn btn-sm btn-info" ng-click="vm.edit(item.id)">编辑</a>
+                <a class="btn btn-sm btn-warning" ng-click="vm.delete(item.id)">删除</a>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,47 @@
+<ion-view class="" view-title="我的推荐">
+    <ion-content class="  ">
+        <div class="list ">
+            <a class="item " href="#/share/rec-list?ref_status=INTERVIEWED">
+                <i class="ion-chatbubbles icon"></i> 进入面试人数
+                <span class="item-note" ><span class="blue">{{vm.view.interview_count}}</span> 个</span> </span>
+            </a>
+            <a class="item " href="#/share/rec-list?ref_status=ONBOARDING">
+                <i class="ion-flag icon"></i> 成功入职人数
+                <span class="item-note" ><span class="blue">{{vm.view.onboard_count}}</span> 个</span> </span>
+            </a>
+            <a class="item " href="#/share/rec-list?ref_status=PASSPROBATION">
+                <i class="ion-home icon"></i> 通过试用期人数
+                <span class="item-note" ><span class="blue">{{vm.view.passprobation_count}}</span> 个</span> </span>
+            </a>
+        </div>
+        <div class="padding" ng-if="vm.info.description">
+            <div class="button-wrap button-bordered">
+                <a class="button button-block"
+                   ng-click="vm.showRuleModal()"> 推荐规则</a>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
+<script id="rule-modal.html" type="text/ng-template">
+    <div class="rule-modal-bg"></div>
+    <div class="rule-modal">
+        <div class="con">
+
+            <img src="images/prize-rule-title.png" class="tit" alt="">
+            <div class="wrap">
+                <ion-content>
+                    <div class="content" ng-bind-html='vm.info.description'>
+                    </div>
+                </ion-content>
+            </div>
+            <div class="footer">
+                <div class=" button-bordered">
+                    <a class="button button-block"
+                       ng-click="vm.hideRuleModal()"> 我知道了</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+

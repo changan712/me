@@ -1,0 +1,25 @@
+:host{
+  position:absolute;
+  z-index:9999;
+  left:0;
+  top:0;
+  right:0;
+  .con{
+    padding:5px 10px;
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    .btn-close{
+     flex:0 0  30px;
+    background:#000;
+    }
+
+    .content{
+      word-break:break-all;
+      flex:1 1;
+    }
+
+  }
+}
+
+

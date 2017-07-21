@@ -1,0 +1,7 @@
+<div class="con">
+    <a ion-button="" outline class="btn"   [ngClass]="{'active': isRecording}" icon-left="" (tap)="toggle()">  <!---->
+        <span *ngIf="!isRecording" ><ion-icon name="ios-mic-outline" class="icon"></ion-icon>{{'COMPONENT.RECORDER.BTN_VOICE'|translate}}</span><!--点击后说话-->
+        <span *ngIf="isRecording"><ion-icon name="ios-radio-button-on-outline"></ion-icon>{{'COMPONENT.RECORDER.BTN_VOICE1'|translate}}</span> <!--点击停止录音 -->
+
+    </a>
+</div>

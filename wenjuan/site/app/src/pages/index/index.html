@@ -1,0 +1,52 @@
+<!--
+  Generated template for the IndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content no-bounce [ngSwitch]="status">
+    <span class="btn-help" (tap)="goPageTutorial()" clear ion-button>{{'PAGES.INDEX.BTN_HELP'|translate}}</span>
+    <lang-switcher></lang-switcher>
+    <div *ngSwitchCase="1">
+        <div class="banner">
+            <img src="assets/images/index.jpg" alt="">
+        </div>
+        <div class="content a-l">
+            <div [innerHTML]="'PAGES.INDEX.CONTENT1'|translate"></div>
+            <!--   每位候选人仅 <strong class="primary f24">1</strong> 次测试机会， <br>
+               开始后 <strong>请勿中途离开问卷或退出微信</strong>-->
+
+            <div class="a-c m-t">
+                <a ion-button="" (tap)="goDetail()" large round color="primary" block>{{'PAGES.INDEX.BTN_START'|translate}}</a>
+
+            </div>
+
+        </div>
+    </div>
+    <div *ngSwitchCase="0">
+        <div class="banner">
+            <img src="assets/images/empty.jpg" alt="">
+        </div>
+        <div class="content a-l">
+            <div [innerHTML]="'PAGES.INDEX.CONTENT'|translate"></div>
+            <!-- 对不起，您暂时无可参加的测试：）-->
+        </div>
+    </div>
+    <div *ngSwitchCase="2">
+        <div class="banner">
+            <img src="assets/images/timeout.jpg" alt="">
+        </div>
+        <div class="content a-l">
+            <div [innerHTML]="'PAGES.INDEX.CONTENT2'|translate"></div>
+           <!-- 对不起，您的问卷已经过期或超时，感谢参与！-->
+            <div class="a-c m-t">
+                <a ion-button="" (tap)="reDo()" large round color="primary" block>{{'PAGES.INDEX.BTN_RETRY'|translate}}</a>
+
+            </div>
+
+        </div>
+    </div>
+
+</ion-content>
+

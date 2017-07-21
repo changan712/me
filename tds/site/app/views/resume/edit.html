@@ -1,0 +1,361 @@
+<ion-view view-title="职位编辑" cache-view="false">
+    <ion-content delegate-handle="posContent" class="resume-edit">
+        <dl class="no-margin resume-tt">
+            <dt class="text-center bar-theme"><span class="title">{{vm.mod.info.cv_name||'我的简历'}}</span></dt>
+            <dd ng-if="vm.type=='edit'" class="dd-progress"><span><i class="ion-ios-pie big theme-color icon mr5"></i>简历完整度:</span> <span
+                    class="pro-warp"><span
+                    class="progress theme" ng-style="{width: vm.mod.integrity+'%'}"></span></span> <span
+                    class="small ">{{vm.mod.integrity}}%</span></dd>
+        </dl>
+        <dl>
+            <dt>
+                <i class="icon ion-person big mr5 theme-color"></i>
+                <span>基本信息</span>
+                <i class="icon ion-compose bigger pull-right gray-reset" on-tap="vm.infoEdit()"></i>
+            </dt>
+            <dd ng-if="!vm.mod.info">
+                <span class="gray">暂无信息</span>
+            </dd>
+            <dd ng-if="vm.mod.info" class="gray info">
+                <div class="row">
+                    <div class="col">姓名：{{vm.mod.info.name}}</div>
+                    <div class="col">性别：{{vm.mod.info.gender|sex:0}}</div>
+                </div>
+                <div class="row">
+                    <div class="col">手机：{{vm.mod.info.mobile}}</div>
+                    <div class="col">工作经验：{{vm.mod.info.work_exp}} 年</div>
+                </div>
+                <div class="row">
+                    <div class="col">年龄：{{vm.mod.info.age}}</div>
+                </div>
+                <div class="row">
+                    <div class="col">邮箱：{{vm.mod.info.email}}</div>
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <i class="ion-university icon big theme-color"></i>
+                <span>教育经历</span>
+                <span class="small normal gray">(最多三条)</span>
+                <i ng-if="vm.type=='edit'&&vm.mod.edu.length<3"
+                   class="icon ion-plus-circled pull-right bigger gray-reset"
+                   on-tap="vm.eduEdit(-1)"></i>
+            </dt>
+            <dd ng-if="!vm.mod.edu.length">
+                <span class="gray">暂无教育经历</span>
+            </dd>
+            <dd ng-if="vm.mod.edu.length">
+
+                <div class="dd-list" ng-repeat="item in vm.mod.edu">
+                    <div class="list-con theme-border">
+                        <i class="dot dot-top theme theme-border-dark"></i>
+                        <i class="dot dot-sub"></i>
+
+                        <div class="border theme">
+                        </div>
+                        <i class="icon ion-compose pull-right bigger gray-reset" on-tap="vm.eduEdit($index)"></i>
+                        <i class="icon  pull-right bigger mr10 ion-trash-a gray-reset" on-tap="vm.eduDelete($index)">
+                        </i>
+
+
+                        <div class="mb5">{{item.school}}</div>
+                        <div class="gray">
+                            开始时间：{{item.startTime|date:'yyyy年M月'}}
+                        </div>
+                        <div class="gray">结束时间：{{item.endTime|date:'yyyy年M月'}}</div>
+                        <div class="gray">
+                            学历：{{item.degree}}
+                        </div>
+                        <div class="gray">
+                            专业：{{item.major}}
+                        </div>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <i class="ion-briefcase icon big  theme-color"></i>
+                <span>工作经历</span>
+                <span class="small normal gray"> (最多五条)</span>
+                <i ng-if="vm.type=='edit'&&vm.mod.exp.length<5"
+                   class="icon ion-plus-circled pull-right bigger gray-reset"
+                   on-tap="vm.expEdit(-1)"></i>
+            </dt>
+            <dd ng-if="!vm.mod.exp.length">
+                <span class="gray">暂无工作经历</span>
+            </dd>
+            <dd ng-if="vm.mod.exp.length">
+
+                <div class="dd-list" ng-repeat="item in vm.mod.exp">
+                    <div class="list-con theme-border">
+                        <i class="dot dot-top theme theme-border-dark"></i>
+                        <i class="dot  dot-sub "></i>
+
+                        <div class="border theme">
+                        </div>
+                        <i class="icon ion-compose pull-right bigger gray-reset" on-tap="vm.expEdit($index)"></i>
+                        <i class="icon pull-right bigger mr10 ion-trash-a gray-reset" on-tap="vm.expDelete($index)"></i>
+
+                        <div class="mb5">{{item.company}}</div>
+                        <div class="gray">
+                            开始时间：{{item.startTime|date:'yyyy年M月'}}
+                        </div>
+                        <div class="gray">
+                            结束时间：{{item.endTime|date:'yyyy年M月'}}
+                        </div>
+                        <div class="gray">职位：{{item.position}}</div>
+                        <div class="gray detail">
+                            工作描述 {{item.detail}}
+                        </div>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <i class="icon ion-document-text big theme-color"></i>
+                <span>附件</span>
+                <span class="small normal gray"> (最多四个)</span>
+                <i ng-if="vm.type=='edit'&&vm.mod.file.length<4"
+                   class="icon ion-plus-circled pull-right bigger gray-reset"
+                                                                   on-tap="vm.modals.file.show()"></i></dt>
+            <dd ng-if="!vm.mod.file.length"><span class="gray">暂无附件</span></dd>
+            <dd ng-if="vm.mod.file.length" ng-repeat="item in vm.mod.file">
+                <i class="icon ion-trash-a pull-right bigger gray-reset"
+                   on-tap="vm.fileDelete($index)"></i>
+                <span>{{item.name}}</span>
+            </dd>
+        </dl>
+        <div class="padding">
+            <a class="button button-block button-theme" ng-href="#/resume/index">完成</a>
+        </div>
+    </ion-content>
+</ion-view>
+<!--tpl-->
+<script id="info.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-theme ">
+            <h1 class="title">基本信息</h1>
+            <button class="button small my-close button-clear " ng-click="vm.modals.info.hide()"><i
+                    class="icon black small ion-android-close "></i></button>
+        </ion-header-bar>
+        <ion-content>
+            <form name="formInfo" novalidate ng-submit="vm.infoSubmit(formInfo,vm.modals.info)">
+                <div class="list">
+                    <label class="item item-input"
+                           ng-class="{'error':(formInfo.$submitted&&formInfo.cv_name.$error.required)||formInfo.cv_name.$error.maxlength}">
+                        <span class="input-label"> <span
+                                class="icon ion-document-text gray-reset new-icon-position"></span> 简历名称<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" required name="cv_name" maxlength="20" ng-model="vm.modInfo.cv_name">
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':(formInfo.$submitted&&formInfo.name.$error.required)||formInfo.name.$error.maxlength}">
+                        <span class="input-label"> <span class="icon ion-person gray-reset new-icon-position"></span> 姓名<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" required name="name" maxlength="20" ng-model="vm.modInfo.name">
+                    </label>
+
+                    <label class="item item-input"
+                           ng-class="{'error':(formInfo.$submitted&&formInfo.age.$error.required)||formInfo.age.$error.number}">
+                        <span class="input-label"><span
+                                class="icon ion-star gray-reset new-icon-position"></span> 年龄<sup
+                                class="red">*</sup>：</span>
+                        <input type="number" required name="age" placeholder="请输入数字" ng-model="vm.modInfo.age">
+                    </label>
+
+                    <div class="item">
+                        <label class="mr10 "> <span class="icon ion-male gray-reset new-icon-position"></span> 性别<sup
+                                class="red">*</sup>：</label>
+                        <label class="gender-radio"><input type="radio" value="MALE" ng-model="vm.modInfo.gender"
+                                                    name="gender"> 男</label>
+                        <label><input ng-model="vm.modInfo.gender" value="FEMALE" type="radio"
+                                      name="gender">
+                            女</label>
+                    </div>
+                    <label class="item item-input"
+                           ng-class="{'error':formInfo.$submitted&&formInfo.mobile.$error.required}">
+                        <span class="input-label"> <span
+                                class="icon ion-ios-telephone gray-reset new-icon-position"></span> 手机<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" required name="mobile" ng-model="vm.modInfo.mobile" maxlength="11">
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':formInfo.email.$error.email||(formInfo.$submitted&&formInfo.email.$error.required)}">
+                        <span class="input-label"> <span
+                                class="icon ion-email gray-reset new-icon-position"></span> 邮箱<sup class="red">*</sup>：</span>
+                        <input type="email" required name="email" ng-model="vm.modInfo.email">
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':formInfo.work_exp.$error.number&&formInfo.$submitted}">
+                        <span class="input-label"> <span
+                                class="icon ion-person-stalker gray-reset new-icon-position"></span> 工作经验：</span>
+                        <input type="number" name="work_exp" placeholder="请输入数字" ng-model="vm.modInfo.work_exp">
+                    </label>
+                </div>
+
+                <div class="padding">
+                    <button class="button button-block button-theme">保存</button>
+                </div>
+            </form>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="edu.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-theme ">
+            <h1 class="title">教育经历</h1>
+            <button class="button small my-close button-clear " ng-click="vm.modals.edu.hide()"><i
+                    class="icon black small ion-android-close "></i></button>
+        </ion-header-bar>
+        <ion-content>
+            <form name="formEdu" novalidate ng-submit="vm.eduSubmit(formEdu,vm.modals.edu)">
+                <div class="list">
+                    <label class="item item-input"
+                           ng-class="{'error':formEdu.$submitted&&formEdu.startTime.$error.required}">
+                        <span class="input-label"><span class="icon ion-ios-clock gray-reset new-icon-position"></span> 开始时间<sup
+                                class="red">*</sup>：</span>
+                        <input ng-if="isIOS" type="date" class="date" name="startTime" ng-model="vm.modEdu.startTime"
+                               required
+                               placeholder="开始时间">
+                        <ionic-datepicker ng-if="!isIOS" ng-click="vm.setLoc('edu','startTime')"
+                                          input-obj="vm.datepickerObjectPopup">
+                            <input type="text" readonly placeholder="点击选择日期"
+                                   ng-model="vm.modEdu.startTime |date:'yyyy-MM-dd'">
+                        </ionic-datepicker>
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':formEdu.$submitted&&formEdu.endTime.$error.required}">
+                        <span class="input-label"><span class="icon ion-ios-time gray-reset new-icon-position"></span> 结束时间<sup
+                                class="red">*</sup>：</span>
+                        <input type="date" ng-if="isIOS" name="endTime" ng-model="vm.modEdu.endTime" required
+                               placeholder="结束时间">
+                        <ionic-datepicker ng-if="!isIOS" ng-click="vm.setLoc('edu','endTime')"
+                                          input-obj="vm.datepickerObjectPopup">
+                            <input type="text" readonly placeholder="点击选择日期"
+                                   ng-model="vm.modEdu.endTime |date:'yyyy-MM-dd'">
+                        </ionic-datepicker>
+
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':formEdu.$submitted&&formEdu.school.$error.required}">
+                        <span class="input-label"><span class="ion-ribbon-a icon gray-reset new-icon-position"></span> 学校<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" required name="school" ng-model="vm.modEdu.school">
+                    </label>
+
+                    <label class="item item-input item-select">
+                    <span class="input-label"><span
+                            class="ion-university icon gray-reset new-icon-position"></span> 学历<sup class="red">*</sup>：
+                    </span>
+                        <select ng-model="vm.modEdu.degree" ng-options=" item for item in vm.view.edu"
+                                class="col col-75">
+                        </select>
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':formEdu.$submitted&&formEdu.major.$error.required}">
+                        <span class="input-label"><span class="ion-ios-book icon gray-reset new-icon-position"></span> 专业<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" name="major" required ng-model="vm.modEdu.major">
+                    </label></div>
+                <div class="padding">
+                    <button class="button button-block button-theme">保存</button>
+                </div>
+
+            </form>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="exp.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-theme ">
+            <h1 class="title">工作经历</h1>
+            <button class="button small my-close button-clear " on-tap="vm.modals.exp.hide()"><i
+                    class="icon black small ion-android-close "></i></button>
+        </ion-header-bar>
+        <ion-content>
+            <form name="formExp" novalidate ng-submit="vm.expSubmit(formExp,vm.modals.exp)">
+                <div class="list">
+                    <label class="item item-input"
+                           ng-class="{'error':formExp.$submitted&&formExp.startTime.$error.required}">
+                        <span class="input-label"><span class="icon ion-ios-clock gray-reset new-icon-position"></span> 开始时间<sup
+                                class="red">*</sup>：</span>
+                        <input ng-if="isIOS" type="date" name="startTime" required ng-model="vm.modExp.startTime">
+                        <ionic-datepicker ng-if="!isIOS" ng-click="vm.setLoc('exp','startTime')"
+                                          input-obj="vm.datepickerObjectPopup">
+                            <input type="text" readonly placeholder="点击选择日期"
+                                   ng-model="vm.modExp.startTime |date:'yyyy-MM-dd'">
+                        </ionic-datepicker>
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':formExp.$submitted&&formExp.endTime.$error.required}">
+                        <span class="input-label"><span class="icon ion-ios-time gray-reset new-icon-position"></span> 结束时间<sup
+                                class="red">*</sup>：</span>
+                        <input type="date" ng-if="isIOS" name="endTime" required ng-model="vm.modExp.endTime">
+                        <ionic-datepicker ng-if="!isIOS" ng-click="vm.setLoc('exp','endTime')"
+                                          input-obj="vm.datepickerObjectPopup">
+                            <input type="text" readonly placeholder="点击选择日期"
+                                   ng-model="vm.modExp.endTime |date:'yyyy-MM-dd'">
+                        </ionic-datepicker>
+                    </label>
+
+                    <label class="item item-input"
+                           ng-class="{'error':formExp.$submitted&&formExp.company.$error.required}">
+                        <span class="input-label"><span class="ion-printer icon gray-reset new-icon-position"></span> 公司<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" name="company" required ng-model="vm.modExp.company">
+                    </label>
+                    <label class="item item-input"
+                           ng-class="{'error':formExp.$submitted&&formExp.position.$error.required}">
+                        <span class="input-label"><span class="ion-briefcase icon gray-reset new-icon-position"></span> 所任职位<sup
+                                class="red">*</sup>：</span>
+                        <input type="text" name="position" required ng-model="vm.modExp.position">
+                    </label>
+                    <label class="item item-textarea ">
+                        <span class="input-label">工作描述：</span>
+
+                        <div><textarea rows="3" name="detail" ng-model="vm.modExp.detail"></textarea></div>
+
+                    </label>
+                </div>
+
+                <div class="padding">
+                    <button class="button button-block button-theme">提交</button>
+                </div>
+            </form>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="file.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-theme ">
+            <h1 class="title">上传附件</h1>
+            <button class="button small my-close button-clear " on-tap="vm.modals.file.hide()"><i
+                    class="icon black small ion-android-close "></i></button>
+        </ion-header-bar>
+        <ion-content>
+            <form name="formFile" novalidate ng-submit="vm.fileSubmit(formFile,vm.modals.file)">
+                <div class="list">
+                    <label class="item"
+                           ng-class="{'error':(formFile.$submitted&&!vm.modFile.data)}">
+                       <span class="btn btn-upload button-theme ">上传简历
+                           <input type="file" id="file" file-info="vm.modFile.info"
+                                  reader-error="vm.readerError(msg)"
+                                  fileread="vm.modFile.data" file-type="vm.modFile.type"
+                                  class="file"/>
+                       </span>
+                        <span class="error small" ng-if="formFile.$submitted&&!vm.modFile.data">请选择上传文件</span> <span
+                            class="ml5">{{vm.modFile.info.name}}</span>
+                    </label>
+
+                    <div class="padding">
+                        <button class="button button-block button-theme">提交</button>
+                    </div>
+                </div>
+            </form>
+        </ion-content>
+    </ion-modal-view>
+</script>

@@ -1,0 +1,51 @@
+<ion-view class="view-contacts">
+    <ion-header-bar class="bar-light" ng-if="!vm.searchState">
+        <div class="buttons">
+            <a class="button button-light" back back-default-state="app.index"> <i
+                    class="icon ion-android-arrow-back"></i></a>
+        </div>
+        <h4 class="title">通讯录</h4>
+        <div class="buttons">
+            <a class="button button-light" on-tap="vm.setSearchState(true)"> <i class="icon ion-ios-search-strong"></i></a>
+        </div>
+    </ion-header-bar>
+    <form name="form" ng-submit="vm.search(form)">
+        <ion-header-bar class="bar bar-search  item-input-inset" ng-if="vm.searchState">
+            <label class="item-input-wrapper"><i class="icon big  ion-ios-search-strong placeholder-icon"></i>
+                <input type="search" placeholder="请输入关键字"  ng-model="vm.keyword"
+                       class="ng-pristine ng-untouched ng-valid ng-empty">
+                <a class="button button-close no-theme no-bg-color big gray ion-ios-close" ng-if="vm.keyword"
+                   on-tap="vm.clearKeyword()"></a>
+            </label>
+
+            <a class="button no-theme  button-light " on-tap="vm.setSearchState(false)">取消</a>
+        </ion-header-bar>
+    </form>
+    <ion-content class="has-header">
+
+        <div class="list list-sm sm-bd ">
+            <div ng-repeat-start="(key,items) in vm.list" id="{{key}}" class="item-divider "><span
+                    class="ml10">{{key|uppercase}}</span></div>
+            <a ng-repeat-end class="item   " ng-repeat="item in items"
+               ui-sref="app.feed.home({id:item.id})">
+              <span class="avatar-wrap avatar-wrap-sm">  <img src="images/crown.png" ng-if="item.metal_crown" class="crown" alt="" > <span class="avatar avatar-sm ">  <img ng-src="{{item.avatar}}" alt=""></span></span>
+                {{item.name}}
+                <span class="user-metal">
+                    <img ng-src="{{metalId|aiaMetal}}" ng-repeat="metalId in item.metal_ids" alt="">
+                </span>
+            </a>
+        </div>
+        <!--  <ion-infinite-scroll
+                  ng-if=" vm.pageList.hasMore"
+                  immediate-check="false"
+                  spinner="dots"
+                  on-infinite=" vm.pageList.loadMore()"
+                  distance="10%">
+          </ion-infinite-scroll>
+          <div class="small padding-bottom text-center gray" ng-if="!vm.pageList.hasMore&&!vm.pageList.loading">暂无更多</div>-->
+    </ion-content>
+    <div class="letters">
+        <a class="letter color-text" on-tap="vm.goToAnchor(letter)"
+           ng-repeat="letter in vm.letters">{{letter|uppercase}}</a>
+    </div>
+</ion-view>

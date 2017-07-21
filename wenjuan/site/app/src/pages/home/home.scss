@@ -1,0 +1,15 @@
+page-home{
+  .card-header{
+    background:#f5f5f5;
+    padding:10px 16px;
+    border-bottom:1px solid #ddd;
+
+    .arrow{
+      float:right;
+      color:gray;
+    }
+  }
+  .card-content{
+    padding:10px 16px!important;
+  }
+}

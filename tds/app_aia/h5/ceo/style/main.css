@@ -1,0 +1,112 @@
+*{
+    margin:0;
+    padding:0
+}
+
+body, html{
+    min-height:100%;
+}
+
+body{
+    background:#fff;
+    color:#666;
+    line-height:1.5;
+}
+
+img{
+    vertical-align:top;
+}
+
+.w100p{
+    width:100%;
+}
+
+.f20{
+    font-size:20px !important;
+}
+
+.f18{
+    font-size:18px !important;
+}
+
+.f16{
+    font-size:16px !important;
+}
+
+.f14{
+    font-size:14px !important;
+}
+
+.f12{
+    font-size:12px !important;
+}
+
+.bold{
+    font-weight:bold;
+}
+
+p{
+    text-indent:2em;
+    margin:10px 0;
+}
+
+.title{
+    font-weight:normal;
+    font-size:18px;
+    margin-bottom:50px;
+}
+
+.primary{
+    color:#860325;
+}
+
+.warning{
+    color:#ed7d31;
+}
+
+.danger{
+    color:#d31f46;
+}
+
+.wrap{
+    padding:0 30px 20px;
+    position:relative;
+    margin-top:-20px;
+
+}
+
+.main{
+    font-size:16px;
+}
+
+h3{
+    font-size:16px;
+    margin:25px 0 ;
+
+    font-weight:bold;
+}
+
+.main .greeting{
+    color:#d31f46;
+    font-size:16px;
+    margin-bottom:36px;
+    font-weight:bold;
+}
+
+.t-r{
+    text-align:right;
+}
+
+.signature{
+    text-align:right;
+    padding:20px 0;
+}
+
+.signature img{
+    width:50%;
+}
+
+.footer{
+
+    width:100%;
+}

@@ -1,0 +1,29 @@
+<ion-view class="overview" hide-tabs="false">
+    <ion-nav-title><h4>绩效</h4></ion-nav-title>
+    <ion-content>
+        <ion-refresher
+                pulling-text="<span class='small gray'>向下滑动刷新</span>"
+                spinner="spiral"
+                on-refresh="vm.pageList.refresh()">
+        </ion-refresher>
+        <div class="list ">
+            <div class="item  sm-bd-bottom sm-bd-top item-icon-right " ng-click="vm.stateTo(item)" ng-repeat="item in vm.pageList.list">
+                <span class="avatar avatar-sm ">  <img ng-src="{{item.user.avatar}}" alt=""></span>
+                {{item.user.name}}<span class="label ml10"> {{item.step|perfStep}}</span>
+                <i class="icon  ion-ios-arrow-right"></i>
+
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="vm.pageList.hasMore" immediate-check="false"
+                             spinner="dots"
+                             on-infinite="vm.pageList.loadMore()"
+                             distance="10%">
+        </ion-infinite-scroll>
+        <div class="small padding-bottom text-center gray" ng-if="!vm.pageList.hasMore">暂无更多</div>
+    </ion-content>
+
+</ion-view>
+
+
+
+
