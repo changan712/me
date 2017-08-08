@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stack</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<script src="stack.js"></script>
+<script>
+    /* 函数调用
+
+     我们在调试代码的时候，碰到函数报错时经常会发现如下类似的报错提示：
+
+     其实我们只是在一处出错了，为什么会打印出这么多报错信息呢？
+
+     原因就在于解释器把报错的函数经过的所有调用函数的栈打印了出来。
+
+     在函数调用的时候，我们需要切换到被调用的函数上，但是一旦函数调用结束，我们还得回到原来的位置。
+
+     利用栈，我们可以有条不紊的实现这点，即在函数调用的时候，我们把当前函数的变量和上下文入栈，等函数调用结束，我们再出栈，获取之前的上下文和变量。
+
+    */
+
+    /**
+     * 将10进制数字转为2进制数字
+     * @param  {Number} decNumber 要转换的10进制数字
+     * @return {Number}           转换后的2进制数字
+     */
+    function dividerBy2(decNumber) {
+        let remStack = new Stack(),
+            rem,
+            binaryString = '';
+
+        while (decNumber > 0) {
+            rem = Math.floor(decNumber % 2);
+            remStack.push(rem);
+            decNumber = Math.floor(decNumber / 2);
+        }
+
+        remStack.print();
+
+        while (!remStack.isEmpty()) {
+            binaryString += remStack.pop().toString();
+        }
+        return binaryString
+
+    }
+
+    console.log(dividerBy2(20));
+
+</script>

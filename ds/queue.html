@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>queue</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="queue.js"></script>
+
+<script>
+    /**
+     * 击鼓传花的小游戏
+     * @param  {Array}  nameList 参与人员列表
+     * @param  {Number} num      在循环中要被弹出的位置 每次敲击相同次数？
+     * @return {String}          返回赢家(也就是最后活下来的那个)
+     */
+
+    function hotPotato(nameList, num) {
+        let queue = new Queue();
+
+        for (let i = 0; i < nameList.length; i++) {
+            queue.enqueue(nameList[i]);
+        }
+
+        let eliminated = '';
+
+        while (queue.size() > 1) {
+            for (let i = 0; i < num; i++) {
+                //把队首扔到队尾;
+                queue.enqueue(queue.dequeue());
+            }
+
+            eliminated = queue.dequeue();
+            console.log(eliminated + " Get out!")
+        }
+
+        return queue.dequeue()
+    }
+
+    console.log(hotPotato([1, 2, 3, 4], 1));
+
+</script>
